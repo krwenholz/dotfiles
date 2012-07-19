@@ -18,3 +18,4 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 map T :TaskList<CR>
 map P :TlistToggle<CR>
+set spell
