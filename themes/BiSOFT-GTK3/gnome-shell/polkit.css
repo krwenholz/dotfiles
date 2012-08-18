@@ -1,0 +1,101 @@
+/* PolicyKit Authentication Dialog */
+
+.polkit-dialog {
+    /* this is the width of the entire modal popup */
+    width: 400px;
+    text-align: left;
+}
+
+.polkit-dialog-main-layout {
+    spacing: 20px;
+    padding: 10px;
+}
+
+.polkit-dialog-message-layout {
+    spacing: 16px;
+}
+
+.polkit-dialog-headline {
+    font-size: 16pt;
+    color: rgba(0,0,0,0.85);
+    padding-top: 10px;
+    padding-left: 17px;
+    padding-bottom: 15px;
+	text-align: center;
+
+}
+
+.polkit-dialog-description {
+    font-size: 11pt;
+    color: rgba(0,0,0,0.7);
+    padding-bottom: 15px;
+}
+
+.polkit-dialog-user-layout {
+    spacing: 10px;
+}
+
+.polkit-dialog-user-layout:rtl {
+    padding-left: 0px;
+    padding-right: 10px;
+}
+
+.polkit-dialog-user-root-label {
+    font-size: 11pt;
+    text-align: center;
+    color: rgba(0,0,0,0.65);
+
+}
+
+.polkit-dialog-password-label:ltr {
+    padding-right: 0.5em;
+    padding-top: 5px;
+}
+
+.polkit-dialog-password-label:rtl {
+    padding-left: 0.5em;
+}
+
+.polkit-dialog-password-entry {
+    background-color: rgb(255,255,255);
+    color: black;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 1.5em;
+}
+
+.polkit-dialog-password-entry:focus {
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.polkit-dialog-error-label {
+    font-size: 11pt;
+    color: rgba(0,0,0,0.75);
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.polkit-dialog-info-label {
+    font-size: 12pt;
+    padding-bottom: 8px;
+}
+
+/* intentionally left transparent to avoid dialog changing size */
+.polkit-dialog-null-label {
+    font-size: 12pt;
+    color: rgba(0,0,0,0);
+    padding-bottom: 8px;
+}
+
+.network-dialog-show-password-checkbox {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12pt;
+    color: white;
+    spacing: 10px;
+}
+
+.network-dialog-secret-table {
+    spacing-rows: 15px;
+}

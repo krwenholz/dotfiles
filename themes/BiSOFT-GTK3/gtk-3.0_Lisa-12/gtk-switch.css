@@ -1,0 +1,89 @@
+/**********
+ * switch *
+ **********/
+GtkSwitch {
+    font: bold 10;
+    border-radius: 16;
+
+    -unico-focus-border-radius: 6;
+    -unico-focus-border-color: alpha (@selected_bg_color, 0.3);
+    -unico-focus-fill-color: @transparent;
+}
+
+GtkSwitch.trough {
+    background-image: -gtk-gradient (linear, right top, left bottom,
+		from (shade (@button_active_gradient_color_a, 0.95)),
+		to (shade (@button_active_gradient_color_b, 1.05)));
+    border-width: 2;
+    border-style: solid;
+    border-radius: 16;
+
+	color: @fg_color;
+	text-shadow: 0 1 alpha (shade (@bg_color, 1.25), 0.5);
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@theme_border_color_b, 1.00)),
+		to (shade (@theme_border_color_a, 1.00)));
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@bg_color, 0.78)),
+		to (shade (@bg_color, 0.86)));
+	-unico-inner-stroke-width: 1;
+}
+
+GtkSwitch.trough:active {
+	background-image: -gtk-gradient (linear, left top, right bottom,
+		from (shade (@selected_bg_color, 0.90)),
+		to (shade (@selected_bg_color, 1.05)));
+
+	color: @selected_fg_color;
+	text-shadow: 0 -1 shade (@selected_bg_color, 0.7);
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, right bottom,
+		from (shade (@selected_bg_color, 0.7)),
+		to (shade (@selected_bg_color, 0.76)));
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, right bottom,
+		from (shade (@selected_bg_color, 0.86)),
+		to (shade (@selected_bg_color, 0.94)));
+}
+
+GtkSwitch.trough:insensitive {  /* Switch is not active */
+	background-image: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@bg_color, 0.80)),
+		to (shade (@bg_color, 0.90)));
+
+	color: shade (@bg_color, 0.6);
+	text-shadow: 0 1 alpha (shade (@bg_color, 1.25), 0.5);
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@bg_color, 0.7)),
+		to (shade (@bg_color, 0.75)));
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@bg_color, 0.88)),
+		to (shade (@bg_color, 0.965)));
+}
+
+GtkSwitch.slider {
+    background-image: -gtk-gradient (linear,
+                                     left top, right bottom,
+                                     from (shade(@base_color, 0.95)),
+                                     to (shade(@bg_color, 0.65))); 
+    -unico-switch-grip-color: alpha(@base_color, 0.2);
+    border-radius: 16;
+
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, right bottom,
+		from (@theme_border_color_a),
+		to (@theme_border_color_b));
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, right bottom,
+		from (shade (@bg_color, 1.2)),
+		to (shade (@bg_color, 0.96)));
+	-unico-inner-stroke-width: 1;
+	-unico-outer-stroke-width: 0;  
+}
+
+GtkSwitch.slider:insensitive { /* Switch is dimmed */
+    -unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+                                           from (shade (@bg_color, 0.7)),
+                                           to (shade (@bg_color, 0.75)));
+}
+

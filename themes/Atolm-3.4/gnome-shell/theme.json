@@ -1,0 +1,10 @@
+{ 
+   "shell-theme": {
+   "name": "Atolm-3.4", 
+   "author": "Half-Left", 
+   "version": "1.0",
+   "type":   "custom",
+   "thumbnail": "preview-atolm.jpg", 
+   "url": "http://half-left.deviantart.com/art/GNOME-Shell-Atolm-204534789" 
+    }
+}

@@ -1,0 +1,8 @@
+[X-GNOME-Metatheme]
+Name=BiSOFT-GTK3
+Type=X-GNOME-Metatheme
+GtkTheme=BiSOFT-GTK3
+MetacityTheme=BiSOFT-GTK3
+IconTheme=bisoft-icons
+CursorTheme=bisoft-cursors
+CursorSize=24

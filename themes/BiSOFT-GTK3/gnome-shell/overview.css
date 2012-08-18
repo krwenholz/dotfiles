@@ -1,0 +1,65 @@
+
+/* Overview */
+
+#overview {
+    spacing: 20px;
+/*    background-color: rgba(255,255,255,0.1); */
+    background-color: rgba(0,0,0,0.4);
+}
+
+.workspace-controls {
+    visible-width: 15px; /* Amount visible before hovering */
+}
+
+.workspace-thumbnails-background {
+    padding: 10px;;
+    background-gradient-direction: horizontal;
+    background-gradient-start: rgba(255,255,255,0.1);
+    background-gradient-end: rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: inset 1px 0px 0px 0px rgba(255,255,255,0.2);
+    border-radius: 4px 0px 0px 4px;
+    border-right: 0;
+}
+
+.workspace-thumbnails-background:rtl {
+    border-right: 1px;
+    border-left: 0px;
+    border-radius: 0px 4px 4px 0px;
+}
+
+.workspace-thumbnails {
+    spacing: 7px;
+}
+
+.workspace-thumbnail-indicator {
+    outline: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid rgba(0,0,0,0.2);
+
+}
+
+.window-caption {
+    -shell-caption-spacing: 10px;
+    background-gradient-direction: vertical;
+    background-gradient-end: rgba(255,255,255,0.04);
+    background-gradient-start: rgba(255,255,255,0.5);
+/*    text-shadow: rgba(0,0,0,0.2) 0px 1px 0px; */
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0px 1px 0px 0px rgba(255,255,255,0.2);
+    color: rgba(16,16,16,0.85); /*     color: rgba(255,255,255,0.95); */
+    font-size: 10pt;
+    padding: 4px 15px;
+    text-align: center;
+}
+
+.window-close {
+    background-image: url("img/close-window.svg");
+    height: 48px;
+    width: 48px;
+    -shell-close-overlap: 20px; /* 24 */
+}
+
+.window-close:rtl {
+    -st-background-image-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}

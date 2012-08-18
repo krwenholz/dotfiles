@@ -1,0 +1,118 @@
+/*************************
+ * progressbar and scale *
+ *************************/
+GtkScale,
+GtkProgressBar {
+	border-radius: 0;
+	border-width: 1;
+	padding: 0;
+}
+
+.progressbar,
+.progressbar row,
+.progressbar row:hover,
+.progressbar row:selected,
+.progressbar row:selected:focused {
+	background-image: -gtk-gradient (linear, left top, left bottom,
+		from (@progressbar_background_a),
+		to (@progressbar_background_b));
+	border-width: 1;
+	border-color: @progressbar_border;
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@progressbar_border, 1.00)),
+		to (shade (@progressbar_border, 1.00)));
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@selected_bg_color, 1.1)),
+		to (shade (@selected_bg_color, 1.2)));
+	-unico-inner-stroke-width: 1 1 0 1;
+	-unico-outer-stroke-color: @transparent;
+	-unico-outer-stroke-gradient: none;
+	-unico-outer-stroke-width: 0;
+}
+
+.progressbar.vertical,
+.progressbar.vertical row,
+.progressbar.vertical row:hover,
+.progressbar.vertical row:selected,
+.progressbar.vertical row:selected:focused {
+	background-image: -gtk-gradient (linear, left top, right top,
+		from (@progressbar_background_a),
+		to (@progressbar_background_b));
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, right top,
+		from (shade (@progressbar_border, 1.00)),
+		to (shade (@progressbar_border, 1.00)));
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, right top,
+		from (shade (@selected_bg_color, 1.1)),
+		to (shade (@selected_bg_color, 1.2)));
+	border-width: 1;
+	-unico-inner-stroke-width: 1 0 1 1;
+	border-color: @progressbar_border;
+}
+
+.trough,
+.trough row,
+.trough row:hover,
+.trough row:selected,
+.trough row:selected:focused {
+	background-image: -gtk-gradient (linear,
+		left top, left bottom,
+		from (@progressbar_through_a),
+		to (@progressbar_through_b));
+
+	border-width: 1;
+	border-style: solid;
+	border-radius: 0;
+	border-color: shade (@progressbar_through_border, 1.0);
+	-unico-outer-stroke-width: 0;
+}
+
+.trough.vertical {
+	background-image: -gtk-gradient (linear, left top, right top,
+		from (@progressbar_through_a),
+		to (@progressbar_through_b));
+
+	border-width: 1;
+	border-style: solid;
+	border-radius: 0;
+	border-color: shade (@progressbar_through_border, 1.0);
+	-unico-outer-stroke-width: 0;
+}
+
+GtkScale.trough, 
+GtkScale.trough.vertical {
+	border-radius: 8;
+}
+
+
+GtkScale {
+	-GtkRange-slider-width: 10;
+	-GtkRange-trough-border: 1;
+	-GtkScale-slider-length: 10;
+	
+	border-style: solid;
+	border-width: 1;
+	border-radius: 8;
+
+	-unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (shade (@theme_bg_color, 0.8)),
+		to (shade (@theme_bg_color, 0.8)));
+	-unico-glow-radius: 0;
+	-unico-inner-stroke-width: 1;
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+		from (alpha (shade (@bg_color, 0.6), 0.2)),
+		to (alpha (@bg_color, 0.0)));
+}
+
+GtkScale.vertical {
+	-GtkScale-slider-length: 10;
+	-unico-inner-stroke-width: 1;
+	-unico-inner-stroke-gradient: -gtk-gradient (linear, left top, right top,
+		from (alpha (shade (@bg_color, 0.6), 0.2)),
+		to (alpha (@bg_color, 0.0)));
+}
+
+GtkScale.mark {
+	border-color: shade (@bg_color, 0.8);
+}

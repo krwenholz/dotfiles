@@ -1,0 +1,43 @@
+/* Journal */
+
+#overview .journal-item {
+    padding: 2px 5px 5px 10px;
+    spacing: 60px;
+    font-size: 10pt;
+}
+
+
+#overview .journal-item > .overview-icon {
+	icon-size: 48px;
+	border: 1px solid transparent;
+	padding: 3px;
+}
+
+
+#overview .journal-item:hover, #overview .journal-item-selection {
+    background-gradient-direction: vertical;
+    background-gradient-start: rgba(255,255,255,0.5);
+    background-gradient-end: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.3);
+    color: rgba(255,255,255,0.9);
+}
+
+#overview .journal-heading {
+    padding: 6px 12px;
+    spacing: 5px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    color: rgba(255,255,255,0.95);
+    font-size: 1.2em;
+}
+
+#overview .journal-heading:hover {
+    color: #fff;
+}
+
+#overview .journal-heading-box {
+    padding: 8px 0px 0px;
+}

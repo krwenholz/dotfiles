@@ -1,0 +1,51 @@
+/* Modal Dialogs */
+.modal-dialog {
+    font-size: 11pt;
+    border-radius: 10px;
+    background-color: rgba(8,8,8,0.75);
+    border-width: 3px;
+    border: 3px solid rgba(20,110,150,0.75);
+    color: #ddd;
+
+    padding-right: 42px;
+    padding-left: 42px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.modal-dialog-button {
+    border: 1px solid #222;
+    border-radius: 6px;
+    font-size: 11pt;
+    color: #ddd;
+
+    margin-left: 10px;
+    margin-right: 10px;
+
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    background-gradient-direction: vertical;
+    background-gradient-start: #666;
+    background-gradient-end: #222;
+}
+
+.modal-dialog-button:active,
+.modal-dialog-button:pressed {
+    color: #888;
+    border: 1px solid #222;
+    background-gradient-start: #222;
+    background-gradient-end: #666;
+}
+
+.modal-dialog-button:focus {
+    border: 1px solid #666;
+    color: #fff;
+    padding-left: 31px;
+    padding-right: 31px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+

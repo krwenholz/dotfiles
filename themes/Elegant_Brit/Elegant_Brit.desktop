@@ -1,0 +1,14 @@
+
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Elegant_Brit
+Comment=Elegant Brit theme for gtk3, by grvrulz
+Encoding=UTF-8
+
+Name[en_US]=Elegant_Brit
+
+[X-GNOME-Metatheme]
+GtkTheme=Elegant_Brit
+MetacityTheme=Elegant_Brit
+IconTheme=gnome
+CursorTheme=DMZ-White

@@ -1,0 +1,188 @@
+/*************
+ * scrollbar *
+ *************/
+
+.scrollbar {
+	background-image: none;
+	background-color: shade (@base_color, 1.0);
+	border-style: solid;
+	-GtkRange-trough-border: 1;
+	-GtkRange-arrow-scaling: 0.444;
+	-GtkRange-slider-width: 10;
+	-GtkRange-stepper-size: 0;
+	-GtkScrollbar-min-slider-length: 30;
+	-GtkRange-stepper-spacing: 0;
+	-GtkRange-trough-under-steppers: 1;
+}
+
+/* Through */
+.scrollbar.trough.vertical {
+	background-image: none;
+	background-color: shade (@bg_color, 0.65);
+	border-radius: 10;
+	border-width: 1;
+	border-style: solid;
+	border-color: #666666;
+}
+
+.scrollbar.trough.horizontal {
+	background-image: none;
+	background-color: shade (@bg_color, 0.65);
+	border-radius: 10;
+	border-width: 1;
+	border-style: solid;
+	border-color: #666666;
+}
+
+/* Sliders and buttons */
+.scrollbar.slider.vertical,
+.scrollbar.button.vertical {
+	background-image: -gtk-gradient (linear,
+		left top, right top,
+		from (@scrollslider_gradient_a),
+		to (shade (@bg_color, 0.85)));
+	border-color: shade (shade (@bg_color, 0.95));
+	background-color: @bg_color;
+	border-radius: 10;
+	border-width: 1;
+}
+
+.scrollbar.slider.vertical:prelight {
+	background-image: -gtk-gradient (linear,
+		left top, right top,
+		from (@scrollslider_gradient_a),
+		to (@scrollslider_gradient_b));
+	background-color: @theme_base_color;
+	border-color: shade (@selected_bg_color, 1.0);
+}
+
+.scrollbar.slider.vertical:prelight:active {
+	background-image: -gtk-gradient (linear,
+		left top, right top,
+		from (@scrollslider_gradient_a),
+		to (@scrollslider_gradient_b));
+	background-color: @theme_base_color;
+	border-color: shade (@selected_bg_color, 1.25)
+}
+
+.scrollbar.slider.horizontal,
+.scrollbar.button.horizontal {
+	background-image: -gtk-gradient (linear,
+		left top, left bottom,
+		from (@scrollslider_gradient_a),
+		to (shade (@bg_color, 0.85)));
+	border-color: shade (shade (@bg_color, 0.95));
+	background-color: @bg_color;
+	border-radius: 10;
+	border-width: 1;
+}
+
+.scrollbar.slider.horizontal:prelight {
+	background-image: -gtk-gradient (linear,
+		left top, left bottom,
+		from (@scrollslider_gradient_a),
+		to (@scrollslider_gradient_b));
+	background-color: @theme_base_color;
+	border-color: shade (@selected_bg_color, 1.0);
+}
+
+.scrollbar.slider.horizontal:prelight:active {
+	background-image: -gtk-gradient (linear,
+		left top, left bottom,
+		from (@scrollslider_gradient_a),
+		to (@scrollslider_gradient_b));
+	background-color: @theme_base_color;
+	border-color: shade (@selected_bg_color, 1.25);
+}
+
+.scrollbar.slider:insensitive {
+	background-color: shade (@bg_color, 0.882);
+}
+
+.scrollbar.trough:insensitive {
+	background-color: @base_color;
+}
+
+
+/* overlay scrollbar */
+OsThumb:selected,
+OsScrollbar:selected {
+	background-color: @selected_bg_color;
+}
+
+OsThumb:active,
+OsScrollbar:active {
+	background-color: shade (@bg_color, 0.6);
+}
+
+OsThumb:insensitive,
+OsScrollbar:insensitive {
+	background-color: shade (@bg_color, 0.85);
+}
+
+/*******************
+ * scrolled window *
+ *******************/
+GtkScrolledWindow.frame {
+	border-top-color: shade (@bg_color, 0.84);
+	border-right-color: shade (@bg_color, 0.76);
+	border-bottom-color: shade (@bg_color, 0.86);
+	border-left-color: shade (@bg_color, 0.76);
+	border-radius: 0;
+	border-style: solid;
+
+	-unico-border-gradient: none;
+	-unico-inner-stroke-width: 0;
+	-unico-outer-stroke-width: 0;
+}
+
+/*************
+ * separator *
+ *************/
+.separator {
+	border-color: shade (@bg_color, 0.86);
+	border-style: solid;
+
+	-unico-border-gradient: none;
+	-unico-inner-stroke-color: alpha (shade (@bg_color, 1.26), 0.6);
+	-unico-inner-stroke-gradient: none;
+}
+
+.button .separator,
+.button.separator {
+	border-color: shade (@button_bg_color, 0.84);
+
+	-unico-inner-stroke-color: alpha (shade (@button_bg_color, 1.26), 0.5);
+	-unico-inner-stroke-gradient: none;
+}
+
+.notebook .button .separator,
+.notebook .button.separator {
+	border-color: shade (@bg_color, 0.9);
+
+	-unico-inner-stroke-color: alpha (shade (@bg_color, 1.26), 0.6);
+	-unico-inner-stroke-gradient: none;
+}
+
+.button .separator:insensitive,
+.button.separator:insensitive {
+	border-color: shade (@button_insensitive_bg_color, 0.9);
+
+	-unico-inner-stroke-color: alpha (shade (@button_insensitive_bg_color, 1.26), 0.6);
+	-unico-inner-stroke-gradient: none;
+}
+
+.notebook .button .separator,
+.notebook .button.separator {
+	border-color: shade (@bg_color, 0.84);
+
+	-unico-inner-stroke-color: alpha (shade (@bg_color, 1.26), 0.5);
+	-unico-inner-stroke-gradient: none;
+}
+
+.menuitem.separator {
+	-GtkMenuItem-horizontal-padding: 0;
+	border-color: shade (@bg_color, 0.96);
+	-unico-inner-stroke-color: alpha (shade (@dark_bg_color, 1.26), 0.5);
+}
+
