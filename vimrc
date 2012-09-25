@@ -19,6 +19,7 @@ let g:miniBufExplModSelTarget = 1
 map T :TaskList<CR>
 map P :TlistToggle<CR>
 set spell
+set ignorecase
 
 " LATEX
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
