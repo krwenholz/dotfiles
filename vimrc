@@ -24,6 +24,7 @@ set ignorecase
 " LATEX
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on
+filetype plugin indent on
 
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " can be called correctly.
