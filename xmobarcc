@@ -19,5 +19,5 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
            ]  
      , sepChar = "%"  
      , alignSep = "}{"  
-     , template = " %StdinReader%}{ <fc=grey>%cpu% </fc> <fc=red>%cpuTemp%</fc>°C<fc=grey> ~ %memory% ~ %eth0%</fc> ~ <fc=#ee9a00>%date%</fc> ~ Vol: <fc=green>%volume%</fc> ~ Bat: %battery% "  
+     , template = " %StdinReader%}{ <fc=grey>%cpu% </fc> <fc=red>%cpuTemp%</fc>°C<fc=grey> <fc=blue>|</fc> %memory%</fc> <fc=blue>|</fc> <fc=#ee9a00>%date%</fc> <fc=blue>|</fc> Vol: <fc=green>%volume%</fc> <fc=blue>|</fc> Bat: %battery% "  
      }  
