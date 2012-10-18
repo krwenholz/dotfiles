@@ -46,3 +46,5 @@ let g:tex_flavor='latex'
 " LaTeX should go to pdf
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_MultipleCompileFormats='dvi,pdf'
+
+set t_Co=16
