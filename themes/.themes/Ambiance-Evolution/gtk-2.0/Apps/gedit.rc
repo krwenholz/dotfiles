@@ -1,0 +1,37 @@
+#############################
+#     STYLE FOR GEDIT       #
+#############################
+
+style "gedit-frame"
+{	
+    engine "pixmap"
+    {
+        image
+        {
+            function = SHADOW
+        }
+    }
+}
+
+style "gedit-notebook"
+{
+    base[ACTIVE] = shade (0.94, @selected_bg_color)
+}
+
+style "gedit_tabs" = "gedit-notebook"
+{
+    bg[ACTIVE] = shade (0.95, @bg_color)
+    bg[NORMAL] = shade (0.98, @bg_color)
+}
+
+style "gedit_statusbar" = "toolbar" {
+}
+
+widget_class "*Gedit*.<GtkFrame>*"              style "gedit-frame"
+widget_class "*Gedit*.<GtkScrolledWindow>"      style "thin"
+widget_class "*GeditNotebook"                   style "gedit_tabs"
+widget_class "*GeditNotebook*utton*"            style:highest "gedit_tabs"
+widget_class "*GeditNotebook*GtkLabel*"         style "gedit_tabs"
+widget_class "*GeditNotebook*Tab*"              style "gedit-notebook"
+widget_class "*Gedit*Statusbar*"                style:highest "gedit_statusbar"
+

@@ -1,0 +1,52 @@
+[begin] (Menu)
+[exec] (xterm) {xterm}
+[separator]
+[submenu] (Applications)
+ [submenu] (Accessories)
+     [exec] (Terminal) {gnome-terminal}
+ [end] # (Accessories)
+ [submenu] (Internet)
+     [exec] (Avahi SSH Server Browser) {/usr/bin/bssh}
+     [exec] (Avahi VNC Server Browser) {/usr/bin/bvnc}
+     [exec] (Dropbox) {dropboxd}
+     [exec] (Firefox) {firefox }
+     [exec] (Web) {epiphany }
+ [end] # (Internet)
+ [submenu] (Programming)
+     [exec] (OpenJDK Monitoring & Management Console) {/usr/bin/jconsole}
+     [exec] (OpenJDK Policy Tool) {/usr/bin/policytool}
+ [end] # (Programming)
+ [submenu] (Sound & Video)
+     [exec] (Gnash SWF Viewer) {gnash-gtk-launcher }
+     [exec] (QT V4L2 test Utility) {qv4l2}
+ [end] # (Sound & Video)
+ [submenu] (System Tools)
+     [exec] (Avahi Zeroconf Browser) {/usr/bin/avahi-discover}
+     [exec] (UXTerm) {uxterm}
+     [exec] (XTerm) {xterm}
+     [exec] (dconf Editor) {dconf-editor}
+     [exec] (urxvt) {urxvt}
+     [exec] (urxvt (client)) {urxvtc}
+     [exec] (urxvt (tabbed)) {urxvt-tabbed}
+ [end] # (System Tools)
+[end] # (Applications)
+[separator]
+[config] (Configuration)
+                [workspaces] (Workspace)
+                [submenu] (System Styles) {Choose a style...}
+                        [stylesdir] (/usr/share/blackbox/styles)
+			[stylesdir] (/usr/share/fluxbox/styles)
+			[stylesdir] (/usr/share/openbox/styles)
+                [end]
+                [submenu] (User Styles) {Choose a style...}
+                        [stylesdir] (~/.blackbox/styles)
+			[stylesdir] (~/.fluxbox/styles)
+			[stylesdir] (~/.openbox/styles)
+                [end]
+        [separator]
+        [exec] (Run Command) {bbrun -a -w}
+        [exec] (Lock Screen) {xlock}
+        [restart] (Restart) {}
+        [exit] (Logout)
+[end]
+    [end]

@@ -1,0 +1,10 @@
+style "glossy-icons"
+{
+  stock["gtk-go-back"] = { { "stock_back.png", *, *, *} }
+  stock["gtk-go-forward"] ={{ "stock_forward.png", *, *, *}}
+  stock["gtk-go-up"] ={{ "stock_up.png", *, *, *}}
+  stock["gtk-no"] = {{ "stock_cancel.png", *, *, *}}
+  stock["gtk-refresh"] = {{ "stock_refresh.png", *, *, *}}
+  stock["gtk-stop"] = {{ "stock_cancel.png", *, *, * }}
+}
+class "GtkWidget" style "glossy-icons"

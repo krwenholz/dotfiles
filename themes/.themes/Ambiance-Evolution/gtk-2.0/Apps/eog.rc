@@ -1,0 +1,53 @@
+#####################################
+#      STYLE FOR EYE OF GNOME       #
+#####################################
+
+style "eog_window" = "dark"
+{
+    xthickness  = 0
+    ythickness  = 0
+    
+    GtkMenuBar          ::shadow-type           = GTK_SHADOW_NONE
+    GtkWidget           ::shadow_type           = GTK_SHADOW_NONE
+    GtkWidget           ::draw_border           = {0,0,0,0}
+    GtkScrolledWindow   ::scrollbar-spacing     = 0
+    GtkScrolledWindow   ::shadow_type           = GTK_SHADOW_NONE	
+}
+
+style "eog_statusbar" = "eog_window"
+{
+    xthickness = 6
+    ythickness = 4
+
+    GtkStatusbar::shadow_type = GTK_SHADOW_NONE	
+}
+
+style "eog_statusbar_progressbar" = "progressbar"
+{
+    xthickness = 1
+    ythickness = 1
+
+    bg[ACTIVE] = shade(0.60, @bg_color_dark)
+
+    engine "murrine"
+    {
+        roundness = 3
+    }
+}
+
+style "eog_button" = "notebook_button"
+{
+    engine "murrine"
+    {
+        textstyle = 0
+    }
+}
+
+widget_class "EogWindow*.*<GtkToolbar>*"            style "dark_toolbar"
+widget "EogWindow"						            style "eog_window"
+widget "EogWindow.*GtkButton*" 	    	            style "eog_button"
+widget "EogWindow.*Toolbar*Button*" 	            style "dark_toolbar"
+widget "EogWindow.GtkVBox.GtkVBox"		            style "eog_window"
+widget_class "EogWindow.GtkVBox.GtkVBox*Scrollbar"  style "dark_scrollbar"
+widget_class "Eog*Statusbar*"                       style "eog_statusbar"
+widget_class "Eog*Statusbar*Progress*"              style "eog_statusbar_progressbar"

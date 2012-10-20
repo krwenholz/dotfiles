@@ -1,0 +1,173 @@
+@define-color cluebar_color shade (mix (@theme_base_color, @theme_selected_bg_color, 0.5), 0.95);
+
+NautilusWindow * {
+    -GtkPaned-handle-size: 1;
+}
+
+.nautilus-canvas-item {
+    border-radius: 3px;
+}
+
+/* desktop mode */
+.nautilus-desktop.nautilus-canvas-item {
+    color: @theme_bg_color;
+    text-shadow: 1 1 alpha (#000000, 0.8);
+}
+
+.nautilus-desktop.nautilus-canvas-item:active {
+    background-image: none;
+    background-color: alpha (@theme_bg_color, 0.84);
+    color: @theme_fg_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:selected {
+    background-image: none;
+    background-color: alpha (@theme_selected_bg_color, 0.84);
+    color: @theme_selected_fg_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active,
+.nautilus-desktop.nautilus-canvas-item:prelight,
+.nautilus-desktop.nautilus-canvas-item:selected {
+    text-shadow: none;
+}
+
+/* browser window */
+NautilusWindow .view {
+    background-color: @theme_base_color;
+}
+
+NautilusWindow .view:selected,
+NautilusWindow .view:selected:focused {
+    background-color: alpha (@theme_selected_bg_color, 0.9);
+
+    color: @theme_selected_fg_color;
+}
+
+NautilusTrashBar.info,
+NautilusXContentBar.info,
+NautilusSearchBar.info,
+NautilusQueryEditor.info {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (@cluebar_color, 1.02)),
+                                     to (shade (@cluebar_color, 0.98)));
+    background-color: @cluebar_color;
+    border-bottom-color: shade (@cluebar_color, 0.92);
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+
+    -unico-border-gradient: none;
+    -unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+                                                 from (shade (@cluebar_color, 1.04)),
+                                                 to (shade (@cluebar_color, 1.01)));
+}
+
+NautilusTrashBar.info:backdrop,
+NautilusXContentBar.info:backdrop,
+NautilusSearchBar.info:backdrop,
+NautilusQueryEditor.info:backdrop {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (@cluebar_color, 1.01)),
+                                     to (shade (@cluebar_color, 0.99)));
+    background-color: @cluebar_color;
+    border-bottom-color: shade (@cluebar_color, 0.92);
+
+    -unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+                                                 from (shade (@cluebar_color, 1.02)),
+                                                 to (shade (@cluebar_color, 1.0)));
+}
+
+NautilusSearchBar .entry {
+}
+
+.nautilus-cluebar-label {
+    color: @theme_fg_color;
+    font: bold;
+}
+
+.nautilus-cluebar-label:backdrop {
+    color: mix (@theme_fg_color, @cluebar_color, 0.2);
+}
+
+#nautilus-search-button *:active,
+#nautilus-search-button *:active:prelight {
+    color: @theme_fg_color;
+}
+
+NautilusFloatingBar {
+    background-color: @theme_bg_color;
+    border-radius: 3px 3px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: darker (@theme_bg_color);
+
+    -unico-border-gradient: none;
+}
+
+NautilusFloatingBar .button {
+    -GtkButton-image-spacing: 0;
+    -GtkButton-inner-border: 0;
+}
+
+/* sidebar */
+NautilusWindow .sidebar,
+NautilusWindow .sidebar .view {
+    background-color: shade (@theme_bg_color, 0.95);
+    color: @theme_fg_color;
+    text-shadow: 0 1 shade (shade (@theme_bg_color, 0.95), 1.04); 
+}
+
+NautilusWindow .sidebar:backdrop,
+NautilusWindow .sidebar .view:backdrop {
+    background-color: @theme_bg_color;
+    color: mix (@theme_fg_color, shade (@theme_bg_color, 0.95), 0.2);
+    text-shadow: 0 1 shade (shade (@theme_bg_color, 0.95), 1.02); 
+}
+
+NautilusWindow .sidebar row:selected {
+    color: @theme_selected_fg_color;
+    text-shadow: 0 -1 shade (@theme_selected_bg_color, 0.8); 
+}
+
+NautilusWindow .sidebar row:selected:backdrop {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (shade (@theme_bg_color, 0.95), 0.94)),
+                                     to (shade (shade (@theme_bg_color, 0.95), 0.86)));
+    border-top-color: shade (shade (@theme_bg_color, 0.95), 0.88);
+
+    color: @theme_fg_color;
+    text-shadow: 0 1 shade (shade (@theme_bg_color, 0.95), 0.96); 
+}
+
+NautilusWindow .sidebar .frame {
+}
+
+NautilusWindow .pane-separator {
+    background-color: shade (@theme_bg_color, 0.85);
+    border-color: @theme_bg_color;
+    border-style: solid;
+    border-width: 0;
+
+    -unico-border-gradient: none;
+    -unico-inner-stroke-width: 0;
+}
+
+NautilusWindow .pane-separator:backdrop {
+    background-color: shade (@theme_bg_color, 0.8);
+}
+
+/* inactive pane */
+.nautilus-inactive-pane .view {
+background-color: shade (@theme_base_color, 0.95);
+}
+
+.nautilus-inactive-pane .view:selected,
+.nautilus-inactive-pane .nautilus-canvas-item:selected {
+background-color: @backdrop_selected_bg_color;
+color: @backdrop_selected_fg_color;
+}
+
+.nautilus-inactive-pane .expander.view:selected {
+background-color: @backdrop_selected_bg_color;
+}
