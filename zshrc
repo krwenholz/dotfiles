@@ -42,6 +42,11 @@ HISTSIZE=10000
 SAVEHIST=10000
 unsetopt beep
 bindkey -v
+
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+alias pingtest="ping www.google.com"
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/krwenholz/.zshrc'

@@ -2,4 +2,6 @@
 	name = Kyle R. Wenholz
 	email = kyle@krwenholz.com
 [credential]
-	helper = cache --timeout=3600
+	helper = cache --timeout=1800
+[push]
+	default = simple
