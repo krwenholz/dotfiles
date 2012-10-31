@@ -1,0 +1,169 @@
+#############################################################
+#SLICKNESS CUSTOM PANEL SETTINGS
+#############################################################
+
+style "panel"
+{
+
+xthickness = 0
+ythickness = 0
+
+  	fg[NORMAL]			= "#d7d7d7" #TEXT ON NORMAL PANEL BUTTONS
+  	fg[PRELIGHT]			= "#ffffff" #TEXT ON MOUSEOVERED PANEL BUTTONS
+  	fg[ACTIVE]			= "#f0f0f0" #TEXT ON ACTIVE PANEL BUTTON
+  	fg[SELECTED]			= "#000000"
+  	fg[INSENSITIVE]			= "#6B6B6B"
+  	bg[SELECTED]			= "#3d3d3d"
+
+}
+
+class "*Panel*" style "panel"
+widget_class "*Panel*" style "panel"
+widget_class "*Tray*" style "panel"
+widget_class "*tray*" style "panel"
+widget_class "*Mail*" style "panel"
+widget_class "*mail*" style "panel"
+widget "*PanelWidget*" 			style "panel"
+widget "*PanelApplet*" 			style "panel"
+
+style "panelbuttons"
+{
+
+ xthickness            			= 4
+ ythickness            			= 4
+
+	GtkWidget::focus_padding = 2
+
+	engine "pixmap" {
+      
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= NORMAL
+		file            		= "panel/panel-button-inactive.png"
+		border          		= { 5, 5, 5, 5 }
+		stretch         		= TRUE
+	}
+		
+	image
+	{
+		function        		= BOX
+		shadow				= OUT
+		recolorable     		= TRUE
+		state				= PRELIGHT
+		file            		= "panel/panel-button-prelight.png"
+		border          		= { 5, 5, 5, 5 }
+		stretch         		= TRUE
+	}		
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		shadow				= IN
+		state				= PRELIGHT
+		file            		= "panel/panel-button-active-prelight.png"
+		border          		= { 5, 5, 5, 5 }
+		stretch         		= TRUE
+	}
+		
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= ACTIVE
+		file            		= "panel/panel-button-active.png"
+		border          		= { 5, 5, 5, 5 }
+		stretch         		= TRUE
+	}  
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= INSENSITIVE
+		file            		= "panel/panel-button-inactive.png"
+		border          		= { 5, 5, 5, 5 }
+		stretch         		= TRUE
+	} 
+
+	image
+	{
+		function        		= BOX
+		recolorable     		= TRUE
+		state				= SELECTED
+		file            		= "panel/panel-button-active.png"
+		border          		= { 5, 5, 5, 5 }
+		stretch         		= TRUE
+	}  
+
+}
+
+}
+
+widget "*tasklist*" 			style "panelbuttons"
+
+#############################################################
+# THANKS TO merlwiz79 FOR THESE FIXES
+#############################################################
+
+
+widget_class "*Xfce*Panel*.GtkToggleButton" 	style "panelbuttons"
+widget_class "*Xfce*NetkTasklist*GtkToggleButton" style "panelbuttons"
+
+#############################################################
+
+widget_class "*PanelToplevel*Button" 		style "panelbuttons"
+widget_class "*Panel*GtkToggleButton" 		style "panelbuttons"
+
+style "panelbar"
+{
+engine "pixmap"
+{
+	image
+	{
+		function	= BOX
+		state		= NORMAL
+		file		= "panel/panel-menubar.png"
+		border		= { 3 , 3 , 3 , 3}
+		stretch		= TRUE
+	}
+
+	
+	image
+	{
+		function	= BOX
+		state		= ACTIVE
+		file		= "panel/panel-menubar.png"
+		border		= { 3 , 3 , 3 , 3}
+		stretch		= TRUE
+	}
+
+	
+	image
+	{
+		function	= BOX
+		state		= INSENSITIVE
+		file		= "panel/panel-menubar.png"
+		border		= { 3 , 3 , 3 , 3}
+		stretch		= TRUE
+	}
+
+	
+	image
+	{
+		function	= BOX
+		state		= PRELIGHT
+		recolorable	= TRUE
+		file		= "menubar/menubar-item.png"
+		border		= { 4 , 4 , 4 , 4}
+		stretch		= TRUE
+	}
+
+}
+
+}
+
+widget_class "*Panel*MenuBar*" style "panelbar"

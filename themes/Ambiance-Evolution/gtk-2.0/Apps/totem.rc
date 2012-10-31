@@ -1,0 +1,16 @@
+################################################################################
+# The following code and artwork were taken from the elementary Theme.         #
+# Copyright Daniel Foré (danrabbit.deviantart.com)                             #
+################################################################################
+
+style "totem-main"
+{
+    stock["gtk-media-pause"]        = {{ "Icons/media-playback-pause.svg", *, *, * }}
+    stock["gtk-media-play"]         = {{ "Icons/media-playback-start.svg", *, *, * }}
+    stock["gtk-media-next"]         = {{ "Icons/media-skip-forward.svg", *, *, * }}
+    stock["gtk-media-previous"]     = {{ "Icons/media-skip-backward.svg", *, *, * }}
+    stock["gtk-close"]              = {{ "Icons/close.png", *, *, * }}
+    stock["gtk-fullscreen"]         = {{ "Icons/view-fullscreen.svg", *, *, * }}
+}
+
+widget "GtkWindow.GtkVBox.GtkHPaned.GtkVBox.GtkVBox.GtkHBox.GtkToolButton.GtkButton.GtkImage" style "totem-main"

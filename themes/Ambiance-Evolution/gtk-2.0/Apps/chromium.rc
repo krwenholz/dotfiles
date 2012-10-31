@@ -1,0 +1,40 @@
+# ==============================================================================
+# CHROMIUM SPECIFIC SETTINGS
+# ==============================================================================
+
+style "chromium_toolbar_button" = "notebook_button"
+{
+    fg[NORMAL] = @bg_color_dark
+    fg[ACTIVE] = @bg_color_dark
+    fg[PRELIGHT] = @bg_color_dark
+    fg[SELECTED] = @bg_color_dark
+
+    engine "murrine"
+    {
+        roundness = 3
+        textstyle = 0
+    }
+}
+
+style "chromium-gtk-frame"
+{
+    ChromeGtkFrame::frame-color = @bg_color_dark
+    ChromeGtkFrame::inactive-frame-color = @bg_color_dark
+
+    ChromeGtkFrame::frame-gradient-size = 16
+    ChromeGtkFrame::frame-gradient-color = "#5c5b56"
+
+    ChromeGtkFrame::incognito-frame-color = @bg_color_dark
+    ChromeGtkFrame::incognito-inactive-frame-color = @bg_color_dark
+
+    ChromeGtkFrame::incognito-frame-gradient-size = 16
+    ChromeGtkFrame::incognito-frame-gradient-color = "#5c5b56"
+
+    ChromeGtkFrame::scrollbar-trough-color = shade (0.912, @bg_color)
+    ChromeGtkFrame::scrollbar-slider-prelight-color = shade (1.04, @bg_color)
+    ChromeGtkFrame::scrollbar-slider-normal-color = @bg_color
+}
+
+
+class "ChromeGtkFrame" style "chromium-gtk-frame"
+widget_class "*Chrom*Button*" style:highest "chromium_toolbar_button"

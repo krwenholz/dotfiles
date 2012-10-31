@@ -1,0 +1,34 @@
+################################
+#           BEATBOX            #
+################################
+
+style "beatbox_main"
+{
+    stock["audio-volume-high"] = {{ "Icons/audio-volume-high.png", *, *, * }}
+}
+
+widget_class "*BeatBox*"                        style "beatbox_main"
+widget_class "*BeatBox*TreeView*"               style "elementary_treeview"
+widget_class "*BeatBox*TreeView*Button*"        style "elementary_treeview_header"
+widget_class "*BeatBox*GtkHPaned"               style "pixmap_paned"
+widget_class "*BeatBox*GtkVPaned"               style "pixmap_paned"
+widget_class "*BeatBox*<GtkToolbar>*"           style "dark_toolbar"
+widget_class "*BeatBox*<GtkToolbar>*<GtkEntry>" style "dark_toolbar_entry"
+
+
+################################
+#           RHYTHM-E           #
+################################
+
+style "rhythme_sidebar" = "theme_sidebar"
+{
+    GtkPaned::handle-size = 0
+}
+
+widget_class "*RBSourceList*"                   style:highest "rhythme_sidebar"
+widget_class "*RBDisplay*Page*"                 style:highest "rhythme_sidebar"
+widget_class "*RB*<GtkTreeView>"                style "elementary_treeview"
+widget_class "*RB*TreeView*Button*"             style "elementary_treeview_header"
+#widget        "*RB*GtkWidget*"                  style "pixmap_sidebar_handle_left"
+widget_class "*RB*<GtkToolbar>*"                style "dark_toolbar"
+widget_class "*RB*<GtkToolbar>*<GtkEntry>"      style "dark_toolbar_entry"

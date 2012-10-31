@@ -1,0 +1,10 @@
+{ 
+   "shell-theme": {
+   "name": "Ubuntu Ambiance Dark", 
+   "author": "Half-Left", 
+   "version": "1.0",
+   "type":   "custom",
+   "thumbnail": "preview-ubuntu-ambiance.jpg", 
+   "url": "" 
+    }
+}

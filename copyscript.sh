@@ -10,3 +10,5 @@ cp ~/.xinitrc ./xinitrc
 cp ~/.Xresources ./Xresources
 cp ~/.zprofile ./zprofile
 cp ~/.zshrc ./zshrc
+cp -r ~/.pentadactyl/* ./pentadactyl/
+cp ~/.pentadactylrc ./pentadactylrc

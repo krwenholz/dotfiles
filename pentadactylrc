@@ -1,0 +1,9 @@
+"hg6830
+
+loadplugins '\.(js|penta)$'
+group user
+
+" vim: set ft=pentadactyl:
+
+colorscheme solarized-light
+set defsearch=duckduckgo
