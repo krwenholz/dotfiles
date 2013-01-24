@@ -139,3 +139,7 @@ Control Mod4 F12 :TakeToWorkspace 12
 # Awesome window splitting. . . maybe.
 Mod4 V :ArrangeWindowsVertical (name!=Conky)
 Mod4 H :ArrangeWindowsHorizontal (name!=Conky)
+
+# Screen brightness
+#XF86MonBrightnessUp :Exec sh ~/bin/mb_brightness up
+#XF86MonBrightnessDown :Exec sh ~/bin/mb_brightness down

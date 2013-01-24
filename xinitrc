@@ -20,8 +20,13 @@ fbsetbg /home/krwenholz/Pictures/Background/asimplecleanplace.png
 
 xcompmgr -c &
 
+# Sets the trackpad to deactivate for typing
+syndaemon -t -k -i 2 -d &
+
 # Now launch my window manager.
-exec ck-launch-session dbus-launch startfluxbox
+#exec ck-launch-session dbus-launch startfluxbox
+exec dbus-launch startfluxbox
+#exec startlxde
 
 # Notifications on screen
-/usr/lib/notification-daemon-1.0/notification-daemon &
+#/usr/lib/notification-daemon-1.0/notification-daemon &
