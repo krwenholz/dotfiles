@@ -48,3 +48,15 @@ let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 
 set t_Co=16
+
+" Settings for VimClojure
+let vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
+let vimclojure#ParenRainbow=1           " Rainbow parentheses'!
+
+" Settings for eclim
+set nocompatible
+
+" Sable
+augroup filetypedetect
+    au BufNewFile,BufRead *.sable setf sablecc
+augroup end
