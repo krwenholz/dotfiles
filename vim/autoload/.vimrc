@@ -1,7 +1,7 @@
 " Set the boolean number option to true
 set number
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 set tabstop=4
 set shiftwidth=4
@@ -12,31 +12,14 @@ set colorcolumn=75
 set cindent
 set smartindent
 set autoindent
-nmap j gj
-nmap k gk
-nmap _p :set paste!<CR>
-
-" Spelling and search options
-set spell
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
-nmap \q  :nohlsearch<CR>
-
-
-" Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-
-" Some TaskList options
 map T :TaskList<CR>
 map P :TlistToggle<CR>
-
-" EasyMotion use \ instead of \\
-let g:EasyMotion_leader_key = '_'
+set spell
+set ignorecase
 
 " LATEX
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
