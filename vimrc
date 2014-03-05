@@ -57,6 +57,7 @@ call vundle#rc()
     Bundle 'vim-scripts/TaskList.vim'
     Bundle 'minibufexpl.vim'
     Bundle 'altercation/vim-colors-solarized'
+    Bundle "vim-scripts/scratch.vim"
     " Some awesome Git helpers
         Bundle 'fugitive.vim'
         Bundle 'tpope/vim-git'
@@ -73,7 +74,7 @@ call vundle#rc()
     Bundle 'Shougo/neosnippet'
     Bundle 'Shougo/neosnippet-snippets'
     " need the Arch package or similar to actually use powerline
-    " Bundle 'Lokaltog/powerline'
+    Bundle 'Lokaltog/powerline'
  
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -89,12 +90,12 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 " Color Scheme and right column line
 set background=light
 colorscheme solarized
-highlight colorcolumn ctermbg=9
+highlight colorcolumn ctermbg=7
 highlight colorcolumn guibg=DarkBlue
-set colorcolumn=75
+set colorcolumn=76
 
 " Powerline setting
-" set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -213,26 +214,3 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
-
-"Use a temp directory in the home dir rather than in tmp where it can get
-"cleaned up without our consent
-perl <<EOT
-  # Get the user name, should probably get the home dir...
-  my $home_dir = (getpwuid($<))[7];
-
-  if ( -e $home_dir ) {
-    my $temp_location = "$home_dir/.vim-tmp";
-    my $tmp_dir = $temp_location . '/vXXX';
-    my $swp_dir = $temp_location . '/swps';
-
-    # If the location doesn't exist, create it
-    mkdir $temp_location unless ( -e $temp_location );
-
-    mkdir $tmp_dir unless ( -e $tmp_dir );
-    mkdir $swp_dir unless ( -e $swp_dir );
-
-    # Set TMPDIR and directory to the new location
-    VIM::DoCommand("let \$TMPDIR = '" . $tmp_dir . "'") if ( -w $tmp_dir );
-    VIM::DoCommand("set directory=" . $swp_dir) if ( -w $swp_dir );
-  }
-EOT
