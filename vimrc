@@ -1,53 +1,6 @@
-" Basic settings
-set nocompatible          " be iMproved
-set backspace=2           " allow backspacing over everything in insert mode
-set history=50            " keep 50 lines of command line history
-set laststatus=2          " always have status bar
-set encoding=utf-8        " Let's be modern and use a real-boy encoding
-set scrolloff=2           " dont let the curser get too close to the edge
-set nobackup              " Don't keep a backup file
-set ruler                 " the ruler on the bottom is useful
-set showcmd               " Show (partial) command in status line.
-set wildmenu              " This is used with wildmode(full) to cycle options
-set hidden                " Save buffers in the background (don't save on buffer switch)
-set confirm               " Confirm before closing unsaved buffers
-
-" Nice tabs
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set cindent
-set smartindent
-set autoindent
-
-" Nice line numbers and syntax stuff
-set number
-syntax enable
-set showmatch             " Show matching brackets.
-
-" Special key configurations
-nmap j gj
-nmap k gk
-nmap _p :set paste!<CR>
-
-" Spelling and search options
-set spell
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
-nmap \q  :nohlsearch<CR>
-
-  
-" FILETYPE settings
-filetype off                   
-filetype plugin on
-filetype plugin indent on
-filetype indent on
-let g:tex_flavor='latex' " Get LaTeX filetype correctly
-set omnifunc=syntaxcomplete#Complete
-
-" Vundle settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle settings and packages
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -55,9 +8,9 @@ call vundle#rc()
     Bundle 'gmarik/vundle' 
     Bundle 'https://github.com/Lokaltog/vim-easymotion'
     Bundle 'vim-scripts/TaskList.vim'
-    Bundle 'minibufexpl.vim'
     Bundle 'altercation/vim-colors-solarized'
-    Bundle "vim-scripts/scratch.vim"
+    Bundle 'bling/vim-airline'
+    Bundle 'vim-scripts/scratch.vim'
     " Some awesome Git helpers
         Bundle 'fugitive.vim'
         Bundle 'tpope/vim-git'
@@ -73,9 +26,11 @@ call vundle#rc()
     Bundle 'Shougo/neocomplete'
     Bundle 'Shougo/neosnippet'
     Bundle 'Shougo/neosnippet-snippets'
-    " need the Arch package or similar to actually use powerline
-    Bundle 'Lokaltog/powerline'
  
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -90,12 +45,12 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 " Color Scheme and right column line
 set background=light
 colorscheme solarized
-highlight colorcolumn ctermbg=7
+highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
-set colorcolumn=76
+set colorcolumn=75
 
 " Powerline setting
-set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+" set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -113,8 +68,6 @@ let g:EasyMotion_leader_key = '_'
 " LaTeX options
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_MultipleCompileFormats='dvi,pdf'
-
-set t_Co=256
 
 " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
 " can be called correctly.
@@ -136,8 +89,6 @@ augroup end
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Require C-n or tab to show popup
-let g:neocomplete#disable_auto_complete = 1
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
@@ -183,6 +134,7 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType java setlocal omnifunc=javacomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -214,3 +166,57 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Basic settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible          " be iMproved
+set backspace=2           " allow backspacing over everything in insert mode
+set history=50            " keep 50 lines of command line history
+set laststatus=2          " always have status bar
+set encoding=utf-8        " Let's be modern and use a real-boy encoding
+set scrolloff=2           " dont let the curser get too close to the edge
+set nobackup              " Don't keep a backup file
+set ruler                 " the ruler on the bottom is useful
+set showcmd               " Show (partial) command in status line.
+set wildmenu              " This is used with wildmode(full) to cycle options
+set hidden                " Save buffers in the background (don't save on buffer switch)
+set confirm               " Confirm before closing unsaved buffers
+set t_Co=256
+
+
+" Nice tabs
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set cindent
+set smartindent
+set autoindent
+
+" Nice line numbers and syntax stuff
+set number
+syntax enable
+set showmatch             " Show matching brackets.
+
+" Special key configurations
+nmap j gj
+nmap k gk
+nmap _p :set paste!<CR>
+
+" Spelling and search options
+set spell
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+nmap \q  :nohlsearch<CR>
+
+  
+" FILETYPE settings
+filetype off                   
+filetype plugin on
+filetype plugin indent on
+filetype indent on
+let g:tex_flavor='latex' " Get LaTeX filetype correctly
+set omnifunc=syntaxcomplete#Complete
+
