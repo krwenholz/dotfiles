@@ -1,32 +1,38 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle settings and packages
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle and other stuff
-    Bundle 'gmarik/vundle' 
-    Bundle 'https://github.com/Lokaltog/vim-easymotion'
-    Bundle 'vim-scripts/TaskList.vim'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'bling/vim-airline'
-    Bundle 'vim-scripts/scratch.vim'
+    Plugin 'gmarik/vundle'
+    Plugin 'https://github.com/Lokaltog/vim-easymotion'
+    Plugin 'vim-scripts/TaskList.vim'
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'bling/vim-airline'
+    Plugin 'vim-scripts/scratch.vim'
     " Some awesome Git helpers
-        Bundle 'fugitive.vim'
-        Bundle 'tpope/vim-git'
+        Plugin 'fugitive.vim'
+        Plugin 'tpope/vim-git'
     " ide type stuff
-    Bundle 'majutsushi/tagbar'
-    Bundle 'Raimondi/delimitMate'
-    Bundle 'scrooloose/nerdtree'
-    Bundle 'tomtom/tcomment_vim'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'basilgor/vim-autotags'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'Raimondi/delimitMate'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'tomtom/tcomment_vim'
+    Plugin 'sjl/gundo.vim'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'basilgor/vim-autotags'
     " Completion
-    Bundle 'Shougo/neocomplete'
-    Bundle 'Shougo/neosnippet'
-    Bundle 'Shougo/neosnippet-snippets'
- 
+    Plugin 'Shougo/neocomplete'
+    Plugin 'Shougo/neosnippet'
+    Plugin 'Shougo/neosnippet-snippets'
+    " https://github.com/scala/scala-dist/tree/master/tool-support/src/vim
+    " Clojure
+    Plugin 'guns/vim-clojure-static'
+    Plugin 'kien/rainbow_parentheses.vim'
+
+call vundle#end()
+
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -48,15 +54,6 @@ colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=75
-
-" Powerline setting
-" set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
-
-" Some MiniBuf options
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
 
 " Some TaskList keys
 map T :TaskList<CR>
@@ -83,6 +80,9 @@ augroup filetypedetect
     au BufNewFile,BufRead *.sable setf sablecc
 augroup end
 
+" Strip the whitespaces!
+autocmd BufWritePre * :%s/\s\+$//e
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +97,7 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " Default # of completions is 100, that's crazy.
-let g:neocomplete#max_list = 10 
+let g:neocomplete#max_list = 10
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -121,7 +121,7 @@ function! s:my_cr_function()
   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
@@ -211,9 +211,9 @@ set smartcase
 set hlsearch
 nmap \q  :nohlsearch<CR>
 
-  
+
 " FILETYPE settings
-filetype off                   
+filetype off
 filetype plugin on
 filetype plugin indent on
 filetype indent on
