@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle and other stuff
-    Plugin 'gmarik/vundle'
+    Plugin 'gmarik/Vundle.vim'
     Plugin 'https://github.com/Lokaltog/vim-easymotion'
     Plugin 'vim-scripts/TaskList.vim'
     Plugin 'altercation/vim-colors-solarized'
