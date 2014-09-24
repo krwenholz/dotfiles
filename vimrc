@@ -5,31 +5,33 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle and other stuff
-    Plugin 'gmarik/Vundle.vim'
-    Plugin 'https://github.com/Lokaltog/vim-easymotion'
-    Plugin 'vim-scripts/TaskList.vim'
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'bling/vim-airline'
-    Plugin 'vim-scripts/scratch.vim'
+    Plugin 'gmarik/vundle'
+    " Basics
+        Plugin 'https://github.com/Lokaltog/vim-easymotion'
+        Plugin 'vim-scripts/TaskList.vim'
+        Plugin 'altercation/vim-colors-solarized'
+        Plugin 'bling/vim-airline'
+        Plugin 'vim-scripts/scratch.vim'
     " Some awesome Git helpers
         Plugin 'fugitive.vim'
         Plugin 'tpope/vim-git'
     " ide type stuff
-    Plugin 'majutsushi/tagbar'
-    Plugin 'Raimondi/delimitMate'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'tomtom/tcomment_vim'
-    Plugin 'sjl/gundo.vim'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'basilgor/vim-autotags'
+        Plugin 'majutsushi/tagbar'
+        Plugin 'Raimondi/delimitMate'
+        Plugin 'scrooloose/nerdtree'
+        Plugin 'tomtom/tcomment_vim'
+        Plugin 'sjl/gundo.vim'
+        Plugin 'kien/ctrlp.vim'
+        Plugin 'basilgor/vim-autotags'
     " Completion
-    Plugin 'Shougo/neocomplete'
-    Plugin 'Shougo/neosnippet'
-    Plugin 'Shougo/neosnippet-snippets'
-    " https://github.com/scala/scala-dist/tree/master/tool-support/src/vim
+        Plugin 'Shougo/neocomplete'
+        Plugin 'Shougo/neosnippet'
+        Plugin 'Shougo/neosnippet-snippets'
     " Clojure
-    Plugin 'guns/vim-clojure-static'
-    Plugin 'kien/rainbow_parentheses.vim'
+        Plugin 'guns/vim-clojure-static'
+        Plugin 'kien/rainbow_parentheses.vim'
+        "" Extra setup required: https://github.com/tpope/vim-fireplace
+        Plugin 'tpope/vim-fireplace'
 
 call vundle#end()
 
