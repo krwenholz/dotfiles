@@ -58,3 +58,8 @@ export PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/home/krwenholz/.gem/ruby/1.9.1/bin:$PATH"
 
+
+source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+# https://github.com/rupa/z
+# path to z
+. `brew --prefix`/etc/profile.d/z.sh
