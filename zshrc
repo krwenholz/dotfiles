@@ -31,7 +31,7 @@ ZSH_THEME="terminalparty"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git archlinux django gem heroku lein python rake ruby)
+plugins=(history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,8 +43,12 @@ SAVEHIST=10000
 unsetopt beep
 bindkey -v
 
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+zmodload zsh/terminfo
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+ 
 alias pingtest="ping www.google.com"
 
 # End of lines configured by zsh-newuser-install
