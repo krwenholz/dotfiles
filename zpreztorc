@@ -74,11 +74,6 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Set the search globbing flags.
 # zstyle ':prezto:module:history-substring-search' globbing-flags ''
 
-# Up and down keybindings for history
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
 #
 # Pacman
 #
