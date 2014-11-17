@@ -18,4 +18,5 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/Users/wenholzk/bin:$PATH
 
 # path to z
-. `brew --prefix`/etc/profile.d/z.sh
+#. `brew --prefix`/etc/profile.d/z.sh
+#. /home/wenholzk/bin/z/z.sh
