@@ -29,6 +29,7 @@ call vundle#begin()
     Plugin 'Shougo/neosnippet-snippets'
     " Syntax
     Plugin 'natew/ftl-vim-syntax'
+    Plugin 'nvie/vim-flake8'
 call vundle#end()
  
 " Syntastic
@@ -53,7 +54,7 @@ let g:gundo_close_on_revert = 1
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " Color Scheme and right column line
-set background=dark
+set background=light
 colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
