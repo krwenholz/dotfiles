@@ -22,6 +22,7 @@ call vundle#begin()
     Plugin 'sjl/gundo.vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'basilgor/vim-autotags'
+    Plugin 'alfredodeza/pytest.vim'
     " Plugin 'scrooloose/syntastic'
     " Completion
     Plugin 'Shougo/neocomplete'
