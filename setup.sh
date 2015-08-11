@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# Add the zprezto directory
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
 # bootstrap script to install Homeshick and you preferred castles to a new
 # system.
 
