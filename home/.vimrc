@@ -23,7 +23,6 @@ call vundle#begin()
     Plugin 'tomtom/tcomment_vim'
     Plugin 'sjl/gundo.vim'
     Plugin 'kien/ctrlp.vim'
-    Plugin 'basilgor/vim-autotags'
     Plugin 'alfredodeza/pytest.vim'
     " Plugin 'scrooloose/syntastic'
     " Completion
