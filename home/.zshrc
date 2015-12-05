@@ -24,6 +24,9 @@ fi
 if [[ $platform == 'mac' && $host == *"amazon"* ]]; then
     source $HOME/.zsh_helpers/AmazonMacSetup.sh
 fi
+if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
+    source $HOME/.zsh_helpers/Fedora.sh
+fi
 
 #######################################################################
 # Dependencies to download and source
