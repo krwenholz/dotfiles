@@ -29,3 +29,4 @@ fi
 
 export JAVA_HOME=/etc/alternatives/jre_openjdk
 export PATH=$PATH:$HOME/bin/idea-IC-143.382.35/bin
+alias intellij=$HOME/bin/idea-IC-143.382.35/bin/idea.sh
