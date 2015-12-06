@@ -42,8 +42,11 @@ fi
 # zprezto
 if [ ! -f $HOME/.zprezto/init.zsh ]; then
     echo "Installing Zprezto"
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-    # TODO: this may overwrite my zprezto stuff
+    cd $HOME/.zprezto
+    git init
+    git remote add origin https://github.com/sorin-ionescu/prezto.git
+    git fetch
+    git checkout -t origin/master
 fi
 
 # Vim #
