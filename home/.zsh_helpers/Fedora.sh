@@ -8,7 +8,6 @@ if [ ! -d $HOME/configs/gnome-terminal-colors-solarized ]; then
   $HOME/configs/gnome-terminal-colors-solarized/install.sh
 fi
 
-echo "Installing useful packages for Fedora"
 to_install=""
 if [ ! -f /usr/bin/vim ]; then
   to_install=$to_install + " vim"
@@ -23,7 +22,7 @@ if [ ! -f /usr/bin/vim ]; then
   to_install=$to_install + " vim-enhanced"
 fi
 
-if [ ! $to_install == "" ]; then
+if [ "$to_install" -ne "" ]; then
   echo "Decided to install " $to_install
   sudo dnf install $to_install
 fi

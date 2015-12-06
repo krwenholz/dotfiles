@@ -78,10 +78,10 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 # General
 ########################################################################
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    echo "Sourcing zprezto"
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
