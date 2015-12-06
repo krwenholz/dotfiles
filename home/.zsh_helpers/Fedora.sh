@@ -7,3 +7,5 @@ if [ ! -d $HOME/configs/gnome-terminal-colors-solarized ]; then
   $/HOME/configs/gnome-terminal-colors-solarized/install.sh
   $/HOME/configs/gnome-terminal-colors-solarized/set_light.sh
 fi
+
+export JAVA_HOME=/etc/alternatives/jre_openjdk
