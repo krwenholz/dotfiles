@@ -47,6 +47,7 @@ if [ ! -f $HOME/.zprezto/init.zsh ]; then
     git remote add origin https://github.com/sorin-ionescu/prezto.git
     git fetch
     git checkout -t origin/master
+    git pull && git submodule update --init --recursive
     cd $HOME
 fi
 
