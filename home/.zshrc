@@ -48,21 +48,6 @@ fi
 
 # Vim #
 #######
-get_vimrc() {
-    echo "Copying remote vimrc to local"
-    install_dotfiles
-    cp $HOME/Downloads/dotfiles/home/.vimrc $HOME/.vimrc
-}
-
-if [ -f $HOME/.vimrc ]; then
-    grep -q -i wenholz $HOME/.vimrc
-    if [ $? -eq 1 ]; then
-        get_vimrc
-    fi
-else
-    get_vimrc
-fi
-
 if [ ! -d $HOME/.vim/bundle ]; then
     mkdir -p $HOME/.vim/bundle
 fi
