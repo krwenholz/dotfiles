@@ -47,6 +47,7 @@ if [ ! -f $HOME/.zprezto/init.zsh ]; then
     git remote add origin https://github.com/sorin-ionescu/prezto.git
     git fetch
     git checkout -t origin/master
+    cd $HOME
 fi
 
 # Vim #
