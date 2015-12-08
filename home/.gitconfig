@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Kyle R Wenholz
+#	email = kyle@krwenholz.com
+[user]
+	email = kyle@krwenholz.com
+[credential]
+	helper = !aws --profile default codecommit credential-helper $@
+	UseHttpPath = true
+[core]
+	excludesfile = /home/kwenholz/.gitignore_global
