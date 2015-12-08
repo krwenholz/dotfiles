@@ -27,6 +27,12 @@ if [ "$to_install" -ne "" ]; then
   sudo dnf install $to_install
 fi
 
+#Check awscli installation with pip3
+if [ ! -f /usr/bin/aws ]; then
+    echo "Installing awscli"
+    sudo pip3 install awscli
+fi
+
 export JAVA_HOME=/etc/alternatives/java_sdk_openjdk
 export PATH=$PATH:$HOME/bin/idea-IC-143.382.35/bin
 alias intellij=$HOME/bin/idea-IC-143.382.35/bin/idea.sh
