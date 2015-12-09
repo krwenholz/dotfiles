@@ -1,12 +1,10 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
-#	name = Kyle R Wenholz
-#	email = kyle@krwenholz.com
-[user]
+	name = Kyle R Wenholz
     email = kyle@krwenholz.com
 [credential "https://github.com"]
-    helper = cache
+    # cache password for a week at a time
+    helper = cache --timeout=604800
 [credential "https://git-codecommit.us-east-1.amazonaws.com"]
 	helper = !aws --profile default codecommit credential-helper $@
 	UseHttpPath = true
@@ -14,3 +12,5 @@
 	excludesfile = /home/kwenholz/.gitignore_global
 [push]
 	default = simple
+[credential]
+	helper = cache --timeout=3600
