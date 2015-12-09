@@ -4,8 +4,10 @@
 #	name = Kyle R Wenholz
 #	email = kyle@krwenholz.com
 [user]
-	email = kyle@krwenholz.com
-[credential]
+    email = kyle@krwenholz.com
+[credential "https://github.com"]
+    helper = cache
+[credential "https://git-codecommit.us-east-1.amazonaws.com"]
 	helper = !aws --profile default codecommit credential-helper $@
 	UseHttpPath = true
 [core]
