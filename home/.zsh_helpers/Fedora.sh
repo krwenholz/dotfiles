@@ -1,6 +1,8 @@
 echo "Configuring Fedora"
 # Configuration dir
-mkdir $HOME/configs 
+if [ ! -d $HOME/configs ]; then
+    mkdir $HOME/configs 
+fi
 
 # Solarized for Gnome Terminal
 if [ ! -d $HOME/configs/gnome-terminal-colors-solarized ]; then
