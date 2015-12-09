@@ -10,3 +10,5 @@
 	UseHttpPath = true
 [core]
 	excludesfile = /home/kwenholz/.gitignore_global
+[push]
+	default = simple
