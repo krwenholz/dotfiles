@@ -12,19 +12,19 @@ fi
 
 to_install=""
 if [ ! -f /usr/bin/nano ]; then
-  nano=" nano"
+  nano="nano "
   to_install=$to_install$nano
 fi
 if [ ! -f /usr/bin/tig ]; then
-  tig=" tig"
+  tig="tig "
   to_install=$to_install$tig
 fi
 if [ ! -f /usr/bin/vim ]; then
-  vim=" vim-enhanced"
+  vim="vim-enhanced "
   to_install=$to_install$vim
 fi
 
-if [ "$to_install" -ne "" ]; then
+if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
   sudo dnf install $to_install
 fi

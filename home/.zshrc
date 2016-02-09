@@ -23,6 +23,7 @@ fi
 echo "Using platform $platform on host $host"
 
 if [[ -d $HOME/.corporate_configs ]]; then
+    echo "Found a corporate configuration"
     source $HOME/.corporate_configs/zsh_config.sh
 fi
 if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
