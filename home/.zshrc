@@ -16,7 +16,7 @@ elif [[ $platform == 'mac' ]]; then
     host=$HOST
 fi
 ubuntu=`lsb_release -a`
-if [[ ubuntu == *"Ubuntu"* ]]; then
+if [[ $ubuntu == *"Ubuntu"* ]]; then
     host='ubuntu'
 fi
 
