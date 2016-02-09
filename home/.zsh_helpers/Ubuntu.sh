@@ -18,20 +18,20 @@ if [ ! -d $HOME/configs/gnome-terminal-colors-solarized ]; then
 fi
 
 to_install=""
-if [ ! -f /usr/bin/vim ]; then
-  to_install=$to_install + " vim"
-fi
 if [ ! -f /usr/bin/nano ]; then
-  to_install=$to_install + " nano"
+  nano="nano "
+  to_install=$to_install$nano
 fi
 if [ ! -f /usr/bin/tig ]; then
-  to_install=$to_install + " tig"
+  tig="tig "
+  to_install=$to_install$tig
 fi
 if [ ! -f /usr/bin/vim ]; then
-  to_install=$to_install + " vim-enhanced"
+  vim="vim-enhanced "
+  to_install=$to_install$vim
 fi
 
-if [ "$to_install" -ne "" ]; then
+if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
   sudo apt-get install $to_install
 fi
