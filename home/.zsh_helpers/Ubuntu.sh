@@ -17,6 +17,9 @@ if [ ! -d $HOME/configs/gnome-terminal-colors-solarized ]; then
   $HOME/configs/gnome-terminal-colors-solarized/install.sh
 fi
 
+#######################################################################
+# Apps/utilities
+########################################################################
 to_install=""
 if [ ! -f /usr/bin/nano ]; then
   nano="nano "
@@ -36,7 +39,7 @@ if [ ! -z "$to_install" ]; then
   sudo apt-get install $to_install
 fi
 
-if [[ ! -f /usr/share/applications/intellij.desktop ]]; then
-  sudo cp $HOME/bin/intellij.desktop /usr/share/applications
-  sudo chmod 644 /usr/share/applications/intellij.desktop
-fi
+#######################################################################
+# Aliases
+########################################################################
+alias idea="sh $HOME/idea-IU-143.1821.5/bin/idea.sh"

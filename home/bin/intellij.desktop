@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Name=IntelliJ
-GenericName=IntelliJ
-Type=Application
-Exec=$HOME/idea-IU-143.1821.5/bin/idea.sh
-Categories=System;
