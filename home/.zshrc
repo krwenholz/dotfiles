@@ -82,9 +82,9 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 ########################################################################
 # General
 ########################################################################
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+if [[ -f $HOME/.zprezto/init.zsh ]]; then
     echo "Sourcing zprezto"
-    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+    source $HOME/.zprezto/init.zsh
 fi
 
 HISTFILE=~/.histfile
@@ -111,13 +111,6 @@ export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:
 export EDITOR=vim
 export VISUAL=vim
 export TERM=xterm-256color #TODO: I still don't have color after adding this
-
-########################################################################
-# Company specific setup
-########################################################################
-if [[ $HOST == *"amazon"* ]]; then
-    source $HOME/.zsh_helpers/AmazonSetup.sh
-fi
 
 ########################################################################
 # Greeting
