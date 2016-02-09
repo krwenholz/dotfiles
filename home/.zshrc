@@ -104,9 +104,6 @@ alias gist="git status"
 # PATH
 ########################################################################
 export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin
-if [ ! -d $HOME/idea-IU-143.1821.5 ]; then
-    export PATH=$PATH:$HOME/idea-IU-143.1821.5/bin
-fi
 
 ########################################################################
 # System variables 
