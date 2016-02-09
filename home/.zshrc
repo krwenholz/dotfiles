@@ -15,17 +15,21 @@ if [[ $platform == 'linux' ]]; then
 elif [[ $platform == 'mac' ]]; then
     host=$HOST
 fi
+ubuntu=`lsb_release -a`
+if [[ ubuntu == *"Ubuntu"* ]]; then
+    host='ubuntu'
+fi
 
 echo "Using platform $platform on host $host"
 
-if [[ $platform == 'linux' && $host == *"amazon"* ]]; then
-    source $HOME/.zsh_helpers/AmazonLinuxSetup.sh
-fi
-if [[ $platform == 'mac' && $host == *"amazon"* ]]; then
-    source $HOME/.zsh_helpers/AmazonMacSetup.sh
+if [[ -d $HOME/coporate_configs ]]; then
+    source $HOME/.corporate_configs/zsh_config.sh
 fi
 if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
     source $HOME/.zsh_helpers/Fedora.sh
+fi
+if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
+    source $HOME/.zsh_helpers/Ubuntu.sh
 fi
 
 #######################################################################
