@@ -35,3 +35,8 @@ if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
   sudo apt-get install $to_install
 fi
+
+if [[ ! -f /usr/share/applications/intellij.desktop ]]; then
+  sudo cp $HOME/bin/intellij.desktop /usr/share/applications
+  sudo chmod 644 /usr/share/applications/intellij.desktop
+fi
