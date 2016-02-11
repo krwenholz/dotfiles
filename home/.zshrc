@@ -80,6 +80,11 @@ fi
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
+python3Location=`which python3`
+if [[ $python3Location != *'not found' ]]; then
+    #TODO: I would like to install ptpython
+fi
+
 ########################################################################
 # General
 ########################################################################
@@ -119,5 +124,3 @@ export TERM=xterm-256color #TODO: I still don't have color after adding this
 stty erase '^?'
 
 echo "Hey there! ツ"
-
-#TODO: I would like to install ptpython
