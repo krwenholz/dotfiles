@@ -33,6 +33,34 @@ if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
     source $HOME/.zsh_helpers/Ubuntu.sh
 fi
 
+########################################################################
+# General
+########################################################################
+if [[ -f $HOME/.zprezto/init.zsh ]]; then
+    echo "Sourcing zprezto"
+    source $HOME/.zprezto/init.zsh
+fi
+
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+unsetopt beep
+bindkey -v
+
+########################################################################
+# Aliases
+########################################################################
+alias pingtest="ping -c 3 www.google.com"
+alias gist="git status"
+
+########################################################################
+# System variables 
+########################################################################
+export EDITOR=vim
+export VISUAL=vim
+export TERM=xterm-256color #TODO: I still don't have color after adding this
+export GOPATH=$HOME/gocode
+
 #######################################################################
 # Dependencies to download and source
 ########################################################################
@@ -85,37 +113,21 @@ if [[ $python3Location != *'not found' ]]; then
     #TODO: I would like to install ptpython
 fi
 
-########################################################################
-# General
-########################################################################
-if [[ -f $HOME/.zprezto/init.zsh ]]; then
-    echo "Sourcing zprezto"
-    source $HOME/.zprezto/init.zsh
+if [ ! -d $HOME/gocode ]; then
+  echo "Creating gocode directory"
+  mkdir -p $HOME/gocode/bin
 fi
-
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-unsetopt beep
-bindkey -v
-
-########################################################################
-# Aliases
-########################################################################
-alias pingtest="ping -c 3 www.google.com"
-alias gist="git status"
+notiLocation=`which noti`
+if [[ $notiLocation == *'not found' ]]; then
+  echo "Installing noti"
+  go get -u github.com/variadico/noti
+  ln -s $HOME/gocode/bin/noti $HOME/bin/noti
+fi
 
 ########################################################################
 # PATH
 ########################################################################
-export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin
-
-########################################################################
-# System variables 
-########################################################################
-export EDITOR=vim
-export VISUAL=vim
-export TERM=xterm-256color #TODO: I still don't have color after adding this
+export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin:
 
 ########################################################################
 # Greeting
