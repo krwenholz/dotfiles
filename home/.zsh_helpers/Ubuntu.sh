@@ -39,13 +39,13 @@ if [ ! -z "$to_install" ]; then
   sudo apt-get install $to_install
 fi
 
+myIntellij=`sed "s!HOME!$HOME!g" $HOME/.to_link/intellij.desktop`
 if [ -f /usr/share/applications/intellij.desktop ]; then
-  installedIntellijIcon=`cat /usr/share/applications/intellij.desktop`
+  installedIntellij=`cat /usr/share/applications/intellij.desktop`
 else
-  installedIntellijIcon="foobar"
+  installedIntellij="foobar"
 fi
-myIntellijIcon=`cat $HOME/.to_link/intellij.desktop`
-if [[ "$installedIntellijIcon" != "$myIntellijIcon" ]]; then
+if [[ "$installedIntellij" != "$myIntellij" ]]; then
   echo "Installing Intellij desktop icon"
   # setting up Ubuntu icon
   sudo cp $HOME/.to_link/intellij.desktop /usr/share/applications/intellij.desktop
