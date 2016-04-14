@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " let Vundle manage Vundle and other stuff
-    Plugin 'gmarik/Vundle.vim' 
+    Plugin 'gmarik/Vundle.vim'
     Plugin 'https://github.com/Lokaltog/vim-easymotion'
     Plugin 'vim-scripts/TaskList.vim'
     Plugin 'altercation/vim-colors-solarized'
@@ -32,8 +32,9 @@ call vundle#begin()
     " Syntax
     Plugin 'natew/ftl-vim-syntax'
     Plugin 'nvie/vim-flake8'
+    Plugin 'bronson/vim-trailing-whitespace'
 call vundle#end()
- 
+
 " Syntastic
 " let g:syntastic_java_javac_config_file_enabled=1
 
@@ -56,7 +57,7 @@ let g:gundo_close_on_revert = 1
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " Color Scheme and right column line
-set background=light
+set background=dark
 colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
@@ -110,7 +111,7 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " Default # of completions is 100, that's crazy.
-let g:neocomplete#max_list = 20 
+let g:neocomplete#max_list = 20
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -224,12 +225,21 @@ set smartcase
 set hlsearch
 nmap \q  :nohlsearch<CR>
 
-  
+
 " FILETYPE settings
-filetype off                   
+filetype off
 filetype plugin on
 filetype plugin indent on
 filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Check for company specific configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let corporate_config = $HOME."/.corporate_configs/vimrc.vim"
+if filereadable(corporate_config)
+  exec 'source ' . corporate_config
+else
+  echo "Not loading any corporate configs"
+endif
