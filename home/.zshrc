@@ -98,7 +98,7 @@ fi
 
 # Inconsolata
 fonts=`fc-list`
-if [[ $fonts != *'Inconsolata'* ]]; then
+if [[ $fonts != *'Inconsolata'* && $platform != 'mac']]; then
     mkdir -p $HOME/Downloads/fonts
     git clone https://github.com/powerline/fonts.git $HOME/Downloads/fonts
     cd $HOME/Downloads/fonts
@@ -118,7 +118,7 @@ if [ ! -d $HOME/gocode ]; then
   mkdir -p $HOME/gocode/bin
 fi
 notiLocation=`which noti`
-if [[ $notiLocation == *'not found' ]]; then
+if [[ $notiLocation == *'not found' && $platform == 'linux']]; then
   echo "Installing noti"
   go get -u github.com/variadico/noti
   ln -s $HOME/gocode/bin/noti $HOME/bin/noti

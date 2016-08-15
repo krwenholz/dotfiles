@@ -240,6 +240,4 @@ set omnifunc=syntaxcomplete#Complete
 let corporate_config = $HOME."/.corporate_configs/vimrc.vim"
 if filereadable(corporate_config)
   exec 'source ' . corporate_config
-else
-  echo "Not loading any corporate configs"
 endif
