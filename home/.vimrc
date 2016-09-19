@@ -33,6 +33,7 @@ call vundle#begin()
     Plugin 'natew/ftl-vim-syntax'
     Plugin 'nvie/vim-flake8'
     Plugin 'bronson/vim-trailing-whitespace'
+    Plugin 'lambdatoast/elm.vim'
 call vundle#end()
 
 " Syntastic
