@@ -9,7 +9,7 @@
 	helper = !aws --profile default codecommit credential-helper $@
 	UseHttpPath = true
 [core]
-	excludesfile = /home/kwenholz/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
 [credential]

@@ -184,3 +184,7 @@ fabric.properties
 # Node #
 ########
 node_modules
+
+# elm #
+########
+*elm-stuff/
