@@ -34,6 +34,7 @@ call vundle#begin()
     Plugin 'nvie/vim-flake8'
     Plugin 'bronson/vim-trailing-whitespace'
     Plugin 'lambdatoast/elm.vim'
+    Plugin 'raichoo/purescript-vim'
 call vundle#end()
 
 " Syntastic
