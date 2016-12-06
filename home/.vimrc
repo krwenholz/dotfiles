@@ -236,6 +236,10 @@ filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
 
+autocmd FileType python set shiftwidth=2
+autocmd FileType python set softtabstop=2
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
