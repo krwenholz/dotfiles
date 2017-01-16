@@ -32,6 +32,9 @@ fi
 if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
     source $HOME/.zsh_helpers/Ubuntu.sh
 fi
+if [[ $platform == 'mac' ]]; then
+    source $HOME/.zsh_helpers/Mac.sh
+fi
 
 ########################################################################
 # General
