@@ -49,6 +49,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*     " MacOSX/Linux
+set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Gundo
