@@ -46,7 +46,7 @@ let g:airline#extensions#whitespace#enabled = 1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Gundo
@@ -62,9 +62,6 @@ colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=75
-
-" Powerline setting
-" set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -200,11 +197,10 @@ set t_Co=256
 
 
 " Nice tabs
+set expandtab
 set tabstop=2
 set shiftwidth=2
-set expandtab
-set cindent
-set smartindent
+set softtabstop=2
 set autoindent
 
 " Nice line numbers and syntax stuff
@@ -234,6 +230,9 @@ filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
 
+autocmd FileType python set shiftwidth=2
+autocmd FileType python set softtabstop=2
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,3 +242,4 @@ if filereadable(corporate_config)
 else
   echo "Not loading any corporate configs"
 endif
+
