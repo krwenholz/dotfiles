@@ -33,6 +33,8 @@ call vundle#begin()
     Plugin 'natew/ftl-vim-syntax'
     Plugin 'nvie/vim-flake8'
     Plugin 'bronson/vim-trailing-whitespace'
+    Plugin 'lambdatoast/elm.vim'
+    Plugin 'raichoo/purescript-vim'
 call vundle#end()
 
 " Syntastic
@@ -47,6 +49,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
+set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Gundo
@@ -239,7 +242,5 @@ autocmd FileType python set softtabstop=2
 let corporate_config = $HOME."/.corporate_configs/vimrc.vim"
 if filereadable(corporate_config)
   exec 'source ' . corporate_config
-else
-  echo "Not loading any corporate configs"
 endif
 

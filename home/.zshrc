@@ -32,6 +32,9 @@ fi
 if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
     source $HOME/.zsh_helpers/Ubuntu.sh
 fi
+if [[ $platform == 'mac' ]]; then
+    source $HOME/.zsh_helpers/Mac.sh
+fi
 
 ########################################################################
 # General
@@ -98,13 +101,15 @@ if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
 fi
 
 # Inconsolata
-fonts=`fc-list`
-if [[ $fonts != *'Inconsolata'* ]]; then
-    mkdir -p $HOME/Downloads/fonts
-    git clone https://github.com/powerline/fonts.git $HOME/Downloads/fonts
-    cd $HOME/Downloads/fonts
-    $HOME/Downloads/fonts/install.sh
-    fc-cache -fv
+if [[ $platform != *'mac'* ]]; then
+  fonts=`fc-list`
+  if [[ $fonts != *'Inconsolata'* ]]; then
+      mkdir -p $HOME/Downloads/fonts
+      git clone https://github.com/powerline/fonts.git $HOME/Downloads/fonts
+      cd $HOME/Downloads/fonts
+      $HOME/Downloads/fonts/install.sh
+      fc-cache -fv
+  fi
 fi
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
@@ -119,7 +124,7 @@ if [ ! -d $HOME/gocode ]; then
   mkdir -p $HOME/gocode/bin
 fi
 notiLocation=`which noti`
-if [[ $notiLocation == *'not found' ]]; then
+if [[ $notiLocation == *'not found' && $platform == 'linux' ]]; then
   echo "Installing noti"
   go get -u github.com/variadico/noti
   ln -s $HOME/gocode/bin/noti $HOME/bin/noti
@@ -137,3 +142,13 @@ export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:
 stty erase '^?'
 
 echo "Hey there! ツ"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc'
+fi
