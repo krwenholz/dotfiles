@@ -2,5 +2,5 @@
 Name=IntelliJ
 Type=Application
 Terminal=true
-Exec=HOME/idea-IU-145.258.11/bin/idea.sh
+Exec=/opt/intellij-ue-stable/bin/intellij-ue-launcher.sh
 Icon=HOME/Pictures/intellij.svg
