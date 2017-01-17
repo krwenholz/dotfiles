@@ -52,6 +52,7 @@ bindkey -v
 ########################################################################
 alias pingtest="ping -c 3 www.google.com"
 alias gist="git status"
+alias gamit="git commit --amend --no-edit"
 
 ########################################################################
 # System variables 
