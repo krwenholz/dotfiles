@@ -51,6 +51,7 @@ Session.vim
 *.rar
 *.tar
 *.zip
+Gemfile.lock
 
 # Logs and databases #
 ######################
