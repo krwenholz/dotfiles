@@ -33,7 +33,7 @@ call vundle#begin()
     Plugin 'natew/ftl-vim-syntax'
     Plugin 'nvie/vim-flake8'
     Plugin 'bronson/vim-trailing-whitespace'
-    Plugin 'lambdatoast/elm.vim'
+    Plugin 'ElmCast/elm-vim'
     Plugin 'raichoo/purescript-vim'
 call vundle#end()
 
@@ -183,6 +183,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" elm-format
+let g:elm_format_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic settings
