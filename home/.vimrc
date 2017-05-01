@@ -48,7 +48,7 @@ let g:airline#extensions#whitespace#enabled = 1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
 set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
@@ -65,9 +65,6 @@ colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=75
-
-" Powerline setting
-" set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -206,11 +203,10 @@ set t_Co=256
 
 
 " Nice tabs
+set expandtab
 set tabstop=2
 set shiftwidth=2
-set expandtab
-set cindent
-set smartindent
+set softtabstop=2
 set autoindent
 
 " Nice line numbers and syntax stuff
@@ -243,7 +239,6 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType python set shiftwidth=2
 autocmd FileType python set softtabstop=2
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,3 +246,4 @@ let corporate_config = $HOME."/.corporate_configs/vimrc.vim"
 if filereadable(corporate_config)
   exec 'source ' . corporate_config
 endif
+
