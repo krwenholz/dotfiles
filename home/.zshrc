@@ -123,8 +123,8 @@ if [ ! -d $HOME/gocode ]; then
   echo "Creating gocode directory"
   mkdir -p $HOME/gocode/bin
 fi
-notiLocation=`which noti`
-if [[ $notiLocation == *'not found' && $platform == 'linux' ]]; then
+
+if [[ ! -f $HOME/bin/noti && $platform == 'linux' ]]; then
   echo "Installing noti"
   go get -u github.com/variadico/noti
   ln -s $HOME/gocode/bin/noti $HOME/bin/noti
