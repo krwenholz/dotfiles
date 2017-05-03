@@ -1,3 +1,5 @@
+# TODO: might be nice to install npm
+# TODO: elm tools: elm-format, elm-oracle
 #######################################################################
 # OS specific settings
 ########################################################################
@@ -58,7 +60,7 @@ alias gist="git status"
 alias gamit="git commit --amend --no-edit"
 
 ########################################################################
-# System variables 
+# System variables
 ########################################################################
 export EDITOR=vim
 export VISUAL=vim
