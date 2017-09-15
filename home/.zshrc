@@ -28,15 +28,6 @@ if [[ -d $HOME/.corporate_configs ]]; then
     echo "Found a corporate configuration"
     source $HOME/.corporate_configs/zsh_config.sh
 fi
-if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
-    source $HOME/.zsh_helpers/Fedora.sh
-fi
-if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
-    source $HOME/.zsh_helpers/Ubuntu.sh
-fi
-if [[ $platform == 'mac' ]]; then
-    source $HOME/.zsh_helpers/Mac.sh
-fi
 
 ########################################################################
 # General
@@ -136,6 +127,19 @@ fi
 # PATH
 ########################################################################
 export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin:
+
+########################################################################
+# OS helpers
+########################################################################
+if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
+    source $HOME/.zsh_helpers/Fedora.sh
+fi
+if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
+    source $HOME/.zsh_helpers/Ubuntu.sh
+fi
+if [[ $platform == 'mac' ]]; then
+    source $HOME/.zsh_helpers/Mac.sh
+fi
 
 ########################################################################
 # Greeting

@@ -189,3 +189,7 @@ node_modules
 # elm #
 ########
 *elm-stuff/
+
+# terraform #
+#############
+*.terraform/
