@@ -22,7 +22,19 @@ if [ ! -f /usr/local/bin/go ]; then
   to_install=$to_install$brew_go
 fi
 
+if [ ! -f /usr/local/bin/reattach-to-user-namespace ]; then
+  brew_reattach="reattach-to-user-namespace"
+  to_install=$to_install$brew_reattach
+fi
+
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
   brew install $to_install
+fi
+
+tmux_conf=`cat ~/.tmux.conf`
+if [[ "$tmux_conf" != *'reattach-to-user-namespace'* ]]; then
+  tmux_conf='set-option -g default-command "reattach-to-user-namespace -l zsh"'$tmux_conf
+  rm -f ~/.tmux.conf
+  echo $tmux_conf > ~/.tmux.conf
 fi
