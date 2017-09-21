@@ -32,9 +32,17 @@ if [ ! -z "$to_install" ]; then
   brew install $to_install
 fi
 
+read -d '' tmux_conf_final <<-"_EOF_"
+set-option -g default-command "reattach-to-user-namespace -l zsh"
+
+set-window-option -g mode-keys vi
+
+bind-key -Tcopy-mode-vi 'v' send -X begin-selection
+bind-key -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel pbcopy
+_EOF_
+
 tmux_conf=`cat ~/.tmux.conf`
 if [[ "$tmux_conf" != *'reattach-to-user-namespace'* ]]; then
-  tmux_conf='set-option -g default-command "reattach-to-user-namespace -l zsh"'$tmux_conf
   rm -f ~/.tmux.conf
-  echo $tmux_conf > ~/.tmux.conf
+  echo $tmux_conf_final > ~/.tmux.conf
 fi
