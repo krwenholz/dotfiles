@@ -22,8 +22,10 @@ fi
 ########################################################################
 to_install=""
 if [ ! -f /usr/bin/nano ]; then
-  nano="nano "
-  to_install=$to_install$nano
+  if [ ! -f /bin/nano ]; then
+    nano="nano "
+    to_install=$to_install$nano
+  fi
 fi
 if [ ! -f /usr/bin/tig ]; then
   tig="tig "
