@@ -66,6 +66,7 @@ colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=75
+set termguicolors
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -247,4 +248,3 @@ let corporate_config = $HOME."/.corporate_configs/vimrc.vim"
 if filereadable(corporate_config)
   exec 'source ' . corporate_config
 endif
-
