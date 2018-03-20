@@ -27,7 +27,7 @@ if [ ! -z "$to_install" ]; then
   sudo pacman -S $to_install
 fi
 
-# TODO: AUR install slack-desktop
+# TODO: AUR install slack-desktop intellij-idea-ultimate-edition
 
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style

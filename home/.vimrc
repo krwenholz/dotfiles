@@ -60,13 +60,17 @@ let g:gundo_close_on_revert = 1
 " Tagbar options
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
+" Nice line numbers and syntax stuff
+set number
+syntax enable
+set showmatch             " Show matching brackets.
+
 " Color Scheme and right column line
-set background=dark
+set background=light
 colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
-set colorcolumn=75
-set termguicolors
+set colorcolumn=78
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -210,11 +214,6 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set autoindent
-
-" Nice line numbers and syntax stuff
-set number
-syntax enable
-set showmatch             " Show matching brackets.
 
 " Special key configurations
 nmap j gj
