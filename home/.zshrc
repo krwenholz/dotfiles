@@ -12,14 +12,19 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 host='unknown'
-if [[ $platform == 'linux' ]]; then
-    host=$HOSTNAME
+pacman=`which pacman`
+lsb_exists=`which lsb_release`
+if [[ $pacman == '/usr/bin/pacman' ]]; then
+  host='arch'
+elif [[ $platform == 'linux' ]]; then
+  host=$HOSTNAME
 elif [[ $platform == 'mac' ]]; then
-    host=$HOST
-fi
-ubuntu=`lsb_release -a`
-if [[ $ubuntu == *"Ubuntu"* ]]; then
+  host=$HOST
+elif [[ lsb_exists == 0 ]]; then
+  ubuntu=`lsb_release -a`
+  if [[ $ubuntu == *"Ubuntu"* ]]; then
     host='ubuntu'
+  fi
 fi
 
 echo "Using platform $platform on host $host"
@@ -117,12 +122,6 @@ if [ ! -d $HOME/gocode ]; then
   mkdir -p $HOME/gocode/bin
 fi
 
-if [[ ! -f $HOME/bin/noti && $platform == 'linux' ]]; then
-  echo "Installing noti"
-  go get -u github.com/variadico/noti
-  ln -s $HOME/gocode/bin/noti $HOME/bin/noti
-fi
-
 ########################################################################
 # PATH
 ########################################################################
@@ -136,6 +135,9 @@ if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
 fi
 if [[ $platform == 'linux' && $host == *"ubuntu"* ]]; then
     source $HOME/.zsh_helpers/Ubuntu.sh
+fi
+if [[ $platform == 'linux' && $host == *"arch"* ]]; then
+    source $HOME/.zsh_helpers/Arch.sh
 fi
 if [[ $platform == 'mac' ]]; then
     source $HOME/.zsh_helpers/Mac.sh
