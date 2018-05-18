@@ -47,6 +47,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 unsetopt beep
 bindkey -v
+set editing-mode vi
+set keymap vi
 
 ########################################################################
 # Aliases
@@ -54,6 +56,18 @@ bindkey -v
 alias pingtest="ping -c 3 www.google.com"
 alias gist="git status"
 alias gamit="git commit --amend --no-edit"
+alias git-personal='git config user.email "kyle@krwenholz.com" && git config user.name "Kyle R Wenholz"'
+alias gem-run="$HOME/.gem/ruby/2.5.0/bin/$1"
+alias my-ip="ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'"
+function git-update {
+  current_branch=`git status -b -s`
+  current_branch=`echo ${current_branch#* }`
+  echo "Updating branch $current_branch"
+  git checkout master
+  git pull origin master
+  git checkout $current_branch
+  git rebase master
+}
 
 ########################################################################
 # System variables
