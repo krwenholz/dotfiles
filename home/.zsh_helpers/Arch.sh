@@ -3,7 +3,7 @@ echo "Configuring Arch"
 #######################################################################
 # Apps/utilities
 ########################################################################
-installed=`pacman --query --explicit`
+installed=`pacman --query`
 to_install=""
 if [[ ! $installed == *"tmux"* ]]; then
   to_install=$to_install"tmux "
@@ -73,7 +73,9 @@ fi
 if [[ ! $installed == *"ipython"* ]]; then
   to_install=$to_install"ipython "
 fi
-
+if [[ ! $installed == *"terraform"* ]]; then
+  to_install=$to_install"terraform "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
