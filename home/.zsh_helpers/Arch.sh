@@ -76,15 +76,18 @@ fi
 if [[ ! $installed == *"terraform"* ]]; then
   to_install=$to_install"terraform "
 fi
+if [[ ! $installed == *"pandoc"* ]]; then
+  to_install=$to_install"pandoc "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
   # TODO: this is actually broken, but at least it tells me what's missing
-  sudo pacman -S $to_install
+  sudo pacman -Syu $to_install
 fi
 
-# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin
-# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git
+# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml
+# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs
 # TODO: install this with some pacman/makefile hackery https://github.com/robbi5/magictrackpad2-dkms
 # TODO: install gnome 3 Workspace Grid
 # TODO: gem install github
@@ -100,6 +103,14 @@ if [[ "$tmux_conf" != $tmux_conf_final ]]; then
   echo "Correcting tmux.conf"
   rm -f ~/.tmux.conf
   echo $tmux_conf_final > ~/.tmux.conf
+fi
+
+if [[ ! -f $HOME/bin/ngrok ]]; then
+  echo "Installing ngrok, consider updating the download URL"
+  cd $HOME/Downloads
+  curl -O https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+  unzip ngrok-stable-linux-amd64.zip
+  cp ngrok $HOME/bin
 fi
 
 #######################################################################
