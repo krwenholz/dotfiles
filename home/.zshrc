@@ -1,5 +1,3 @@
-# TODO: might be nice to install npm
-# TODO: elm tools: elm-format, elm-oracle
 #######################################################################
 # OS specific settings
 ########################################################################
@@ -60,8 +58,7 @@ alias git-personal='git config user.email "kyle@krwenholz.com" && git config use
 alias gem-run="$HOME/.gem/ruby/2.5.0/bin/$1"
 alias my-ip="ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'"
 function git-update {
-  current_branch=`git status -b -s`
-  current_branch=`echo ${current_branch#* }`
+  current_branch=`git rev-parse --abbrev-ref HEAD`
   echo "Updating branch $current_branch"
   git checkout master
   git pull origin master
@@ -140,7 +137,7 @@ fi
 # PATH
 ########################################################################
 export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin:
-
+export PATH=$HOME/.local/bin:$PATH
 ########################################################################
 # OS helpers
 ########################################################################
