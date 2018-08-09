@@ -21,7 +21,6 @@ call vundle#begin()
     Plugin 'Raimondi/delimitMate'
     Plugin 'scrooloose/nerdtree'
     Plugin 'tomtom/tcomment_vim'
-    Plugin 'sjl/gundo.vim'
     Plugin 'kien/ctrlp.vim'
     Plugin 'alfredodeza/pytest.vim'
     " Plugin 'scrooloose/syntastic'
@@ -36,6 +35,7 @@ call vundle#begin()
     Plugin 'ElmCast/elm-vim'
     Plugin 'raichoo/purescript-vim'
     Plugin 'tpope/vim-fireplace'
+    Plugin 'ambv/black'
 call vundle#end()
 
 " Syntastic
@@ -51,11 +51,9 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
 set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
+set wildignore+=*/lib/python*/*,*/lib64/python*/*
+set wildignore+=*/public/packs/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-" Gundo
-nnoremap <F5> :GundoToggle<CR>
-let g:gundo_close_on_revert = 1
 
 " Tagbar options
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -70,7 +68,7 @@ set background=light
 colorscheme solarized
 highlight colorcolumn ctermbg=9
 highlight colorcolumn guibg=DarkBlue
-set colorcolumn=78
+set colorcolumn=88
 
 " Some MiniBuf options
 let g:miniBufExplMapWindowNavVim = 1
@@ -237,8 +235,7 @@ filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
 
-autocmd FileType python set shiftwidth=2
-autocmd FileType python set softtabstop=2
+autocmd BufWritePre *.py execute ':Black'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations

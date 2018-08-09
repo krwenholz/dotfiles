@@ -51,6 +51,7 @@ set keymap vi
 ########################################################################
 # Aliases
 ########################################################################
+alias vim=nvim
 alias pingtest="ping -c 3 www.google.com"
 alias gist="git status"
 alias gamit="git commit --amend --no-edit"
@@ -69,8 +70,8 @@ function git-update {
 ########################################################################
 # System variables
 ########################################################################
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=neovim
+export VISUAL=neovim
 export TERM=xterm-256color #TODO: I still don't have color after adding this
 export GOPATH=$HOME/gocode
 
@@ -138,6 +139,17 @@ fi
 ########################################################################
 export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin:
 export PATH=$HOME/.local/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc'
+fi
+
 ########################################################################
 # OS helpers
 ########################################################################
@@ -162,12 +174,3 @@ stty erase '^?'
 
 echo "Hey there! ツ"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc ]; then
-  source '/Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc'
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
-  source '/Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc'
-fi

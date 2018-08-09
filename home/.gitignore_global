@@ -20,6 +20,8 @@ venv/
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+lib64
+lib/python.*
 
 # Vim #
 #######

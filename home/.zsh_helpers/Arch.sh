@@ -5,6 +5,15 @@ echo "Configuring Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
+if [[ ! $installed == *"neovim"* ]]; then
+  to_install=$to_install"neovim "
+fi
+if [[ ! $installed == *"python-neovim"* ]]; then
+  to_install=$to_install"python-neovim "
+fi
+if [[ ! $installed == *"python2-neovim"* ]]; then
+  to_install=$to_install"python2-neovim "
+fi
 if [[ ! $installed == *"tmux"* ]]; then
   to_install=$to_install"tmux "
 fi
@@ -83,11 +92,12 @@ fi
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
   # TODO: this is actually broken, but at least it tells me what's missing
-  sudo pacman -Syu $to_install
+  echo "You have uninstalled packages run the following:"
+  echo "sudo pacman -Suy $to_install"
 fi
 
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml
-# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs
+# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs black
 # TODO: install this with some pacman/makefile hackery https://github.com/robbi5/magictrackpad2-dkms
 # TODO: install gnome 3 Workspace Grid
 # TODO: gem install github
