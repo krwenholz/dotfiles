@@ -112,21 +112,22 @@ call deoplete#custom#option({
         \ 'smart_case': v:true,
         \ 'max_list': 100,
         \ 'sources': { 'default' : '', 'vimshell' : $HOME.'/.vimshell_hist', 'scheme' : $HOME.'/.gosh_completions' },
-        \ 'min_pattern_length': 3
+        \ 'min_pattern_length': 3,
+        \ 'autocomplete_delay': 100,
         \ })
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return deoplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? deoplete#close_popup() : "\<CR>"
-endfunction
-" Close popup by <Space>.
-" inoremap <expr><Space> pumvisible() ? deoplete#close_popup() : "\<Space>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"  return deoplete#close_popup() . "\<CR>"
+"  " For no inserting <CR> key.
+"  "return pumvisible() ? deoplete#close_popup() : "\<CR>"
+"endfunction
+"" Close popup by <Space>.
+"" inoremap <expr><Space> pumvisible() ? deoplete#close_popup() : "\<Space>"
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
 "" neosnippets
 " Plugin key-mappings.

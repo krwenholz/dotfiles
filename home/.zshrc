@@ -134,6 +134,11 @@ if [ ! -d $HOME/gocode ]; then
   mkdir -p $HOME/gocode/bin
 fi
 
+if [[ ! -f $HOME/.gitconfig_local ]]; then
+    echo "Copying gitconfig_default to gitconfig_local"
+    cp $HOME/.gitconfig_default $HOME/.gitconfig_local
+fi
+
 ########################################################################
 # PATH
 ########################################################################

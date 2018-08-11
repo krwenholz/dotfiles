@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# bootstrap script to install Homeshick and you preferred castles to a new
+# bootstrap script to install Homeshick and your preferred castles to a new
 # system.
 
 tmpfilename="/tmp/${0##*/}.XXXXX"
