@@ -24,6 +24,7 @@ call vundle#begin()
       Plugin 'kien/ctrlp.vim'
       Plugin 'alfredodeza/pytest.vim'
       Plugin 'tpope/vim-fireplace'
+      Plugin 'tpope/vim-rails'
     " Completion
       Plugin 'Shougo/deoplete.nvim'
       Plugin 'Shougo/neosnippet'
@@ -35,7 +36,7 @@ call vundle#begin()
       Plugin 'bronson/vim-trailing-whitespace'
       Plugin 'ElmCast/elm-vim'
       Plugin 'raichoo/purescript-vim'
-      Plugin 'ambv/black'
+      Plugin 'krwenholz/black'
 call vundle#end()
 
 " Syntastic
@@ -49,6 +50,7 @@ let g:airline#extensions#whitespace#enabled = 1
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
 set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
 set wildignore+=*/lib/python*/*,*/lib64/python*/*
