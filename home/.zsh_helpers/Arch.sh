@@ -88,6 +88,9 @@ fi
 if [[ ! $installed == *"pandoc"* ]]; then
   to_install=$to_install"pandoc "
 fi
+if [[ ! $installed == *"postgresql"* ]]; then
+  to_install=$to_install"postgresql "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -96,7 +99,7 @@ if [ ! -z "$to_install" ]; then
   echo "sudo pacman -Suy $to_install"
 fi
 
-# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml
+# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml undistract-me-git
 # TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs black
 # TODO: install this with some pacman/makefile hackery https://github.com/robbi5/magictrackpad2-dkms
 # TODO: install gnome 3 Workspace Grid
@@ -106,6 +109,7 @@ fi
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel -i -p && xsel -o -p | xsel -i -b"
+set -sg escape-time 10
 _EOF_
 
 tmux_conf=`cat ~/.tmux.conf`
@@ -127,6 +131,21 @@ fi
 # Activations
 ########################################################################
 eval "$(rbenv init -)"
+LONG_RUNNING_COMMAND_TIMEOUT=20
+source /etc/profile.d/undistract-me.sh
+
+running_pg=`systemctl is-enabled postgresql.service`
+if [[ "$running_pg" == 'disabled' ]]; then
+  echo "WARNING: You need to initialize postgres"
+  # sudo -u postgres -i
+  # initdb -D "/var/lib/postgres/data/"
+  # exit
+  # sudo systemctl enable postgresql.service
+  # sudo systemctl start postgresql.service
+  # sudo -u postgres -i
+  # createuser -s kyle
+  # createdb kyle
+fi
 
 LONG_RUNNING_COMMAND_TIMEOUT=20
 source /etc/profile.d/undistract-me.sh
