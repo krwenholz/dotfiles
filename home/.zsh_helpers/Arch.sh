@@ -128,6 +128,23 @@ fi
 ########################################################################
 eval "$(rbenv init -)"
 
+LONG_RUNNING_COMMAND_TIMEOUT=20
+source /etc/profile.d/undistract-me.sh
+
+running_pg=`systemctl is-enabled postgresql.service`
+if [[ "$running_pg" == 'disabled' ]]; then
+  echo "WARNING: You need to initialize postgres"
+  # sudo -u postgres -i
+  # initdb -D "/var/lib/postgres/data/"
+  # exit
+  # sudo systemctl enable postgresql.service
+  # sudo systemctl start postgresql.service
+  # sudo -u postgres -i
+  # createuser -s kyle
+  # createdb kyle
+fi
+>>>>>>> e5bc5f2... meh
+
 #######################################################################
 # Aliases
 ########################################################################

@@ -24,7 +24,8 @@ call vundle#begin()
       Plugin 'kien/ctrlp.vim'
       Plugin 'alfredodeza/pytest.vim'
       Plugin 'tpope/vim-fireplace'
-      Plugin 'tpope/vim-rails'
+      Plugin 'janko-m/vim-test'
+      Plugin 'kassio/neoterm'
     " Completion
       Plugin 'Shougo/deoplete.nvim'
       Plugin 'Shougo/neosnippet'
@@ -36,11 +37,7 @@ call vundle#begin()
       Plugin 'bronson/vim-trailing-whitespace'
       Plugin 'ElmCast/elm-vim'
       Plugin 'raichoo/purescript-vim'
-      Plugin 'krwenholz/black'
 call vundle#end()
-
-" Syntastic
-" let g:syntastic_java_javac_config_file_enabled=1
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -49,6 +46,7 @@ let g:airline#extensions#whitespace#enabled = 1
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
+nnoremap <silent> <c-f> :CtrlP<CR>
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
@@ -56,6 +54,19 @@ set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
 set wildignore+=*/lib/python*/*,*/lib64/python*/*
 set wildignore+=*/public/packs/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" vim-test
+nmap <silent> t<c-n> :TestNearest<CR> " t Ctrl+n
+nmap <silent> t<c-f> :TestFile<CR>    " t Ctrl+f
+nmap <silent> t<c-s> :TestSuite<CR>   " t Ctrl+s
+nmap <silent> t<c-l> :TestLast<CR>    " t Ctrl+l
+nmap <silent> t<c-g> :TestVisit<CR>   " t Ctrl+g
+let test#strategy = "neoterm"
+
+" neoterm
+let g:neoterm_autoscroll = 1
+let g:neoterm_default_mod = 'belowright'
+let g:neoterm_size = 15
 
 " Tagbar options
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -68,7 +79,7 @@ set showmatch             " Show matching brackets.
 " Color Scheme and right column line
 set background=light
 colorscheme solarized
-highlight colorcolumn ctermbg=9
+highlight colorcolumn ctermbg=7
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=88
 
@@ -82,7 +93,7 @@ let g:miniBufExplModSelTarget = 1
 map T :TaskList<CR>
 " map P :TlistToggle<CR>
 
-" EasyMotion use \ instead of \\
+" EasyMotion use _ instead of \\
 let g:EasyMotion_leader_key = '_'
 
 " LaTeX options
@@ -117,19 +128,6 @@ call deoplete#custom#option({
         \ 'min_pattern_length': 3,
         \ 'autocomplete_delay': 100,
         \ })
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  return deoplete#close_popup() . "\<CR>"
-"  " For no inserting <CR> key.
-"  "return pumvisible() ? deoplete#close_popup() : "\<CR>"
-"endfunction
-"" Close popup by <Space>.
-"" inoremap <expr><Space> pumvisible() ? deoplete#close_popup() : "\<Space>"
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
 "" neosnippets
 " Plugin key-mappings.
@@ -170,6 +168,9 @@ set hidden                " Save buffers in the background (don't save on buffer
 set confirm               " Confirm before closing unsaved buffers
 set t_Co=256
 
+nnoremap <c-n> :bn<CR>
+nnoremap <c-l> :bp<CR>
+nnoremap <c-k> :bd<CR>
 
 " Nice tabs
 set expandtab
@@ -199,8 +200,6 @@ filetype plugin indent on
 filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
-
-autocmd BufWritePre *.py execute ':Black'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations
