@@ -100,10 +100,8 @@ if [ ! -z "$to_install" ]; then
 fi
 
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml undistract-me-git
-# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs black
-# TODO: install this with some pacman/makefile hackery https://github.com/robbi5/magictrackpad2-dkms
-# TODO: install gnome 3 Workspace Grid
-# TODO: gem install github
+# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs 'python-language-server[all]' --user
+# TODO: gem install github, yard, solargraph (yard config --gem-install-yri)
 # TODO: docker pull asciinema/asciicast2gif
 
 read -d '' tmux_conf_final <<-"_EOF_"
@@ -131,21 +129,6 @@ fi
 # Activations
 ########################################################################
 eval "$(rbenv init -)"
-LONG_RUNNING_COMMAND_TIMEOUT=20
-source /etc/profile.d/undistract-me.sh
-
-running_pg=`systemctl is-enabled postgresql.service`
-if [[ "$running_pg" == 'disabled' ]]; then
-  echo "WARNING: You need to initialize postgres"
-  # sudo -u postgres -i
-  # initdb -D "/var/lib/postgres/data/"
-  # exit
-  # sudo systemctl enable postgresql.service
-  # sudo systemctl start postgresql.service
-  # sudo -u postgres -i
-  # createuser -s kyle
-  # createdb kyle
-fi
 
 LONG_RUNNING_COMMAND_TIMEOUT=20
 source /etc/profile.d/undistract-me.sh
@@ -162,7 +145,6 @@ if [[ "$running_pg" == 'disabled' ]]; then
   # createuser -s kyle
   # createdb kyle
 fi
->>>>>>> e5bc5f2... meh
 
 #######################################################################
 # Aliases

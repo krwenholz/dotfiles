@@ -28,6 +28,7 @@ call vundle#begin()
       Plugin 'kassio/neoterm'
     " Completion
       Plugin 'Shougo/deoplete.nvim'
+      Plugin 'autozimu/LanguageClient-neovim'
       Plugin 'Shougo/neosnippet'
       Plugin 'Shougo/neosnippet-snippets'
       Plugin 'tpope/vim-endwise'
@@ -128,6 +129,17 @@ call deoplete#custom#option({
         \ 'min_pattern_length': 3,
         \ 'autocomplete_delay': 100,
         \ })
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 "" neosnippets
 " Plugin key-mappings.
@@ -200,6 +212,9 @@ filetype plugin indent on
 filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
+
+autocmd FileType python set shiftwidth=2
+autocmd FileType python set softtabstop=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations
