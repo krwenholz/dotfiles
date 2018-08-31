@@ -100,7 +100,7 @@ if [ ! -z "$to_install" ]; then
 fi
 
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml undistract-me-git
-# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs 'python-language-server[all]' --user
+# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle --user
 # TODO: gem install github, yard, solargraph (yard config --gem-install-yri)
 # TODO: docker pull asciinema/asciicast2gif
 
