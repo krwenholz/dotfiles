@@ -8,6 +8,9 @@ to_install=""
 if [[ ! $installed == *"neovim"* ]]; then
   to_install=$to_install"neovim "
 fi
+if [[ ! $installed == *"ack"* ]]; then
+  to_install=$to_install"ack "
+fi
 if [[ ! $installed == *"python-neovim"* ]]; then
   to_install=$to_install"python-neovim "
 fi
@@ -66,6 +69,9 @@ if [[ ! $installed == *"bluez"* ]]; then
   to_install=$to_install"bluez bluez-utils "
   # may need systemctl enable bluetooth.service
 fi
+if [[ ! $installed == *"diff-so-fancy"* ]]; then
+  to_install=$to_install"diff-so-fancy "
+fi
 if [[ ! $installed == *"hub"* ]]; then
   to_install=$to_install"hub "
 fi
@@ -91,6 +97,10 @@ fi
 if [[ ! $installed == *"postgresql"* ]]; then
   to_install=$to_install"postgresql "
 fi
+if [[ ! $installed == *"fwupd"* ]]; then
+  # https://github.com/hughsie/fwupd
+  to_install=$to_install"fwupd "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -99,10 +109,11 @@ if [ ! -z "$to_install" ]; then
   echo "sudo pacman -Suy $to_install"
 fi
 
-# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml undistract-me-git
+# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml 
 # TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle --user
 # TODO: gem install github, yard, solargraph (yard config --gem-install-yri)
 # TODO: docker pull asciinema/asciicast2gif
+# TODO: go get -u github.com/variadico/noti/cmd/noti
 
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style
@@ -129,9 +140,6 @@ fi
 # Activations
 ########################################################################
 eval "$(rbenv init -)"
-
-LONG_RUNNING_COMMAND_TIMEOUT=20
-source /etc/profile.d/undistract-me.sh
 
 running_pg=`systemctl is-enabled postgresql.service`
 if [[ "$running_pg" == 'disabled' ]]; then
