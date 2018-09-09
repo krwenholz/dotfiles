@@ -29,8 +29,8 @@ call vundle#begin()
     " Completion
       Plugin 'Shougo/deoplete.nvim'
       Plugin 'autozimu/LanguageClient-neovim'
-      Plugin 'Shougo/neosnippet'
-      Plugin 'Shougo/neosnippet-snippets'
+      Plugin 'SirVer/ultisnips'
+      Plugin 'honza/vim-snippets'
       Plugin 'tpope/vim-endwise'
     " Syntax
       Plugin 'natew/ftl-vim-syntax'
@@ -126,7 +126,7 @@ call deoplete#custom#option({
         \ 'smart_case': v:true,
         \ 'max_list': 100,
         \ 'sources': { 'default' : '', 'vimshell' : $HOME.'/.vimshell_hist', 'scheme' : $HOME.'/.gosh_completions' },
-        \ 'min_pattern_length': 3,
+        \ 'min_pattern_length': 2,
         \ 'autocomplete_delay': 100,
         \ })
 " Required for operations modifying multiple buffers like rename.
@@ -137,28 +137,21 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 
+" ultinsips
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'custom_snippets']
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Configure ruby omni-completion to use the language client:
+autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+
 " nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 " nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 " nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-"" neosnippets
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
 
 " elm-format
 let g:elm_format_autosave = 1
