@@ -9,3 +9,8 @@ endsnippet
 snippet todo "TODO(user): foobar <datetime>"  bw
 `!p snip.rv=get_comment_format()[0]` TODO(`git config --get user.email | sed -E 's/@.*//'`): $0 <`!v strftime('%d-%m-%y %H:%M')`>
 endsnippet
+
+priority -1
+snippet todo* "TODO(user): foobar <datetime>"
+TODO(`git config --get user.email | sed -E 's/@.*//'`): $0 <`!v strftime('%d-%m-%y %H:%M')`>
+endsnippet
