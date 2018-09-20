@@ -167,3 +167,14 @@ alias image-viewer='eog'
 # Path
 ########################################################################
 # TODO if necessary
+
+
+#######################################################################
+# Notes
+########################################################################
+# https://wiki.archlinux.org/index.php/Network_Time_Protocol_daemon#Usage
+# https://wiki.archlinux.org/index.php/Installation_guide#Root_password
+# https://wiki.archlinux.org/index.php/Dhcpcd#Static_profile
+# https://wiki.archlinux.org/index.php/Users_and_groups#User_groups
+# https://wiki.archlinux.org/index.php/General_recommendations#System_administration
+# https://wiki.archlinux.org/index.php/Server
