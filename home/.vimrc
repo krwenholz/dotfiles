@@ -10,7 +10,6 @@ call vundle#begin()
       Plugin 'gmarik/Vundle.vim'
       Plugin 'https://github.com/Lokaltog/vim-easymotion'
       Plugin 'vim-scripts/TaskList.vim'
-      Plugin 'altercation/vim-colors-solarized'
       Plugin 'bling/vim-airline'
       Plugin 'vim-scripts/scratch.vim'
     " Some awesome Git helpers
@@ -78,8 +77,8 @@ syntax enable
 set showmatch             " Show matching brackets.
 
 " Color Scheme and right column line
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme "pastel-krwenholz"
 highlight colorcolumn ctermbg=7
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=88

@@ -1,12 +1,27 @@
-echo "Configuring Arch"
+echo "Configurinc Arch"
 
 #######################################################################
 # Apps/utilities
 ########################################################################
 installed=`pacman --query`
 to_install=""
+if [[ ! $installed == *"unzip"* ]]; then
+  to_install=$to_install"unzip "
+fi
+if [[ ! $installed == *"xclip"* ]]; then
+  to_install=$to_install"xclip "
+fi
+if [[ ! $installed == *"xsel"* ]]; then
+  to_install=$to_install"xsel "
+fi
+if [[ ! $installed == *"mosh"* ]]; then
+  to_install=$to_install"mosh "
+fi
 if [[ ! $installed == *"neovim"* ]]; then
   to_install=$to_install"neovim "
+fi
+if [[ ! $installed == *"openssh"* ]]; then
+  to_install=$to_install"openssh "
 fi
 if [[ ! $installed == *"ack"* ]]; then
   to_install=$to_install"ack "
@@ -38,8 +53,8 @@ fi
 if [[ ! $installed == *"hunspell"* ]]; then
   to_install=$to_install"hunspell "
 fi
-if [[ ! $installed == *"hunspell-en"* ]]; then
-  to_install=$to_install"hunspell-en "
+if [[ ! $installed == *"hunspell-en_US"* ]]; then
+  to_install=$to_install"hunspell-en_US "
 fi
 if [[ ! $installed == *"openvpn"* ]]; then
   to_install=$to_install"openvpn "
@@ -110,7 +125,8 @@ if [ ! -z "$to_install" ]; then
 fi
 
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml 
-# TODO: pip install saws gnome-shell-extension-extended-gestures-git fpm touchegg-git touchegg-gce-git awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle --user
+# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle --user
+# TODO: rbenv install 2.5.1; rbenv global 2.5.1
 # TODO: gem install github, yard, solargraph (yard config --gem-install-yri)
 # TODO: docker pull asciinema/asciicast2gif
 # TODO: go get -u github.com/variadico/noti/cmd/noti
@@ -178,3 +194,33 @@ alias image-viewer='eog'
 # https://wiki.archlinux.org/index.php/Users_and_groups#User_groups
 # https://wiki.archlinux.org/index.php/General_recommendations#System_administration
 # https://wiki.archlinux.org/index.php/Server
+# Add AllowUsers kyle to /etc/ssh/sshd_config
+# Set PasswordAuthentication no
+# Start ssh.dsocket service and edit the unit file with systemctl edit sshd.socket to reflect aforementioned port
+if [[ ! -f /etc/iptables/iptables.rules ]]; then
+  sudo cp /etc/iptables/empty.rules /etc/iptables/iptables.rules
+  sudo systemctl enable iptables.service
+  sudo systemctl start iptables.service
+
+  sudo iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+  sudo iptables -A INPUT -i lo -j ACCEPT
+  sudo iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+  sudo iptables -A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
+  sudo iptables -A INPUT -p udp -m conntrack --ctstate NEW -j UDP
+  sudo iptables -A INPUT -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP
+  sudo iptables -A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+  sudo iptables -A INPUT -p tcp -j REJECT --reject-with tcp-reset
+  sudo iptables -A INPUT -j REJECT --reject-with icmp-proto-unreachable
+  sudo iptables -A TCP -p tcp --dport 22 -j ACCEPT
+  # Don't limit SSH from known addresses
+  sudo iptables -A INPUT -p tcp --dport 22 -s xxx.xxx.xxx.xxx -j ACCEPT
+  # SSH rate limiting from unknown IP addresses
+  # Allow 2 chances in 10 minutes to connect, reject after that
+  sudo iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
+  sudo iptables -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
+  # Basic web server openings
+  sudo iptables -A TCP -p tcp --dport 80 -j ACCEPT
+  sudo iptables -A TCP -p tcp --dport 443 -j ACCEPT
+
+  sudo iptables-save > /etc/iptables/iptabels.rules
+fi

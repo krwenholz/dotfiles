@@ -103,12 +103,20 @@ fi
 #######
 if [ ! -d $HOME/.vim/bundle ]; then
     mkdir -p $HOME/.vim/bundle
+    mkdir -p $HOME/.vim/colors
 fi
 
 # Vundle
 if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
     echo "Initializing Vundle"
     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+fi
+
+if [[ ! -f $HOME/.vim/colors/pastel-krwenholz.vim ]]; then
+  if [[ ! -f $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim ]]; then
+    git clone https://github.com/krwenholz/base16-colors.git $HOME/Source
+  fi
+  cp $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim $HOME/.vim/colors/pastel-krwenholz.vim
 fi
 
 # Inconsolata
@@ -124,6 +132,9 @@ if [[ $platform != *'mac'* ]]; then
 fi
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+
+# A bunch of language stuff #
+#############################
 
 python3Location=`which python3`
 if [[ $python3Location != *'not found' ]]; then
@@ -144,7 +155,7 @@ fi
 # PATH
 ########################################################################
 export PATH=/usr/kerberos/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:$HOME/bin:
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/gocode/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /Users/Kyle/Downloads/google-cloud-sdk/path.zsh.inc ]; then
