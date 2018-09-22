@@ -16,6 +16,7 @@ if [[ ! $installed == *"xsel"* ]]; then
 fi
 if [[ ! $installed == *"mosh"* ]]; then
   to_install=$to_install"mosh "
+fi
 if [[ ! $installed == *"iproute2"* ]]; then
   to_install=$to_install"iproute2 "
 fi
@@ -226,3 +227,4 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 
   sudo iptables-save > /etc/iptables/iptabels.rules
 fi
+
