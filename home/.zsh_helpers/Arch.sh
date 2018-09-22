@@ -16,6 +16,8 @@ if [[ ! $installed == *"xsel"* ]]; then
 fi
 if [[ ! $installed == *"mosh"* ]]; then
   to_install=$to_install"mosh "
+if [[ ! $installed == *"iproute2"* ]]; then
+  to_install=$to_install"iproute2 "
 fi
 if [[ ! $installed == *"neovim"* ]]; then
   to_install=$to_install"neovim "
