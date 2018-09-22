@@ -5,8 +5,8 @@ echo "Configuring Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
-if [[ ! $installed == *"net-tools"* ]]; then
-  to_install=$to_install"net-tools "
+if [[ ! $installed == *"iproute2"* ]]; then
+  to_install=$to_install"iproute2 "
 fi
 if [[ ! $installed == *"neovim"* ]]; then
   to_install=$to_install"neovim "
