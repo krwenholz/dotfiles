@@ -9,9 +9,10 @@ call vundle#begin()
 " let Vundle manage Vundle and other stuff
       Plugin 'gmarik/Vundle.vim'
       Plugin 'https://github.com/Lokaltog/vim-easymotion'
-      Plugin 'vim-scripts/TaskList.vim'
       Plugin 'bling/vim-airline'
       Plugin 'vim-scripts/scratch.vim'
+      Plugin 'altercation/vim-colors-solarized'
+      Plugin 'chriskempson/base16-vim'
     " Some awesome Git helpers
       Plugin 'fugitive.vim'
       Plugin 'tpope/vim-git'
@@ -77,8 +78,8 @@ syntax enable
 set showmatch             " Show matching brackets.
 
 " Color Scheme and right column line
-set background=dark
-colorscheme "pastel-krwenholz"
+let base16colorspace = 256
+colorscheme base16-default-dark
 highlight colorcolumn ctermbg=7
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=88
@@ -88,10 +89,6 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-
-" Some TaskList keys
-map T :TaskList<CR>
-" map P :TlistToggle<CR>
 
 " EasyMotion use _ instead of \\
 let g:EasyMotion_leader_key = '_'
@@ -163,7 +160,7 @@ set backspace=2           " allow backspacing over everything in insert mode
 set history=50            " keep 50 lines of command line history
 set laststatus=2          " always have status bar
 set encoding=utf-8        " Let's be modern and use a real-boy encoding
-set scrolloff=2           " dont let the curser get too close to the edge
+set scrolloff=2           " don't let the cursor get too close to the edge
 set nobackup              " Don't keep a backup file
 set ruler                 " the ruler on the bottom is useful
 set showcmd               " Show (partial) command in status line.
@@ -190,6 +187,7 @@ nmap _p :set paste!<CR>
 
 " Spelling and search options
 set spell
+set spellfile=$HOME/.config/spell/en.utf-8.add
 set incsearch
 set ignorecase
 set smartcase

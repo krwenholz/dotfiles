@@ -112,11 +112,11 @@ if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 fi
 
-if [[ ! -f $HOME/.vim/colors/pastel-krwenholz.vim ]]; then
+if [[ ! -f $HOME/.vim/colors/base16-pastel-krwenholz.vim ]]; then
   if [[ ! -f $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim ]]; then
     git clone https://github.com/krwenholz/base16-colors.git $HOME/Source
   fi
-  cp $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim $HOME/.vim/colors/pastel-krwenholz.vim
+  cp $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim $HOME/.vim/colors/base16-pastel-krwenholz.vim
 fi
 
 # Inconsolata
