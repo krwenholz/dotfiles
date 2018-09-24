@@ -25,6 +25,7 @@ call vundle#begin()
       Plugin 'tpope/vim-fireplace'
       Plugin 'janko-m/vim-test'
       Plugin 'kassio/neoterm'
+      Plugin 'ap/vim-css-color'
     " Completion
       Plugin 'Shougo/deoplete.nvim'
       Plugin 'autozimu/LanguageClient-neovim'
@@ -133,8 +134,8 @@ set hidden
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
+    "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
 
 " ultinsips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'custom_snippets']
