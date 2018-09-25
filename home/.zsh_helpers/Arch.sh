@@ -5,6 +5,12 @@ echo "Configurinc Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
+if [[ ! $installed == *"alacritty"* ]]; then
+  to_install=$to_install"alacritty "
+fi
+if [[ ! $installed == *"tree"* ]]; then
+  to_install=$to_install"tree "
+fi
 if [[ ! $installed == *"unzip"* ]]; then
   to_install=$to_install"unzip "
 fi
@@ -19,6 +25,9 @@ if [[ ! $installed == *"mosh"* ]]; then
 fi
 if [[ ! $installed == *"iproute2"* ]]; then
   to_install=$to_install"iproute2 "
+fi
+if [[ ! $installed == *"htop"* ]]; then
+  to_install=$to_install"htop "
 fi
 if [[ ! $installed == *"neovim"* ]]; then
   to_install=$to_install"neovim "
@@ -61,6 +70,12 @@ if [[ ! $installed == *"hunspell-en_US"* ]]; then
 fi
 if [[ ! $installed == *"openvpn"* ]]; then
   to_install=$to_install"openvpn "
+fi
+if [[ ! $installed == *"nodejs"* ]]; then
+  to_install=$to_install"nodejs "
+fi
+if [[ ! $installed == *"yarn"* ]]; then
+  to_install=$to_install"yarn "
 fi
 if [[ ! $installed == *"tig"* ]]; then
   to_install=$to_install"tig "
