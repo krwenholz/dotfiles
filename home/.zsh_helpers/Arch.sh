@@ -5,9 +5,6 @@ echo "Configurinc Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
-if [[ ! $installed == *"alacritty"* ]]; then
-  to_install=$to_install"alacritty "
-fi
 if [[ ! $installed == *"tree"* ]]; then
   to_install=$to_install"tree "
 fi

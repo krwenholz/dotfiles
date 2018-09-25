@@ -155,7 +155,7 @@ fi
 # Colors
 ########################################################################
 BASE16_SHELL="$HOME/.config/base16-shell/"
-if [[ ! -f $HOME/.config/base16-shell/ ]]; then
+if [[ ! -f $HOME/.config/base16-shell/profile_helper.sh ]]; then
   git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 fi
 
