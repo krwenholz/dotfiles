@@ -12,6 +12,7 @@ call vundle#begin()
       Plugin 'vim-scripts/TaskList.vim'
       Plugin 'bling/vim-airline'
       Plugin 'vim-scripts/scratch.vim'
+      Plugin 'chriskempson/base16-vim'
     " Some awesome Git helpers
       Plugin 'fugitive.vim'
       Plugin 'tpope/vim-git'
@@ -79,7 +80,7 @@ set showmatch             " Show matching brackets.
 
 " Color Scheme and right column line
 set background=dark
-colorscheme "pastel-krwenholz"
+colorscheme base16-default-dark
 highlight colorcolumn ctermbg=7
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=88

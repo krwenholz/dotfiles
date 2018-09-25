@@ -114,7 +114,7 @@ fi
 
 if [[ ! -f $HOME/.vim/colors/pastel-krwenholz.vim ]]; then
   if [[ ! -f $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim ]]; then
-    git clone https://github.com/krwenholz/base16-colors.git $HOME/Source
+    git clone https://github.com/krwenholz/base16-colors.git $HOME/Source/base16-colors
   fi
   cp $HOME/Source/base16-colors/output/vim/colors/base16-pastel-krwenholz.vim $HOME/.vim/colors/pastel-krwenholz.vim
 fi
