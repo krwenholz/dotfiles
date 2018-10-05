@@ -129,6 +129,7 @@ call deoplete#custom#option({
 set hidden
 
 let g:LanguageClient_serverCommands = {
+    \ 'go': ['go-langserver'],
     \ 'python': ['/usr/local/bin/pyls'],
     \ }
     "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
