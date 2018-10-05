@@ -39,14 +39,19 @@ call vundle#begin()
       Plugin 'bronson/vim-trailing-whitespace'
       Plugin 'ElmCast/elm-vim'
       Plugin 'raichoo/purescript-vim'
+      Plugin 'hashivim/vim-terraform'
 call vundle#end()
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <c-o> :FZF<CR>
 let g:fzf_layout = { 'down': '~40%' }
 
@@ -79,7 +84,9 @@ let g:fzf_colors =
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 nmap <silent> <c-f> :Find <CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> t<c-n> :TestNearest<CR> " t Ctrl+n
 nmap <silent> t<c-f> :TestFile<CR>    " t Ctrl+f
 nmap <silent> t<c-s> :TestSuite<CR>   " t Ctrl+s
@@ -87,36 +94,50 @@ nmap <silent> t<c-l> :TestLast<CR>    " t Ctrl+l
 nmap <silent> t<c-g> :TestVisit<CR>   " t Ctrl+g
 let test#strategy = "neoterm"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neoterm
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:neoterm_autoscroll = 1
 let g:neoterm_default_mod = 'belowright'
 let g:neoterm_size = 15
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nice line numbers and syntax stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number
 syntax enable
 set showmatch             " Show matching brackets.
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme and right column line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let base16colorspace = 256
 colorscheme base16-default-dark
 highlight colorcolumn ctermbg=7
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=88
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some MiniBuf options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EasyMotion use _ instead of \\
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_leader_key = '_'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LaTeX options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_MultipleCompileFormats='dvi,pdf'
 
@@ -128,11 +149,6 @@ let g:Tex_MultipleCompileFormats='dvi,pdf'
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
-
-" Sable plugin options
-augroup filetypedetect
-    au BufNewFile,BufRead *.sable setf sablecc
-augroup end
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion options

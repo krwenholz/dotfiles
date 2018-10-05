@@ -8,6 +8,9 @@ to_install=""
 if [[ ! $installed == *"fzf"* ]]; then
   to_install=$to_install"fzf "
 fi
+if [[ ! $installed == *"ntp"* ]]; then
+  to_install=$to_install"ntp "
+fi
 if [[ ! $installed == *"tree"* ]]; then
   to_install=$to_install"tree "
 fi
@@ -224,6 +227,7 @@ fi
 # Add AllowUsers kyle to /etc/ssh/sshd_config
 # Set PasswordAuthentication no
 # Start ssh.dsocket service and edit the unit file with systemctl edit sshd.socket to reflect aforementioned port
+# sudo systemctl enable ntpd.service; sudo systemctl start ntpd.service
 if [[ ! -f /etc/iptables/iptables.rules ]]; then
   echo "Installing iptables rules"
   basic_rules="
