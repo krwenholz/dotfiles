@@ -5,6 +5,9 @@ echo "Configurinc Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
+if [[ ! $installed == *"fzf"* ]]; then
+  to_install=$to_install"fzf "
+fi
 if [[ ! $installed == *"tree"* ]]; then
   to_install=$to_install"tree "
 fi
@@ -194,6 +197,8 @@ alias pbpaste='xsel --clipboard --output'
 alias github='~/.gem/ruby/2.5.0/bin/github'
 alias asciicast2gif="sudo docker run --rm -v $PWD:/data asciinema/asciicast2gif $1"
 alias image-viewer='eog'
+
+FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.(git|hg|svg)/*" --glob "!lib64/*" --glob "lib/python/*"'
 
 #######################################################################
 # Path

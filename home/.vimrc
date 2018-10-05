@@ -20,12 +20,13 @@ call vundle#begin()
       Plugin 'Raimondi/delimitMate'
       Plugin 'scrooloose/nerdtree'
       Plugin 'tomtom/tcomment_vim'
-      Plugin 'kien/ctrlp.vim'
       Plugin 'alfredodeza/pytest.vim'
       Plugin 'tpope/vim-fireplace'
       Plugin 'janko-m/vim-test'
       Plugin 'kassio/neoterm'
       Plugin 'ap/vim-css-color'
+      Plugin 'junegunn/fzf'
+      Plugin 'junegunn/fzf.vim'
     " Completion
       Plugin 'Shougo/deoplete.nvim'
       Plugin 'autozimu/LanguageClient-neovim'
@@ -45,16 +46,38 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-nnoremap <silent> <c-f> :CtrlP<CR>
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/bin/*,*.class,*/eclipse-bin/*,*/magicjar/*
-set wildignore+=*/bower_components/*,*/node_modules/*,*/elm-stuff/*
-set wildignore+=*/lib/python*/*,*/lib64/python*/*
-set wildignore+=*/public/packs/*
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" fzf
+nmap <silent> <c-o> :FZF<CR>
+let g:fzf_layout = { 'down': '~40%' }
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+nmap <silent> <c-f> :Find <CR>
 
 " vim-test
 nmap <silent> t<c-n> :TestNearest<CR> " t Ctrl+n
@@ -131,8 +154,14 @@ set hidden
 let g:LanguageClient_serverCommands = {
     \ 'go': ['go-langserver'],
     \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
-    "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F6> :call LanguageClient#textDocument_rename()<CR>
 
 " ultinsips
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'custom_snippets']
@@ -145,10 +174,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Configure ruby omni-completion to use the language client:
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
-
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " elm-format
 let g:elm_format_autosave = 1
@@ -187,7 +212,7 @@ nmap k gk
 nmap _p :set paste!<CR>
 
 " Spelling and search options
-set spell
+set nospell
 set spellfile=$HOME/.config/spell/en.utf-8.add
 set incsearch
 set ignorecase
