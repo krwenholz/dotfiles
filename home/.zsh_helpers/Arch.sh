@@ -5,6 +5,9 @@ echo "Configurinc Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
+if [[ ! $installed == *"ripgrep"* ]]; then
+  to_install=$to_install"ripgrep "
+fi
 if [[ ! $installed == *"fzf"* ]]; then
   to_install=$to_install"fzf "
 fi

@@ -52,7 +52,7 @@ let g:airline#extensions#whitespace#enabled = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <c-o> :FZF<CR>
+nmap <silent> <c-f> :FZF<CR>
 let g:fzf_layout = { 'down': '~40%' }
 
 let g:fzf_colors =
@@ -82,7 +82,7 @@ let g:fzf_colors =
 " --color: Search color options
 
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-nmap <silent> <c-f> :Find <CR>
+nmap <silent> <a-f> :Find <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
