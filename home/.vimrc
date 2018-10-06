@@ -214,6 +214,8 @@ set t_Co=256
 nnoremap <c-n> :bn<CR>
 nnoremap <c-l> :bp<CR>
 nnoremap <c-k> :bd<CR>
+" Exit terminal mode with Esc
+tnoremap <a-[> <C-\><C-n>
 
 " Nice tabs
 set expandtab
