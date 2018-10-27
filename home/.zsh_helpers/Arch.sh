@@ -256,6 +256,8 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 # Allow 2 chances in 10 minutes to connect, reject after that
 -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
 -A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
+# Allow mosh connections
+-A UDP -p udp --dport 60001 -j ACCEPT
 # Basic web server openings
 -A TCP -p tcp --dport 80 -j ACCEPT
 -A TCP -p tcp --dport 443 -j ACCEPT
