@@ -13,14 +13,13 @@ call vundle#begin()
       Plugin 'vim-scripts/scratch.vim'
       Plugin 'chriskempson/base16-vim'
     " Some awesome Git helpers
-      Plugin 'fugitive.vim'
+      Plugin 'tpope/vim-fugitive'
       Plugin 'tpope/vim-git'
     " ide type stuff
       Plugin 'majutsushi/tagbar'
       Plugin 'Raimondi/delimitMate'
       Plugin 'scrooloose/nerdtree'
       Plugin 'tomtom/tcomment_vim'
-      Plugin 'alfredodeza/pytest.vim'
       Plugin 'tpope/vim-fireplace'
       Plugin 'janko-m/vim-test'
       Plugin 'kassio/neoterm'
@@ -52,7 +51,6 @@ let g:airline#extensions#whitespace#enabled = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <c-f> :FZF<CR>
 let g:fzf_layout = { 'down': '~40%' }
 
 let g:fzf_colors =
@@ -81,14 +79,16 @@ let g:fzf_colors =
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-nmap <silent> <a-f> :Find <CR>
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+nmap <silent> <a-f> :Find <CR>
+nmap <silent> <c-f> :Files<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
@@ -99,6 +99,7 @@ nmap <silent> t<c-s> :TestSuite<CR>   " t Ctrl+s
 nmap <silent> t<c-l> :TestLast<CR>    " t Ctrl+l
 nmap <silent> t<c-g> :TestVisit<CR>   " t Ctrl+g
 let test#strategy = "neoterm"
+let test#python#runner = 'pytest'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neoterm
@@ -221,6 +222,7 @@ set t_Co=256
 nnoremap <c-n> :bn<CR>
 nnoremap <c-l> :bp<CR>
 nnoremap <c-k> :bd<CR>
+vmap <C-s> :sort<CR>
 " Exit terminal mode with Esc
 tnoremap <a-[> <C-\><C-n>
 

@@ -5,6 +5,9 @@ echo "Configurinc Arch"
 ########################################################################
 installed=`pacman --query`
 to_install=""
+if [[ ! $installed == *"wget"* ]]; then
+  to_install=$to_install"wget "
+fi
 if [[ ! $installed == *"ripgrep"* ]]; then
   to_install=$to_install"ripgrep "
 fi
@@ -148,10 +151,10 @@ if [ ! -z "$to_install" ]; then
   echo "sudo pacman -Suy $to_install"
 fi
 
-# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml 
-# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle --user
+# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml
+# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments --user
 # TODO: rbenv install 2.5.1; rbenv global 2.5.1
-# TODO: gem install github, yard, solargraph (yard config --gem-install-yri)
+# TODO: gem install github, yard, solargraph, pry, hirb (yard config --gem-install-yri)
 # TODO: docker pull asciinema/asciicast2gif
 # TODO: go get -u github.com/variadico/noti/cmd/noti
 # TODO: go get -u github.com/sourcegraph/go-langserver
@@ -195,6 +198,18 @@ if [[ "$running_pg" == 'disabled' ]]; then
   # createdb kyle
 fi
 
+if [[ ! -f $HOME/.dropbox-dist/dropboxd ]]; then
+  cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+  wget -O - "https://www.dropbox.com/download?dl=packages/dropbox.py" > $HOME/bin/dropbox.py
+  chmod u+x $HOME/bin/dropbox.py
+fi
+
+python2 $HOME/bin/dropbox.py running
+if [[ $? == 0 ]]; then
+  echo "Starting Dropbox"
+  python2 $HOME/bin/dropbox.py start
+fi
+
 #######################################################################
 # Aliases
 ########################################################################
@@ -203,13 +218,32 @@ alias pbpaste='xsel --clipboard --output'
 alias github='~/.gem/ruby/2.5.0/bin/github'
 alias asciicast2gif="sudo docker run --rm -v $PWD:/data asciinema/asciicast2gif $1"
 alias image-viewer='eog'
+alias grep="grep --color"
 
-FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.(git|hg|svg)/*" --glob "!lib64/*" --glob "lib/python/*"'
+TODO=$HOME/Dropbox/things/TODO.md
+DONE_SELF=$HOME/Dropbox/things/DONE_SELF.md
+DONE_WORK=$HOME/Dropbox/things/DONE_WORK.md
+alias tedit="vim $TODO $DONE_SELF $DONE_WORK"
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.(git|hg|svg)/*"'
+
+function ccat {
+  if [ ! -t 0 ];then
+    file=/dev/stdin
+  elif [ -f $1 ];then
+    file=$1
+  else
+    echo "Usage: $0 code.c"
+    echo "or e.g. head code.c|$0"
+    exit 1
+  fi
+
+  pygmentize -f terminal -g $file
+}
 
 #######################################################################
 # Path
 ########################################################################
-# TODO if necessary
 
 if [[ -f $HOME/google-cloud-sdk/completion.zsh.inc ]]; then
   source $HOME/google-cloud-sdk/completion.zsh.inc
