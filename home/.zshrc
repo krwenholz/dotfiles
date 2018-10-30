@@ -58,8 +58,8 @@ alias gamit="git commit --amend --no-edit"
 alias git-personal='git config user.email "kyle@krwenholz.com" && git config user.name "Kyle R Wenholz"'
 alias gem-run="$HOME/.gem/ruby/2.5.0/bin/$1"
 alias my-ip="ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'"
-alias todos='grep -r "TODO(kyle)" --exclude-dir=bin --exclude-dir=vendor --exclude-dir=tmp --exclude-dir=node_modules --exclude-dir=log --exclude-dir=public'
-alias penv="source bin/activate"
+alias todos="rg --hidden --follow --glob '!.(git|hg|svn)' -e 'TODO\(kyle\)'"
+alias penv="source venv/bin/activate"
 function git-update {
   current_branch=`git rev-parse --abbrev-ref HEAD`
   echo "Updating branch $current_branch"
