@@ -80,12 +80,6 @@ fi
 if [[ ! $installed == *"openvpn"* ]]; then
   to_install=$to_install"openvpn "
 fi
-if [[ ! $installed == *"nodejs"* ]]; then
-  to_install=$to_install"nodejs "
-fi
-if [[ ! $installed == *"yarn"* ]]; then
-  to_install=$to_install"yarn "
-fi
 if [[ ! $installed == *"tig"* ]]; then
   to_install=$to_install"tig "
 fi
@@ -150,6 +144,17 @@ if [ ! -z "$to_install" ]; then
   echo "You have uninstalled packages run the following:"
   echo "sudo pacman -Suy $to_install"
 fi
+
+if [[ ! -d $HOME/.nvm ]]; then
+  echo "Installing nvm"
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
+  curl -o- -L https://yarnpkg.com/install.sh | bash
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml
 # TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments --user
@@ -251,6 +256,8 @@ fi
 if [[ -f $HOME/google-cloud-sdk/path.zsh.inc ]]; then
   source $HOME/google-cloud-sdk/path.zsh.inc
 fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 #######################################################################
 # Notes
