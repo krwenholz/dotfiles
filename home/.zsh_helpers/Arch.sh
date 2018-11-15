@@ -1,4 +1,52 @@
-echo "Configurinc Arch"
+echo "Configuring Arch"
+
+########################################################################
+# Networking
+########################################################################
+# Add AllowUsers kyle to /etc/ssh/sshd_config
+# Set PasswordAuthentication no
+# Start ssh.dsocket service and edit the unit file with systemctl edit sshd.socket to reflect aforementioned port
+# sudo systemctl enable ntpd.service; sudo systemctl start ntpd.service
+if [[ ! -f /etc/iptables/iptables.rules ]]; then
+  echo "Installing iptables rules"
+  basic_rules="
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:TCP - [0:0]
+:UDP - [0:0]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m conntrack --ctstate INVALID -j DROP
+-A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
+-A INPUT -p udp -m conntrack --ctstate NEW -j UDP
+-A INPUT -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP
+-A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+-A INPUT -p tcp -j REJECT --reject-with tcp-reset
+-A INPUT -j REJECT --reject-with icmp-proto-unreachable
+-A TCP -p tcp --dport 22 -j ACCEPT
+# Don't limit SSH from known addresses
+-A INPUT -p tcp --dport 22 -s xxx.xxx.xxx.xxx -j ACCEPT
+# SSH rate limiting from unknown IP addresses
+# Allow 2 chances in 10 minutes to connect, reject after that
+-A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
+-A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
+# Allow mosh connections
+-A UDP -p udp --dport 60001 -j ACCEPT
+# Basic web server openings
+-A TCP -p tcp --dport 80 -j ACCEPT
+-A TCP -p tcp --dport 443 -j ACCEPT
+-A TCP -p tcp --dport 3000 -j ACCEPT
+COMMIT
+"
+  echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
+  sudo iptables-restore < /etc/iptables/iptables.rules
+  sudo systemctl enable iptables.service
+  sudo systemctl start iptables.service
+  # add rules with `sudo iptables LINE_TO_ADD` then
+  # `sudo iptables-save > /etc/iptables/iptabels.rules`
+fi
 
 #######################################################################
 # Apps/utilities
@@ -268,48 +316,4 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # https://wiki.archlinux.org/index.php/Users_and_groups#User_groups
 # https://wiki.archlinux.org/index.php/General_recommendations#System_administration
 # https://wiki.archlinux.org/index.php/Server
-# Add AllowUsers kyle to /etc/ssh/sshd_config
-# Set PasswordAuthentication no
-# Start ssh.dsocket service and edit the unit file with systemctl edit sshd.socket to reflect aforementioned port
-# sudo systemctl enable ntpd.service; sudo systemctl start ntpd.service
-if [[ ! -f /etc/iptables/iptables.rules ]]; then
-  echo "Installing iptables rules"
-  basic_rules="
-*filter
-:INPUT ACCEPT [0:0]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [0:0]
-:TCP - [0:0]
-:UDP - [0:0]
--A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
--A INPUT -i lo -j ACCEPT
--A INPUT -m conntrack --ctstate INVALID -j DROP
--A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
--A INPUT -p udp -m conntrack --ctstate NEW -j UDP
--A INPUT -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP
--A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
--A INPUT -p tcp -j REJECT --reject-with tcp-reset
--A INPUT -j REJECT --reject-with icmp-proto-unreachable
--A TCP -p tcp --dport 22 -j ACCEPT
-# Don't limit SSH from known addresses
--A INPUT -p tcp --dport 22 -s xxx.xxx.xxx.xxx -j ACCEPT
-# SSH rate limiting from unknown IP addresses
-# Allow 2 chances in 10 minutes to connect, reject after that
--A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
--A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
-# Allow mosh connections
--A UDP -p udp --dport 60001 -j ACCEPT
-# Basic web server openings
--A TCP -p tcp --dport 80 -j ACCEPT
--A TCP -p tcp --dport 443 -j ACCEPT
--A TCP -p tcp --dport 3000 -j ACCEPT
-COMMIT
-"
-  echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
-  sudo iptables-restore < /etc/iptables/iptables.rules
-  sudo systemctl enable iptables.service
-  sudo systemctl start iptables.service
-  # add rules with `sudo iptables LINE_TO_ADD` then
-  # `sudo iptables-save > /etc/iptables/iptabels.rules`
-fi
 
