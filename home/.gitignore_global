@@ -131,6 +131,7 @@ node_modules
 #############
 *.terraform/
 *.tfstate*
+*.tfvars
 
 # solargraph #
 ##############
