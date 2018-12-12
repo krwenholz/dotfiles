@@ -68,6 +68,9 @@ fi
 if [[ ! $installed == *"tree"* ]]; then
   to_install=$to_install"tree "
 fi
+if [[ ! $installed == *"highlight"* ]]; then
+  to_install=$to_install"highlight "
+fi
 if [[ ! $installed == *"unzip"* ]]; then
   to_install=$to_install"unzip "
 fi
@@ -277,8 +280,6 @@ TODO=$HOME/Dropbox/things/TODO.md
 DONE_SELF=$HOME/Dropbox/things/DONE_SELF.md
 DONE_WORK=$HOME/Dropbox/things/DONE_WORK.md
 alias tedit="vim $TODO $DONE_SELF $DONE_WORK"
-
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.(git|hg|svg)/*"'
 
 function ccat {
   if [ ! -t 0 ];then

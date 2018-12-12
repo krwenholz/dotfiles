@@ -190,6 +190,19 @@ if [ -f /Users/Kyle/Downloads/google-cloud-sdk/completion.zsh.inc ]; then
 fi
 
 ########################################################################
+# FZF
+########################################################################
+if [[ -d /usr/share/fzf ]]; then
+  echo "Sourcing fzf"
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+fi
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.(git|hg|svg)/*"'
+export FZF_DEFAULT_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null ||
+cat {} || tree -C {}) 2> /dev/null | head -100'"
+
+########################################################################
 # OS helpers
 ########################################################################
 if [[ $platform == 'linux' && $host == *"fedora"* ]]; then
