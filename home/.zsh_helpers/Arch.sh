@@ -1,4 +1,4 @@
-echo "Configurinc Arch"
+echo "Configuring Arch"
 
 #######################################################################
 # Apps/utilities
@@ -7,6 +7,9 @@ installed=`pacman --query`
 to_install=""
 if [[ ! $installed == *"wget"* ]]; then
   to_install=$to_install"wget "
+fi
+if [[ ! $installed == *"rustup"* ]]; then
+  to_install=$to_install"rustup "
 fi
 if [[ ! $installed == *"ripgrep"* ]]; then
   to_install=$to_install"ripgrep "
@@ -122,7 +125,8 @@ if [[ ! $installed == *"asciinema"* ]]; then
 fi
 if [[ ! $installed == *"docker"* ]]; then
   to_install=$to_install"docker "
-  sudo systemctl restart docker.service
+  to_install=$to_install"docker-ce "
+  to_install=$to_install"docker-compose "
 fi
 if [[ ! $installed == *"ttf-freefont"* ]]; then
   to_install=$to_install"ttf-freefont ttf-arphic-uming ttf-indic-otf "
@@ -178,6 +182,10 @@ if [[ ! -f $HOME/bin/ngrok ]]; then
   curl -O https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
   unzip ngrok-stable-linux-amd64.zip
   cp ngrok $HOME/bin
+fi
+
+if [[ `sudo systemctl status docker.service` != 0 ]]; then
+  sudo systemctl start docker.service
 fi
 
 #######################################################################
@@ -296,6 +304,9 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 -A TCP -p tcp --dport 80 -j ACCEPT
 -A TCP -p tcp --dport 443 -j ACCEPT
 -A TCP -p tcp --dport 3000 -j ACCEPT
+# Nextcloud
+-A TCP -p tcp --dport 81 -j ACCEPT
+-A TCP -p tcp --dport 444 -j ACCEPT
 COMMIT
 "
   echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
@@ -306,3 +317,18 @@ COMMIT
   # `sudo iptables-save > /etc/iptables/iptabels.rules`
 fi
 
+#######################################################################
+# Optional Nextcloud
+########################################################################
+if [[ -f $HOME/.nextcloud_config.sh ]]; then
+  echo Nextcloud server config detected
+  sudo docker network ls | grep nextcloud_network > /dev/null
+  if [[ $? != 0 ]]; then
+    sudo docker network create nextcloud_network
+  fi
+  sudo docker ps -a | grep nextcloud
+  if [[ $? != 0 ]]; then
+    echo Bringing up nextcloud server
+    sudo docker-compose --file $HOME/.nextcloud/docker-compose.yml up --detach
+  fi
+fi
