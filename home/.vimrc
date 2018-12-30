@@ -178,8 +178,8 @@ set hidden
 let g:LanguageClient_serverCommands = {
     \ 'go': ['go-langserver'],
     \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
+    "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately

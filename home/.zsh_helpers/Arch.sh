@@ -1,4 +1,55 @@
 echo "Configuring Arch"
+<<<<<<< HEAD
+=======
+
+########################################################################
+# Networking
+########################################################################
+# Add AllowUsers kyle to /etc/ssh/sshd_config
+# Set PasswordAuthentication no
+# Start ssh.dsocket service and edit the unit file with systemctl edit sshd.socket to reflect aforementioned port
+# sudo systemctl enable ntpd.service; sudo systemctl start ntpd.service
+if [[ ! -f /etc/iptables/iptables.rules ]]; then
+  echo "Installing iptables rules"
+  basic_rules="
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:TCP - [0:0]
+:UDP - [0:0]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m conntrack --ctstate INVALID -j DROP
+-A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
+-A INPUT -p udp -m conntrack --ctstate NEW -j UDP
+-A INPUT -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP
+-A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+-A INPUT -p tcp -j REJECT --reject-with tcp-reset
+-A INPUT -j REJECT --reject-with icmp-proto-unreachable
+-A TCP -p tcp --dport 22 -j ACCEPT
+# Don't limit SSH from known addresses
+-A INPUT -p tcp --dport 22 -s xxx.xxx.xxx.xxx -j ACCEPT
+# SSH rate limiting from unknown IP addresses
+# Allow 2 chances in 10 minutes to connect, reject after that
+-A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
+-A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
+# Allow mosh connections
+-A UDP -p udp --dport 60001 -j ACCEPT
+# Basic web server openings
+-A TCP -p tcp --dport 80 -j ACCEPT
+-A TCP -p tcp --dport 443 -j ACCEPT
+-A TCP -p tcp --dport 3000 -j ACCEPT
+COMMIT
+"
+  echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
+  sudo iptables-restore < /etc/iptables/iptables.rules
+  sudo systemctl enable iptables.service
+  sudo systemctl start iptables.service
+  # add rules with `sudo iptables LINE_TO_ADD` then
+  # `sudo iptables-save > /etc/iptables/iptabels.rules`
+fi
+>>>>>>> 05cfd02513f0265efd36fb193689f6ac9d674f1d
 
 #######################################################################
 # Apps/utilities
@@ -22,6 +73,9 @@ if [[ ! $installed == *"ntp"* ]]; then
 fi
 if [[ ! $installed == *"tree"* ]]; then
   to_install=$to_install"tree "
+fi
+if [[ ! $installed == *"highlight"* ]]; then
+  to_install=$to_install"highlight "
 fi
 if [[ ! $installed == *"unzip"* ]]; then
   to_install=$to_install"unzip "
@@ -82,12 +136,6 @@ if [[ ! $installed == *"hunspell-en_US"* ]]; then
 fi
 if [[ ! $installed == *"openvpn"* ]]; then
   to_install=$to_install"openvpn "
-fi
-if [[ ! $installed == *"nodejs"* ]]; then
-  to_install=$to_install"nodejs "
-fi
-if [[ ! $installed == *"yarn"* ]]; then
-  to_install=$to_install"yarn "
 fi
 if [[ ! $installed == *"tig"* ]]; then
   to_install=$to_install"tig "
@@ -154,6 +202,17 @@ if [ ! -z "$to_install" ]; then
   echo "You have uninstalled packages run the following:"
   echo "sudo pacman -Suy $to_install"
 fi
+
+if [[ ! -d $HOME/.nvm ]]; then
+  echo "Installing nvm"
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
+  curl -o- -L https://yarnpkg.com/install.sh | bash
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml
 # TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments --user
@@ -233,8 +292,6 @@ DONE_SELF=$HOME/Dropbox/things/DONE_SELF.md
 DONE_WORK=$HOME/Dropbox/things/DONE_WORK.md
 alias tedit="vim $TODO $DONE_SELF $DONE_WORK"
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.(git|hg|svg)/*"'
-
 function ccat {
   if [ ! -t 0 ];then
     file=/dev/stdin
@@ -259,6 +316,8 @@ fi
 if [[ -f $HOME/google-cloud-sdk/path.zsh.inc ]]; then
   source $HOME/google-cloud-sdk/path.zsh.inc
 fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 #######################################################################
 # Notes
