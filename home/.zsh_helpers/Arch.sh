@@ -316,19 +316,3 @@ COMMIT
   # add rules with `sudo iptables LINE_TO_ADD` then
   # `sudo iptables-save > /etc/iptables/iptabels.rules`
 fi
-
-#######################################################################
-# Optional Nextcloud
-########################################################################
-if [[ -f $HOME/.nextcloud_config.sh ]]; then
-  echo Nextcloud server config detected
-  sudo docker network ls | grep nextcloud_network > /dev/null
-  if [[ $? != 0 ]]; then
-    sudo docker network create nextcloud_network
-  fi
-  sudo docker ps -a | grep nextcloud
-  if [[ $? != 0 ]]; then
-    echo Bringing up nextcloud server
-    sudo docker-compose --file $HOME/.nextcloud/docker-compose.yml up --detach
-  fi
-fi
