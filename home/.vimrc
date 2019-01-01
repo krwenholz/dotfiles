@@ -33,6 +33,7 @@ call vundle#begin()
       Plugin 'honza/vim-snippets'
       Plugin 'tpope/vim-endwise'
     " Syntax
+      Plugin 'vim-syntastic/syntastic'
       Plugin 'natew/ftl-vim-syntax'
       Plugin 'nvie/vim-flake8'
       Plugin 'bronson/vim-trailing-whitespace'
@@ -122,6 +123,14 @@ syntax enable
 set showmatch             " Show matching brackets.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme and right column line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let base16colorspace = 256
@@ -176,6 +185,7 @@ call deoplete#custom#option({
 set hidden
 
 let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'go': ['go-langserver'],
     \ 'python': ['/usr/local/bin/pyls'],
     \ }
@@ -201,6 +211,9 @@ autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 
 " elm-format
 let g:elm_format_autosave = 1
+
+" rustfmt
+let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic settings
