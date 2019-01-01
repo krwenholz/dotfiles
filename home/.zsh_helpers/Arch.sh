@@ -254,36 +254,6 @@ if [[ ! $rclone_remotes == *"GoogleDrive-things"* ]]; then
   rclone config
 fi
 
-timers=`systemctl list-timers --all`
-if [[ ! $timers == *"gdrive_rclone.timer"* ]] ; then
-  service="
-[Unit]
-Description=Sync with Google Drive
-
-[Service]
-User=$USER
-Type=simple
-ExecStart=rclone sync GoogleDrive-things: $HOME/things
-"
-
-  timer="
-[Unit]
-Description=Sync with Google Drive every 5 minutes
-
-[Timer]
-OnBootSec=5min
-OnUnitActiveSec=1min
-
-[Install]
-WantedBy=timers.target
-"
-  echo $service | sudo tee /etc/systemd/system/gdrive_rclone.service
-  echo $timer | sudo tee /etc/systemd/system/gdrive_rclone.timer
-
-  sudo systemctl enable gdrive_rclone.service
-  sudo systemctl start gdrive_rclone.timer
-fi
-
 #######################################################################
 # Activations
 ########################################################################
@@ -312,10 +282,18 @@ alias asciicast2gif="sudo docker run --rm -v $PWD:/data asciinema/asciicast2gif 
 alias image-viewer='eog'
 alias grep="grep --color"
 
-TODO=$HOME/Dropbox/things/TODO.md
-DONE_SELF=$HOME/Dropbox/things/DONE_SELF.md
-DONE_WORK=$HOME/Dropbox/things/DONE_WORK.md
-alias tedit="vim $TODO $DONE_SELF $DONE_WORK"
+TODO=$HOME/things/TODO.md
+DONE_SELF=$HOME/things/DONE_SELF.md
+DONE_WORK=$HOME/things/DONE_WORK.md
+
+function things_down {
+  rclone sync GoogleDrive-things: $HOME/things
+}
+function things_up {
+  rclone sync $HOME/things GoogleDrive-things:
+}
+alias tedit="things_down && vim $TODO $DONE_SELF $DONE_WORK && things_up"
+
 
 function ccat {
   if [ ! -t 0 ];then
