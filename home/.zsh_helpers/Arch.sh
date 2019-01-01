@@ -1,6 +1,4 @@
 echo "Configuring Arch"
-<<<<<<< HEAD
-=======
 
 ########################################################################
 # Networking
@@ -49,7 +47,6 @@ COMMIT
   # add rules with `sudo iptables LINE_TO_ADD` then
   # `sudo iptables-save > /etc/iptables/iptabels.rules`
 fi
->>>>>>> 05cfd02513f0265efd36fb193689f6ac9d674f1d
 
 #######################################################################
 # Apps/utilities
@@ -70,6 +67,9 @@ if [[ ! $installed == *"fzf"* ]]; then
 fi
 if [[ ! $installed == *"ntp"* ]]; then
   to_install=$to_install"ntp "
+fi
+if [[ ! $installed == *"rclone"* ]]; then
+  to_install=$to_install"rclone "
 fi
 if [[ ! $installed == *"tree"* ]]; then
   to_install=$to_install"tree "
@@ -243,8 +243,45 @@ if [[ ! -f $HOME/bin/ngrok ]]; then
   cp ngrok $HOME/bin
 fi
 
-if [[ `sudo systemctl status docker.service` != 0 ]]; then
+if ! systemctl status docker.service > /dev/null; then
   sudo systemctl start docker.service
+fi
+
+rclone_remotes=`rclone listremotes`
+if [[ ! $rclone_remotes == *"GoogleDrive-things"* ]]; then
+  echo 'GoogleDrive-things needs configuring'
+  echo 'https://drive.google.com/drive/folders/1esX7uBnDR17lWj6PoAh4o7zTIh0PhKNY'
+  rclone config
+fi
+
+timers=`systemctl list-timers --all`
+if [[ ! $timers == *"gdrive_rclone.timer"* ]] ; then
+  service="
+[Unit]
+Description=Sync with Google Drive
+
+[Service]
+User=$USER
+Type=simple
+ExecStart=rclone sync GoogleDrive-things: $HOME/things
+"
+
+  timer="
+[Unit]
+Description=Sync with Google Drive every 5 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=1min
+
+[Install]
+WantedBy=timers.target
+"
+  echo $service | sudo tee /etc/systemd/system/gdrive_rclone.service
+  echo $timer | sudo tee /etc/systemd/system/gdrive_rclone.timer
+
+  sudo systemctl enable gdrive_rclone.service
+  sudo systemctl start gdrive_rclone.timer
 fi
 
 #######################################################################
@@ -263,18 +300,6 @@ if [[ "$running_pg" == 'disabled' ]]; then
   # sudo -u postgres -i
   # createuser -s kyle
   # createdb kyle
-fi
-
-if [[ ! -f $HOME/.dropbox-dist/dropboxd ]]; then
-  cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-  wget -O - "https://www.dropbox.com/download?dl=packages/dropbox.py" > $HOME/bin/dropbox.py
-  chmod u+x $HOME/bin/dropbox.py
-fi
-
-python2 $HOME/bin/dropbox.py running
-if [[ $? == 0 ]]; then
-  echo "Starting Dropbox"
-  python2 $HOME/bin/dropbox.py start
 fi
 
 #######################################################################
@@ -318,60 +343,3 @@ if [[ -f $HOME/google-cloud-sdk/path.zsh.inc ]]; then
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-#######################################################################
-# Notes
-########################################################################
-# https://wiki.archlinux.org/index.php/Network_Time_Protocol_daemon#Usage
-# https://wiki.archlinux.org/index.php/Installation_guide#Root_password
-# https://wiki.archlinux.org/index.php/Dhcpcd#Static_profile
-# https://wiki.archlinux.org/index.php/Users_and_groups#User_groups
-# https://wiki.archlinux.org/index.php/General_recommendations#System_administration
-# https://wiki.archlinux.org/index.php/Server
-# Add AllowUsers kyle to /etc/ssh/sshd_config
-# Set PasswordAuthentication no
-# Start ssh.dsocket service and edit the unit file with systemctl edit sshd.socket to reflect aforementioned port
-# sudo systemctl enable ntpd.service; sudo systemctl start ntpd.service
-if [[ ! -f /etc/iptables/iptables.rules ]]; then
-  echo "Installing iptables rules"
-  basic_rules="
-*filter
-:INPUT ACCEPT [0:0]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [0:0]
-:TCP - [0:0]
-:UDP - [0:0]
--A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
--A INPUT -i lo -j ACCEPT
--A INPUT -m conntrack --ctstate INVALID -j DROP
--A INPUT -p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT
--A INPUT -p udp -m conntrack --ctstate NEW -j UDP
--A INPUT -p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP
--A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
--A INPUT -p tcp -j REJECT --reject-with tcp-reset
--A INPUT -j REJECT --reject-with icmp-proto-unreachable
--A TCP -p tcp --dport 22 -j ACCEPT
-# Don't limit SSH from known addresses
--A INPUT -p tcp --dport 22 -s xxx.xxx.xxx.xxx -j ACCEPT
-# SSH rate limiting from unknown IP addresses
-# Allow 2 chances in 10 minutes to connect, reject after that
--A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
--A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
-# Allow mosh connections
--A UDP -p udp --dport 60001 -j ACCEPT
-# Basic web server openings
--A TCP -p tcp --dport 80 -j ACCEPT
--A TCP -p tcp --dport 443 -j ACCEPT
--A TCP -p tcp --dport 3000 -j ACCEPT
-# Nextcloud
--A TCP -p tcp --dport 81 -j ACCEPT
--A TCP -p tcp --dport 444 -j ACCEPT
-COMMIT
-"
-  echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
-  sudo iptables-restore < /etc/iptables/iptables.rules
-  sudo systemctl enable iptables.service
-  sudo systemctl start iptables.service
-  # add rules with `sudo iptables LINE_TO_ADD` then
-  # `sudo iptables-save > /etc/iptables/iptabels.rules`
-fi
