@@ -40,6 +40,7 @@ call vundle#begin()
       Plugin 'ElmCast/elm-vim'
       Plugin 'raichoo/purescript-vim'
       Plugin 'hashivim/vim-terraform'
+      Plugin 'rust-lang/rust.vim'
 call vundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,7 +213,7 @@ autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 " elm-format
 let g:elm_format_autosave = 1
 
-" rustfmt
+" rustfmt (override some stuff because the default is broken)
 let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
