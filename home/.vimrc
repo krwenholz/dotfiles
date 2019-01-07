@@ -101,14 +101,14 @@ nmap <silent> t<c-s> :TestSuite<CR>   " t Ctrl+s
 nmap <silent> t<c-l> :TestLast<CR>    " t Ctrl+l
 nmap <silent> t<c-g> :TestVisit<CR>   " t Ctrl+g
 let test#strategy = "neoterm"
-let test#python#runner = 'pytest'
+let test#python#runner = "pytest"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neoterm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <c-t> :T echo "Howdy"<CR>
 let g:neoterm_autoscroll = 1
-let g:neoterm_default_mod = 'belowright'
+let g:neoterm_default_mod = "belowright"
 let g:neoterm_size = 15
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -127,9 +127,15 @@ set showmatch             " Show matching brackets.
 " Syntastic
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ["python"]
+let g:syntastic_scss_checkers = ["sass"]
+if isdirectory("app/assets/stylesheets")
+  let g:syntastic_scss_sass_args = "--load-path app/assets/stylesheets"
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme and right column line
