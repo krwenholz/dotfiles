@@ -210,6 +210,10 @@ if [[ ! -d $HOME/.nvm ]]; then
   curl -o- -L https://yarnpkg.com/install.sh | bash
 fi
 
+if [[ ! -f $HOME/bin/circleci ]]; then
+  curl -fLSs https://circle.ci/cli | DESTDIR=$HOME/bin bash
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -220,7 +224,7 @@ export NVM_DIR="$HOME/.nvm"
 # TODO: gem install github, yard, solargraph, pry, hirb (yard config --gem-install-yri)
 # TODO: docker pull asciinema/asciicast2gif
 # TODO: go get -u github.com/variadico/noti/cmd/noti
-# TODO: go get -u github.com/sourcegraph/go-langserver
+# TODO: rustup and cargo install nightly, cargo-edit
 
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style
@@ -245,6 +249,12 @@ fi
 
 if ! systemctl status docker.service > /dev/null; then
   sudo systemctl start docker.service
+fi
+
+if [[ `groups $USER` != *'docker'* ]]; then
+  sudo groupadd docker
+  sudo gpasswd -a $USER docker
+  newgrp docker
 fi
 
 rclone_remotes=`rclone listremotes`
@@ -292,7 +302,7 @@ function things_down {
 function things_up {
   rclone sync $HOME/things GoogleDrive-things:
 }
-alias tedit="things_down && vim $TODO $DONE_SELF $DONE_WORK && things_up"
+alias tedit="things_down && vim $TODO $DONE_SELF $DONE_WORK && things_up &"
 
 
 function ccat {
