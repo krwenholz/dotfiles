@@ -60,6 +60,7 @@ alias gem-run="$HOME/.gem/ruby/2.5.0/bin/$1"
 alias my-ip="ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'"
 alias todos="rg --hidden --follow --glob '!.(git|hg|svn)' -e 'TODO\(kyle\)'"
 alias penv="source venv/bin/activate"
+alias pjson='python -c "import json; import sys; print(json.dumps(json.load(sys.stdin), indent=2, sort_keys=True))" | pygmentize -f terminal -l json'
 function git-update {
   current_branch=`git rev-parse --abbrev-ref HEAD`
   echo "Updating branch $current_branch"
