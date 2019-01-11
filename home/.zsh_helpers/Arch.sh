@@ -56,6 +56,9 @@ to_install=""
 if [[ ! $installed == *"wget"* ]]; then
   to_install=$to_install"wget "
 fi
+if [[ ! $installed == *"oath-toolkit"* ]]; then
+  to_install=$to_install"oath-toolkit "
+fi
 if [[ ! $installed == *"rustup"* ]]; then
   to_install=$to_install"rustup "
 fi
@@ -195,6 +198,9 @@ if [[ ! $installed == *"fwupd"* ]]; then
   # https://github.com/hughsie/fwupd
   to_install=$to_install"fwupd "
 fi
+if [[ ! $installed == *"moreutils"* ]]; then
+  to_install=$to_install"moreutils "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -303,6 +309,18 @@ function things_up {
   rclone sync $HOME/things GoogleDrive-things:
 }
 alias tedit="things_down && vim $TODO $DONE_SELF $DONE_WORK && things_up &"
+
+function tokens {
+  echo Pulling
+  things_down
+  echo Decrypting
+  gpg --decrypt --output /tmp/fun_tokens $HOME/things/fun_tokens
+  vim /tmp/fun_tokens
+  echo Encrypting
+  gpg --symmetric --output $HOME/things/fun_tokens /tmp/fun_tokens
+  echo Uploading
+  things_up &
+}
 
 
 function ccat {
