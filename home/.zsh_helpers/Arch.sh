@@ -56,6 +56,9 @@ to_install=""
 if [[ ! $installed == *"wget"* ]]; then
   to_install=$to_install"wget "
 fi
+if [[ ! $installed == *"peek"* ]]; then
+  to_install=$to_install"peek "
+fi
 if [[ ! $installed == *"oath-toolkit"* ]]; then
   to_install=$to_install"oath-toolkit "
 fi
