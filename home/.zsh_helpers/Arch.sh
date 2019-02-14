@@ -38,6 +38,11 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 -A TCP -p tcp --dport 80 -j ACCEPT
 -A TCP -p tcp --dport 443 -j ACCEPT
 -A TCP -p tcp --dport 3000 -j ACCEPT
+# TUN/TAP
+-A INPUT -i tun+ -j ACCEPT
+-A FORWARD -i tun+ -j ACCEPT
+-A INPUT -i tap+ -j ACCEPT
+-A FORWARD -i tap+ -j ACCEPT
 COMMIT
 "
   echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
@@ -55,6 +60,9 @@ installed=`pacman --query`
 to_install=""
 if [[ ! $installed == *"wget"* ]]; then
   to_install=$to_install"wget "
+fi
+if [[ ! $installed == *"tldr"* ]]; then
+  to_install=$to_install"tldr "
 fi
 if [[ ! $installed == *"peek"* ]]; then
   to_install=$to_install"peek "

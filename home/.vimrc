@@ -122,6 +122,8 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 set number
 syntax enable
 set showmatch             " Show matching brackets.
+set foldmethod=indent
+set foldlevelstart=4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
@@ -142,7 +144,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let base16colorspace = 256
 colorscheme base16-default-dark
-highlight colorcolumn ctermbg=7
+highlight colorcolumn ctermbg=8
 highlight colorcolumn guibg=DarkBlue
 set colorcolumn=88
 
