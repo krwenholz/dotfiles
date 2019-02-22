@@ -185,6 +185,9 @@ fi
 if [[ ! $installed == *"asciinema"* ]]; then
   to_install=$to_install"asciinema "
 fi
+if [[ ! $installed == *"bind-tools"* ]]; then
+  to_install=$to_install"bind-tools "
+fi
 if [[ ! $installed == *"docker"* ]]; then
   to_install=$to_install"docker "
   to_install=$to_install"docker-ce "
