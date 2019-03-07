@@ -123,7 +123,7 @@ set number
 syntax enable
 set showmatch             " Show matching brackets.
 set foldmethod=indent
-set foldlevelstart=4
+set foldlevelstart=6
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic

@@ -136,3 +136,8 @@ node_modules
 # solargraph #
 ##############
 .solargraph*
+
+# ruby #
+########
+bundle/
+.bundle
