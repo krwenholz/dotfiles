@@ -223,6 +223,34 @@ if [ ! -z "$to_install" ]; then
   echo "sudo pacman -Suy $to_install"
 fi
 
+
+#######################################################################
+# AUR
+########################################################################
+
+#git clone https://aur.archlinux.org/yay.git
+# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml snapd
+
+#######################################################################
+# PIP
+########################################################################
+# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments --user
+
+#######################################################################
+# Ruby
+########################################################################
+# TODO: rbenv install 2.5.1; rbenv global 2.5.1
+# TODO: gem install github, yard, solargraph, pry, hirb (yard config --gem-install-yri)
+
+#######################################################################
+# Rust
+########################################################################
+# TODO: rustup and cargo install nightly, cargo-edit
+
+#######################################################################
+# Other installs and inits
+########################################################################
+
 if [[ ! -d $HOME/.nvm ]]; then
   echo "Installing nvm"
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -230,21 +258,13 @@ if [[ ! -d $HOME/.nvm ]]; then
   curl -o- -L https://yarnpkg.com/install.sh | bash
 fi
 
-if [[ ! -f $HOME/bin/circleci ]]; then
-  curl -fLSs https://circle.ci/cli | DESTDIR=$HOME/bin bash
-fi
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml snapd
-# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments --user
-# TODO: rbenv install 2.5.1; rbenv global 2.5.1
-# TODO: gem install github, yard, solargraph, pry, hirb (yard config --gem-install-yri)
-# TODO: docker pull asciinema/asciicast2gif
-# TODO: go get -u github.com/variadico/noti/cmd/noti
-# TODO: rustup and cargo install nightly, cargo-edit
+if [[ ! -f $HOME/bin/circleci ]]; then
+  curl -fLSs https://circle.ci/cli | DESTDIR=$HOME/bin bash
+fi
 
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style

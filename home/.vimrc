@@ -89,8 +89,8 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-nmap <silent> <a-g> :Find <CR>
-nmap <silent> <c-f> :Files<CR>
+nmap <silent> <a-f> :Find <CR>
+nmap <silent> <C-f> :Files<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
@@ -175,6 +175,11 @@ let g:Tex_MultipleCompileFormats='dvi,pdf'
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" scratch
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:scratch_persistence_file=$HOME.'/Downloads/scratch'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion options
