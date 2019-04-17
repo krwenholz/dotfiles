@@ -201,7 +201,7 @@ if [[ -d /usr/share/fzf ]]; then
 fi
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.(git|hg|svg)/*"'
-export FZF_DEFAULT_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null ||
+export FZF_DEFAULT_OPTS="--preview-window 'right:50%:wrap' --preview '(highlight -O ansi -l {} 2> /dev/null ||
 cat {} || tree -C {}) 2> /dev/null | head -100'"
 bindkey '^F' fzf-file-widget
 

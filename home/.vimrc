@@ -41,6 +41,7 @@ call vundle#begin()
       Plugin 'raichoo/purescript-vim'
       Plugin 'hashivim/vim-terraform'
       Plugin 'rust-lang/rust.vim'
+      Plugin 'ambv/black'
 call vundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,7 +91,7 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 nmap <silent> <a-f> :Find <CR>
-nmap <silent> <C-f> :Files<CR>
+nmap <silent> <c-f> :Files<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
@@ -115,6 +116,12 @@ let g:neoterm_size = 15
 " Tagbar options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <F9> :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" black
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:black_linelength = 120
+autocmd BufWritePre *.py execute ':Black'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nice line numbers and syntax stuff
@@ -283,8 +290,8 @@ filetype indent on
 let g:tex_flavor='latex' " Get LaTeX filetype correctly
 set omnifunc=syntaxcomplete#Complete
 
-autocmd FileType python set shiftwidth=2
-autocmd FileType python set softtabstop=2
+autocmd FileType python set shiftwidth=4
+autocmd FileType python set softtabstop=4
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check for company specific configurations
