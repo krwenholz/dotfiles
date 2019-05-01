@@ -55,6 +55,7 @@ alias vim=nvim
 alias pingtest="ping -c 3 www.google.com"
 alias gist="git status"
 alias gamit="git commit --amend --no-edit"
+alias gummy="git add .; git commit -m \"WIP `date --iso-8601=minutes`\""
 alias git-personal='git config user.email "kyle@krwenholz.com" && git config user.name "Kyle R Wenholz"'
 alias gem-run="$HOME/.gem/ruby/2.5.0/bin/$1"
 alias my-ip="ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'"
@@ -166,6 +167,12 @@ fi
 # Colors
 ########################################################################
 BASE16_SHELL="$HOME/.config/base16-shell/"
+
+function set_term_color {
+  eval "$1"
+  echo $1 >| $HOME/.term_color
+}
+
 if [[ ! -f $HOME/.config/base16-shell/profile_helper.sh ]]; then
   git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 fi
@@ -173,7 +180,16 @@ fi
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
-base16_default-dark
+
+if [[ -f $HOME/.term_color ]]; then
+  echo "Using existing terminal color `cat $HOME/.term_color`"
+  eval "`cat $HOME/.term_color`"
+else
+  set_term_color "base16_default-dark"
+fi
+
+alias term_light="set_term_color 'base16_solarized-light'"
+alias term_dark="set_term_color 'base16_default-dark'"
 
 ########################################################################
 # PATH
