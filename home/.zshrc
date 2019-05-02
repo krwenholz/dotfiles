@@ -27,9 +27,17 @@ fi
 
 echo "Using platform $platform on host $host"
 
+#######################################################################
+# Local and corporate
+########################################################################
 if [[ -d $HOME/.corporate_configs ]]; then
     echo "Found a corporate configuration"
     source $HOME/.corporate_configs/zsh_config.sh
+fi
+
+if [[ -f $HOME/.local_config.sh ]]; then
+    echo "Found a local configuration"
+    source $HOME/.local_config.sh
 fi
 
 ########################################################################
