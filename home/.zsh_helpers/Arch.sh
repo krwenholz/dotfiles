@@ -269,6 +269,7 @@ fi
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel -i -p && xsel -o -p | xsel -i -b"
+set-option -g history-limit 10000
 set -sg escape-time 10
 _EOF_
 
