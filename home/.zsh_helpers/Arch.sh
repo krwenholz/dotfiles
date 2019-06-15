@@ -228,6 +228,16 @@ fi
 # AUR
 ########################################################################
 
+# https://github.com/Jguer/yay
+yayLocation=`which yay`
+if [[ $yayLocation == *'not found' ]]; then
+  echo "Installing yay"
+  git clone https://aur.archlinux.org/yay.git $HOME/Downloads/yay
+  cd yay
+  makepkg -si
+  cd -
+fi
+
 #git clone https://aur.archlinux.org/yay.git
 # TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml snapd
 
