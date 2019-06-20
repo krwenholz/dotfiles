@@ -279,8 +279,11 @@ fi
 read -d '' tmux_conf_final <<-"_EOF_"
 # Vim style
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel -i -p && xsel -o -p | xsel -i -b"
-set-option -g history-limit 10000
+set-option -g history-limit 100000
 set -sg escape-time 10
+bind c   new-window   -c    "#{pane_current_path}"
+bind '"' split-window -c    "#{pane_current_path}"
+bind %   split-window -h -c "#{pane_current_path}"
 _EOF_
 
 tmux_conf=`cat ~/.tmux.conf`
