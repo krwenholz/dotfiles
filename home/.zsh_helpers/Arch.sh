@@ -193,8 +193,8 @@ if [[ ! $installed == *"docker"* ]]; then
   to_install=$to_install"docker-ce "
   to_install=$to_install"docker-compose "
 fi
-if [[ ! $installed == *"ttf-freefont"* ]]; then
-  to_install=$to_install"ttf-freefont ttf-arphic-uming ttf-indic-otf "
+if [[ ! $installed == *"ttf-"* ]]; then
+  to_install=$to_install"ttf-arphic-uming ttf-indic-otf ttf-dejavu"
 fi
 if [[ ! $installed == *"ipython"* ]]; then
   to_install=$to_install"ipython "
@@ -215,6 +215,9 @@ fi
 if [[ ! $installed == *"moreutils"* ]]; then
   to_install=$to_install"moreutils "
 fi
+if [[ ! $installed == *"openresolv"* ]]; then
+  to_install=$to_install"openresolv "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -232,8 +235,9 @@ fi
 yayLocation=`which yay`
 if [[ $yayLocation == *'not found' ]]; then
   echo "Installing yay"
+  rm -rf $HOME/Downloads/yay
   git clone https://aur.archlinux.org/yay.git $HOME/Downloads/yay
-  cd yay
+  cd $HOME/Downloads/yay
   makepkg -si
   cd -
 fi
@@ -244,7 +248,7 @@ fi
 #######################################################################
 # PIP
 ########################################################################
-# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments --user
+# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments awscli --user
 
 #######################################################################
 # Ruby
@@ -325,7 +329,7 @@ eval "$(rbenv init -)"
 
 running_pg=`systemctl is-enabled postgresql.service`
 if [[ "$running_pg" == 'disabled' ]]; then
-  echo "WARNING: You need to initialize postgres"
+  echo "TODO: You need to initialize postgres"
   # sudo -u postgres -i
   # initdb -D "/var/lib/postgres/data/"
   # exit
@@ -337,6 +341,16 @@ if [[ "$running_pg" == 'disabled' ]]; then
 fi
 
 #######################################################################
+# OpenVPN
+########################################################################
+if [[ ! -f /etc/openvpn/client.up ]]; then
+  echo "TODO: You need to install the OpenVPN up and down DNS scripts"
+  # cat /usr/share/openvpn/contrib/pull-resolv-conf/client.up
+  # cat /usr/share/openvpn/contrib/pull-resolv-conf/client.down
+  # Then edit client configs with the commands
+fi
+
+#######################################################################
 # Aliases
 ########################################################################
 alias pbcopy='xsel --clipboard --input'
@@ -345,6 +359,10 @@ alias github='~/.gem/ruby/2.5.0/bin/github'
 alias asciicast2gif="sudo docker run --rm -v $PWD:/data asciinema/asciicast2gif $1"
 alias image-viewer='eog'
 alias grep="grep --color"
+alias bert="bundle exec rails test"
+alias berl="bundle exec rails lint"
+alias berp="bundle exec rails console"
+alias bers="bundle exec rails server"
 
 TODO=$HOME/things/TODO.md
 DONE_SELF=$HOME/things/DONE_SELF.md
