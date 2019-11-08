@@ -118,11 +118,8 @@ fi
 if [[ ! $installed == *"ack"* ]]; then
   to_install=$to_install"ack "
 fi
-if [[ ! $installed == *"python-neovim"* ]]; then
-  to_install=$to_install"python-neovim "
-fi
-if [[ ! $installed == *"python2-neovim"* ]]; then
-  to_install=$to_install"python2-neovim "
+if [[ ! $installed == *"python-pynvim"* ]]; then
+  to_install=$to_install"python-pynvim "
 fi
 if [[ ! $installed == *"tmux"* ]]; then
   to_install=$to_install"tmux "
@@ -218,6 +215,9 @@ fi
 if [[ ! $installed == *"openresolv"* ]]; then
   to_install=$to_install"openresolv "
 fi
+if [[ ! $installed == *"keychain"* ]]; then
+  to_install=$to_install"keychain "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -243,23 +243,23 @@ if [[ $yayLocation == *'not found' ]]; then
 fi
 
 #git clone https://aur.archlinux.org/yay.git
-# TODO: AUR install slack-desktop intellij-idea-ultimate-edition rubymine rbenv ruby-build gron-bin plantuml snapd
+# TODO: AUR install rbenv ruby-build gron-bin plantuml snapd
 
 #######################################################################
 # PIP
 ########################################################################
-# TODO: pip install saws fpm awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments awscli --user
+# TODO: pip install saws awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments awscli --user
 
 #######################################################################
 # Ruby
 ########################################################################
 # TODO: rbenv install 2.5.1; rbenv global 2.5.1
-# TODO: gem install github, yard, solargraph, pry, hirb (yard config --gem-install-yri)
+# TODO: gem install github yard solargraph pry hirb (yard config --gem-install-yri)
 
 #######################################################################
 # Rust
 ########################################################################
-# TODO: rustup and cargo install nightly, cargo-edit
+# TODO: rustup && cargo install nightly cargo-edit
 
 #######################################################################
 # Other installs and inits
@@ -318,7 +318,8 @@ fi
 rclone_remotes=`rclone listremotes`
 if [[ ! $rclone_remotes == *"GoogleDrive-things"* ]]; then
   echo 'GoogleDrive-things needs configuring'
-  echo 'https://drive.google.com/drive/folders/1esX7uBnDR17lWj6PoAh4o7zTIh0PhKNY'
+  echo 'Blanks for basically everything'
+  echo 'Folder: 1esX7uBnDR17lWj6PoAh4o7zTIh0PhKNY'
   rclone config
 fi
 
@@ -343,12 +344,12 @@ fi
 #######################################################################
 # OpenVPN
 ########################################################################
-if [[ ! -f /etc/openvpn/client.up ]]; then
-  echo "TODO: You need to install the OpenVPN up and down DNS scripts"
-  # cat /usr/share/openvpn/contrib/pull-resolv-conf/client.up
-  # cat /usr/share/openvpn/contrib/pull-resolv-conf/client.down
-  # Then edit client configs with the commands
-fi
+# if [[ ! -f /etc/openvpn/client.up ]]; then
+#   echo "TODO: You need to install the OpenVPN up and down DNS scripts"
+#   # cat /usr/share/openvpn/contrib/pull-resolv-conf/client.up > /etc/openvpn/client.up
+#   # cat /usr/share/openvpn/contrib/pull-resolv-conf/client.down > /etc/openvpn/client.down
+#   # Then edit client configs with the commands
+# fi
 
 #######################################################################
 # Aliases
@@ -362,7 +363,7 @@ alias grep="grep --color"
 alias bert="bundle exec rails test"
 alias berl="bundle exec rails lint"
 alias berp="bundle exec rails console"
-alias bers="bundle exec rails server"
+alias bers="bundle exec rails server -b 0.0.0.0"
 
 TODO=$HOME/things/TODO.md
 DONE_SELF=$HOME/things/DONE_SELF.md
@@ -415,3 +416,5 @@ if [[ -f $HOME/google-cloud-sdk/path.zsh.inc ]]; then
 fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+eval $(keychain --eval --quiet ~/.ssh/id_rsa)
