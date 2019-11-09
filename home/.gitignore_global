@@ -57,6 +57,7 @@ Thumbs.db
 
 # Python #
 ##########
+venv/
 # Byte-compiled / optimized / DLL files
 venv/
 .venv/

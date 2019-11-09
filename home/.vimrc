@@ -90,8 +90,8 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-nmap <silent> <c-f> :Files <CR>
 nmap <silent> \f :Find <CR>
+nmap <silent> <c-f> :Files<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
