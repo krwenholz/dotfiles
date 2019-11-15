@@ -148,9 +148,6 @@ fi
 if [[ ! $installed == *"openvpn"* ]]; then
   to_install=$to_install"openvpn "
 fi
-if [[ ! $installed == *"tig"* ]]; then
-  to_install=$to_install"tig "
-fi
 if [[ ! $installed == *"openssh"* ]]; then
   to_install=$to_install"openssh "
 fi
