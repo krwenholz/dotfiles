@@ -35,13 +35,12 @@ call vundle#begin()
     " Syntax
       Plugin 'vim-syntastic/syntastic'
       Plugin 'natew/ftl-vim-syntax'
-      Plugin 'nvie/vim-flake8'
       Plugin 'bronson/vim-trailing-whitespace'
-      Plugin 'ElmCast/elm-vim'
-      Plugin 'raichoo/purescript-vim'
       Plugin 'hashivim/vim-terraform'
-      Plugin 'rust-lang/rust.vim'
       Plugin 'ambv/black'
+      Plugin 'evanleck/vim-svelte'
+      Plugin 'sheerun/vim-polyglot'
+      Plugin 'sbdchd/neoformat'
 call vundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -118,10 +117,22 @@ let g:neoterm_size = 15
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" black
+" neoformat
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:black_linelength = 120
-autocmd BufWritePre *.py execute ':Black'
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+let g:neoformat_python_black = {
+      \ 'exe': 'black',
+      \ 'args': ['--line-length 120']
+      \}
+
+let g:neoformat_enabled_python = ['black']
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_css = ['prettier']
+let g:neoformat_enabled_html = ['prettier']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Svelte
