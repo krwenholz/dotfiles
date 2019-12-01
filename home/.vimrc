@@ -136,11 +136,6 @@ let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_ruby = []
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Svelte
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.svelte setf html
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nice line numbers and syntax stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set number
