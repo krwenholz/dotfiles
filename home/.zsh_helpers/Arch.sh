@@ -199,9 +199,6 @@ fi
 if [[ ! $installed == *"pandoc"* ]]; then
   to_install=$to_install"pandoc "
 fi
-if [[ ! $installed == *"postgresql"* ]]; then
-  to_install=$to_install"postgresql "
-fi
 if [[ ! $installed == *"fwupd"* ]]; then
   # https://github.com/hughsie/fwupd
   to_install=$to_install"fwupd "
@@ -325,19 +322,6 @@ fi
 ########################################################################
 eval "$(rbenv init -)"
 
-running_pg=`systemctl is-enabled postgresql.service`
-if [[ "$running_pg" == 'disabled' ]]; then
-  echo "TODO: You need to initialize postgres"
-  # sudo -u postgres -i
-  # initdb -D "/var/lib/postgres/data/"
-  # exit
-  # sudo systemctl enable postgresql.service
-  # sudo systemctl start postgresql.service
-  # sudo -u postgres -i
-  # createuser -s kyle
-  # createdb kyle
-fi
-
 #######################################################################
 # OpenVPN
 ########################################################################
@@ -386,6 +370,21 @@ function tokens {
   things_up &
 }
 
+
+function postgres {
+  export DATABASE_URL="postgres://postgres@localhost:5432/postgres"
+  export CONNECTION_STRING=$DATABASE_URL
+  docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=$USER postgres:$1
+
+  # update local schema
+  # psql -h localhost -U postgres -d postgres -f $HOME/PATH_TO_OUR_REPO/postgres/database.sql
+  # npm run db:seed
+  # psql -h localhost -u postgres -d postgres
+}
+
+function postgres_psql {
+  docker exec -it the-postgres-$1 psql -U $USER
+}
 
 function ccat {
   if [ ! -t 0 ];then

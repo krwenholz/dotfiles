@@ -133,6 +133,7 @@ let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_css = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
+let g:neoformat_enabled_ruby = []
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Svelte
