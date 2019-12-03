@@ -130,11 +130,18 @@ let g:neoformat_python_black = {
       \ 'args': ['--line-length 120', '-q', '-']
       \}
 
+let g:neoformat_ruby_rubocop = {
+      \ 'exe': 'bundle exec rubocop',
+      \ 'args': ['--auto-correct', 'stdin', '"%:p"', '2>/dev/null', '|', 'sed "1,/^====================$/d"'],
+      \ 'stdin': 1,
+      \ 'stderr': 1
+      \}
+
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_css = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
-let g:neoformat_enabled_ruby = []
+let g:neoformat_enabled_ruby = ['rubocop']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nice line numbers and syntax stuff
