@@ -126,7 +126,8 @@ augroup END
 
 let g:neoformat_python_black = {
       \ 'exe': 'black',
-      \ 'args': ['--line-length 120']
+      \ 'stdin': 1,
+      \ 'args': ['--line-length 120', '-q', '-']
       \}
 
 let g:neoformat_enabled_python = ['black']
