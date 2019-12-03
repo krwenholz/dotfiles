@@ -30,14 +30,15 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 -A INPUT -p tcp --dport 22 -s xxx.xxx.xxx.xxx -j ACCEPT
 # SSH rate limiting from unknown IP addresses
 # Allow 2 chances in 10 minutes to connect, reject after that
--A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
--A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
+#-A INPUT -p tcp --dport 22 -m state --state NEW -m recent --set
+#-A INPUT -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 600 --hitcount 3 -j DROP
 # Allow mosh connections
 -A UDP -p udp --dport 60001 -j ACCEPT
 # Basic web server openings
 -A TCP -p tcp --dport 80 -j ACCEPT
 -A TCP -p tcp --dport 443 -j ACCEPT
 -A TCP -p tcp --dport 3000 -j ACCEPT
+-A TCP -p tcp --dport 5432 -j ACCEPT
 # TUN/TAP
 -A INPUT -i tun+ -j ACCEPT
 -A FORWARD -i tun+ -j ACCEPT
@@ -374,7 +375,7 @@ function tokens {
 function postgres {
   export DATABASE_URL="postgres://postgres@localhost:5432/postgres"
   export CONNECTION_STRING=$DATABASE_URL
-  docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=$USER postgres:$1
+  docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=postgres postgres:$1
 
   # update local schema
   # psql -h localhost -U postgres -d postgres -f $HOME/PATH_TO_OUR_REPO/postgres/database.sql
@@ -383,7 +384,7 @@ function postgres {
 }
 
 function postgres_psql {
-  docker exec -it the-postgres-$1 psql -U $USER
+  docker exec -it the-postgres-$1 psql -U postgres
 }
 
 function ccat {
