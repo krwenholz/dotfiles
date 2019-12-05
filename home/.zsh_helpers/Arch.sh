@@ -213,6 +213,9 @@ fi
 if [[ ! $installed == *"keychain"* ]]; then
   to_install=$to_install"keychain "
 fi
+if [[ ! $installed == *"lsd"* ]]; then
+  to_install=$to_install"lsd "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -346,6 +349,7 @@ alias bert="bundle exec rails test"
 alias berl="bundle exec rails lint"
 alias berp="bundle exec rails console"
 alias bers="bundle exec rails server -b 0.0.0.0"
+alias ls="lsd"
 
 TODO=$HOME/things/TODO.md
 DONE_SELF=$HOME/things/DONE_SELF.md
@@ -373,9 +377,9 @@ function tokens {
 
 
 function postgres {
-  export DATABASE_URL="postgres://postgres@localhost:5432/postgres"
+  export DATABASE_URL="postgres://$USER@localhost:5432/$USER"
   export CONNECTION_STRING=$DATABASE_URL
-  docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=postgres postgres:$1
+  docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=$USER postgres:$1
 
   # update local schema
   # psql -h localhost -U postgres -d postgres -f $HOME/PATH_TO_OUR_REPO/postgres/database.sql
@@ -384,7 +388,7 @@ function postgres {
 }
 
 function postgres_psql {
-  docker exec -it the-postgres-$1 psql -U postgres
+  docker exec -it the-postgres-$1 psql -U $USER
 }
 
 function ccat {
