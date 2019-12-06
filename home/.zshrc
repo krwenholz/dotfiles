@@ -160,14 +160,11 @@ fi
 if [[ $platform != *'mac'* ]]; then
   fonts=`fc-list`
   if [[ $fonts != *'Inconsolata Nerd Font'* ]]; then
-      mkdir -p $HOME/Downloads/fonts
-      cd $HOME/Downloads/fonts
-      curl -flo "Inconsolata Nerd Font Complete.otf" \
-            https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf
-      curl https://github.com/ryanoasis/nerd-fonts/raw/master/install.sh
-      $HOME/Downloads/fonts/
-      fc-cache -fv
-      cd -
+      echo "Installing Inconsolata"
+      mkdir $HOME/.local/share/fonts
+      curl https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf \
+        -o $HOME/.local/share/fonts/"Inconsolata Nerd Font Complete.otf"
+      fc-cache -f
   fi
 fi
 
