@@ -379,7 +379,10 @@ function tokens {
 function postgres {
   export DATABASE_URL="postgres://$USER@localhost:5432/$USER"
   export CONNECTION_STRING=$DATABASE_URL
-  docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=$USER postgres:$1
+  docker_ps=`docker ps`
+  if [[ ! $docker_ps == *"the-postgres-$1"* ]]; then
+    docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=$USER postgres:$1
+  fi
 
   # update local schema
   # psql -h localhost -U postgres -d postgres -f $HOME/PATH_TO_OUR_REPO/postgres/database.sql
