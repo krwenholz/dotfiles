@@ -216,6 +216,9 @@ fi
 if [[ ! $installed == *"lsd"* ]]; then
   to_install=$to_install"lsd "
 fi
+if [[ ! $installed == *"pyenv"* ]]; then
+  to_install=$to_install"pyenv "
+fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
@@ -244,9 +247,13 @@ fi
 # TODO: AUR install rbenv ruby-build gron-bin plantuml snapd
 
 #######################################################################
-# PIP
+# Python
 ########################################################################
 # TODO: pip install saws awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments awscli --user
+export PYENV_ROOT="$HOME/.pyenv"
+if [[ ! -d $PYENV_ROOT ]]; then
+  mkdir $PYENV_ROOT
+fi
 
 #######################################################################
 # Ruby
@@ -325,6 +332,7 @@ fi
 # Activations
 ########################################################################
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 #######################################################################
 # OpenVPN
@@ -377,21 +385,21 @@ function tokens {
 
 
 function postgres {
+  export POSTGRES_VERSION=$1
   export DATABASE_URL="postgres://$USER@localhost:5432/$USER"
   export CONNECTION_STRING=$DATABASE_URL
   docker_ps=`docker ps`
-  if [[ ! $docker_ps == *"the-postgres-$1"* ]]; then
-    docker run -d -p 5432:5432 --name the-postgres-$1 -e POSTGRES_USER=$USER postgres:$1
+  if [[ ! $docker_ps == *"the-postgres-$POSTGRES_VERSION"* ]]; then
+    docker run -d -p 5432:5432 --name the-postgres-$POSTGRES_VERSION -e POSTGRES_USER=$USER postgres:$POSTGRES_VERSION
   fi
-
-  # update local schema
-  # psql -h localhost -U postgres -d postgres -f $HOME/PATH_TO_OUR_REPO/postgres/database.sql
-  # npm run db:seed
-  # psql -h localhost -u postgres -d postgres
 }
 
-function postgres_psql {
-  docker exec -it the-postgres-$1 psql -U $USER
+function psql {
+  docker exec -it the-postgres-$POSTGRES_VERSION psql -U $USER
+}
+
+function pg_dump {
+  docker exec the-postgres-$POSTGRES_VERSION pg_dump -U $USER "$@"
 }
 
 function ccat {
