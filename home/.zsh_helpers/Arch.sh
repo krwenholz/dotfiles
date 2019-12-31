@@ -62,9 +62,6 @@ to_install=""
 if [[ ! $installed == *"wget"* ]]; then
   to_install=$to_install"wget "
 fi
-if [[ ! $installed == *"tldr"* ]]; then
-  to_install=$to_install"tldr "
-fi
 if [[ ! $installed == *"peek"* ]]; then
   to_install=$to_install"peek "
 fi
@@ -119,9 +116,6 @@ fi
 if [[ ! $installed == *"ack"* ]]; then
   to_install=$to_install"ack "
 fi
-if [[ ! $installed == *"python-pynvim"* ]]; then
-  to_install=$to_install"python-pynvim "
-fi
 if [[ ! $installed == *"tmux"* ]]; then
   to_install=$to_install"tmux "
 fi
@@ -155,15 +149,6 @@ fi
 if [[ ! $installed == *"gvim"* ]]; then
   to_install=$to_install"gvim "
 fi
-if [[ ! $installed == *"python-pip"* ]]; then
-  to_install=$to_install"python-pip "
-fi
-if [[ ! $installed == *"pygmentize"* ]]; then
-  to_install=$to_install"pygmentize "
-fi
-if [[ ! $installed == *"calibre"* ]]; then
-  to_install=$to_install"calibre "
-fi
 if [[ ! $installed == *"jq"* ]]; then
   to_install=$to_install"jq "
 fi
@@ -177,9 +162,6 @@ fi
 if [[ ! $installed == *"hub"* ]]; then
   to_install=$to_install"hub "
 fi
-if [[ ! $installed == *"asciinema"* ]]; then
-  to_install=$to_install"asciinema "
-fi
 if [[ ! $installed == *"bind-tools"* ]]; then
   to_install=$to_install"bind-tools "
 fi
@@ -190,9 +172,6 @@ if [[ ! $installed == *"docker"* ]]; then
 fi
 if [[ ! $installed == *"ttf-"* ]]; then
   to_install=$to_install"ttf-arphic-uming ttf-indic-otf ttf-dejavu"
-fi
-if [[ ! $installed == *"ipython"* ]]; then
-  to_install=$to_install"ipython "
 fi
 if [[ ! $installed == *"terraform"* ]]; then
   to_install=$to_install"terraform "
@@ -249,10 +228,12 @@ fi
 #######################################################################
 # Python
 ########################################################################
-# TODO: pip install saws awslogs 'python-language-server[all]' pre-commit yapf isort pycodestyle pygments awscli --user
-export PYENV_ROOT="$HOME/.pyenv"
-if [[ ! -d $PYENV_ROOT ]]; then
+# TODO: pip install awslogs 'python-language-server[all]' pre-commit black pygments awscli ipython pynvim --user
+PYENV_ROOT="$HOME/.pyenv"
+PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
   mkdir $PYENV_ROOT
+  eval "$(pyenv init -)"
 fi
 
 #######################################################################
@@ -267,15 +248,19 @@ fi
 # TODO: rustup && cargo install nightly cargo-edit
 
 #######################################################################
-# Other installs and inits
+# Node
 ########################################################################
-
+# TODO(kyle): install -g tldr
 if [[ ! -d $HOME/.nvm ]]; then
   echo "Installing nvm"
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
   curl -o- -L https://yarnpkg.com/install.sh | bash
 fi
+
+#######################################################################
+# Other installs and inits
+########################################################################
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -350,7 +335,6 @@ eval "$(pyenv init -)"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 alias github='~/.gem/ruby/2.5.0/bin/github'
-alias asciicast2gif="sudo docker run --rm -v $PWD:/data asciinema/asciicast2gif $1"
 alias image-viewer='eog'
 alias grep="grep --color"
 alias bert="bundle exec rails test"
@@ -429,4 +413,4 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-eval $(keychain --eval --quiet ~/.ssh/id_rsa)
+eval $(keychain --eval --quiet --quick ~/.ssh/id_rsa)
