@@ -127,7 +127,7 @@ augroup END
 let g:neoformat_python_black = {
       \ 'exe': 'black',
       \ 'stdin': 1,
-      \ 'args': ['--line-length 120', '-q']
+      \ 'args': ['--line-length 120', '-q', '-']
       \}
 
 let g:neoformat_ruby_rubocop = {
