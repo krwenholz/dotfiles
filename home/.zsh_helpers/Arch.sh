@@ -373,8 +373,13 @@ function postgres {
   export DATABASE_URL="postgres://$USER@localhost:5432/$USER"
   export CONNECTION_STRING=$DATABASE_URL
   docker_ps=`docker ps`
+  docker_ls=`docker container ls --all`
   if [[ ! $docker_ps == *"the-postgres-$POSTGRES_VERSION"* ]]; then
-    docker run -d -p 5432:5432 --name the-postgres-$POSTGRES_VERSION -e POSTGRES_USER=$USER postgres:$POSTGRES_VERSION
+    if [[ ! $docker_ls == *"the-postgres-$POSTGRES_VERSION"* ]]; then
+      docker run -d -p 5432:5432 --name the-postgres-$POSTGRES_VERSION -e POSTGRES_USER=$USER postgres:$POSTGRES_VERSION
+    else
+      docker start the-postgres-$POSTGRES_VERSION
+    fi
   fi
 }
 
