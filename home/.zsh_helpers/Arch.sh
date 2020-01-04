@@ -195,9 +195,6 @@ fi
 if [[ ! $installed == *"lsd"* ]]; then
   to_install=$to_install"lsd "
 fi
-if [[ ! $installed == *"pyenv"* ]]; then
-  to_install=$to_install"pyenv "
-fi
 
 if [ ! -z "$to_install" ]; then
   echo "Decided to install " $to_install
