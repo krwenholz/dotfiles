@@ -284,3 +284,13 @@ echo "Hey there! ツ"
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+########################################################################
+# Help
+########################################################################
+
+# File system inspection
+# df -ah # all file system usage
+# df -hT /home
+# du -h /home/kyle
+# du -hs /home/kyle # disk usage of directory

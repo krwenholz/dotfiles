@@ -5,8 +5,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
-
-" let Vundle manage Vundle and other stuff
+    " let Vundle manage Vundle and other stuff
       Plugin 'gmarik/Vundle.vim'
       Plugin 'https://github.com/Lokaltog/vim-easymotion'
       Plugin 'vim-airline/vim-airline'
@@ -41,6 +40,7 @@ call vundle#begin()
       Plugin 'ambv/black'
       Plugin 'evanleck/vim-svelte'
       Plugin 'sheerun/vim-polyglot'
+      Plugin 'tpope/vim-markdown'
       Plugin 'sbdchd/neoformat'
 call vundle#end()
 
@@ -60,19 +60,19 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:fzf_layout = { 'down': '~40%' }
 
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 " --column: Show column number
 " --line-number: Show line number
@@ -135,8 +135,8 @@ let g:neoformat_python_black = {
       \}
 
 let g:neoformat_ruby_rubocop = {
-      \ 'exe': 'bundle exec rubocop',
-      \ 'args': ['--auto-correct', 'stdin', '"%:p"', '2>/dev/null', '|', 'sed "1,/^====================$/d"'],
+      \ 'exe': 'bundle',
+      \ 'args': ['exec', 'rubocop', '--auto-correct', 'stdin', '"%:p"', '2>/dev/null', '|', 'sed "1,/^====================$/d"'],
       \ 'stdin': 1,
       \ 'stderr': 1
       \}
@@ -145,7 +145,9 @@ let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_css = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
-let g:neoformat_enabled_ruby = ['rubocop']
+let g:neoformat_enabled_ruby = []
+let g:neoformat_enabled_eruby = []
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nice line numbers and syntax stuff
@@ -220,21 +222,21 @@ let g:acp_enableAtStartup = 0
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
-        \ 'smart_case': v:true,
-        \ 'max_list': 100,
-        \ 'sources': { 'default' : '', 'vimshell' : $HOME.'/.vimshell_hist', 'scheme' : $HOME.'/.gosh_completions' },
-        \ 'min_pattern_length': 2,
-        \ 'autocomplete_delay': 100,
-        \ })
+      \ 'smart_case': v:true,
+      \ 'max_list': 100,
+      \ 'sources': { 'default' : '', 'vimshell' : $HOME.'/.vimshell_hist', 'scheme' : $HOME.'/.gosh_completions' },
+      \ 'min_pattern_length': 2,
+      \ 'autocomplete_delay': 100,
+      \ })
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'go': ['go-langserver'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ }
-    "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'go': ['go-langserver'],
+      \ 'python': ['/usr/local/bin/pyls'],
+      \ }
+      "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately

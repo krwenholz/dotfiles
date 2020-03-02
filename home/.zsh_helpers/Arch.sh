@@ -367,6 +367,7 @@ function tokens {
   gpg --symmetric --output $HOME/things/fun_tokens /tmp/fun_tokens
   echo Uploading
   things_up &
+  rm -f /tmp/fun_tokens &
 }
 
 
