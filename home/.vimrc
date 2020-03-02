@@ -9,7 +9,8 @@ call vundle#begin()
 " let Vundle manage Vundle and other stuff
       Plugin 'gmarik/Vundle.vim'
       Plugin 'https://github.com/Lokaltog/vim-easymotion'
-      Plugin 'bling/vim-airline'
+      Plugin 'vim-airline/vim-airline'
+      Plugin 'vim-airline/vim-airline-themes'
       Plugin 'vim-scripts/scratch.vim'
       Plugin 'chriskempson/base16-vim'
     " Some awesome Git helpers
@@ -46,8 +47,11 @@ call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#whitespace#enabled = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
