@@ -44,6 +44,8 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 -A FORWARD -i tun+ -j ACCEPT
 -A INPUT -i tap+ -j ACCEPT
 -A FORWARD -i tap+ -j ACCEPT
+# Redirect low ports to avoid sudo necessity, may need to change eth0 on VPS
+-t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 3000
 COMMIT
 "
   echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
@@ -339,6 +341,9 @@ alias berl="bundle exec rails lint"
 alias berp="bundle exec rails console"
 alias bers="bundle exec rails server -b 0.0.0.0"
 alias ls="lsd"
+alias netstat="tldr ss"
+alias iwconfig="tldr iw"
+alias ifconfig="ip a"
 
 TODO=$HOME/things/TODO.md
 DONE_SELF=$HOME/things/DONE_SELF.md
