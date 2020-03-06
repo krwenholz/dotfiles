@@ -263,6 +263,14 @@ let g:elm_format_autosave = 1
 let g:rustfmt_autosave = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Custom functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rg text
+" select/deselect (alt-a or alt-d to get all)
+" enter
+" cfdo %s/text to search/text to replace with/gc | update
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible          " be iMproved
@@ -278,13 +286,13 @@ set wildmenu              " This is used with wildmode(full) to cycle options
 set hidden                " Save buffers in the background (don't save on buffer switch)
 set confirm               " Confirm before closing unsaved buffers
 set t_Co=256
+set splitright
+set splitbelow
 
 nnoremap <c-n> :bn<CR>
 nnoremap <c-l> :bp<CR>
 nnoremap <c-k> :bd<CR>
 vmap <C-s> :sort<CR>
-" Exit terminal mode with Esc
-tnoremap <a-[> <C-\><C-n>
 
 " Nice tabs
 set expandtab
@@ -326,3 +334,9 @@ let corporate_config = $HOME."/.corporate_configs/vimrc.vim"
 if filereadable(corporate_config)
   exec 'source ' . corporate_config
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" HELP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Exit terminal mode
+" <C-\><C-n>
