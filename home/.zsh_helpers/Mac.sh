@@ -1,3 +1,5 @@
+# Misc apps: Viscosity, Alacritty
+
 tigrc=`cat $HOME/.tigrc`
 if [[ $tigrc != *"set vertical-split = no"* ]]; then
   echo "set vertical-split = no" >> $HOME/.tigrc

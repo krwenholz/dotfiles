@@ -164,9 +164,6 @@ fi
 if [[ ! $installed == *"hub"* ]]; then
   to_install=$to_install"hub "
 fi
-if [[ ! $installed == *"bind-tools"* ]]; then
-  to_install=$to_install"bind-tools "
-fi
 if [[ ! $installed == *"docker"* ]]; then
   to_install=$to_install"docker "
   to_install=$to_install"docker-ce "
@@ -260,7 +257,6 @@ fi
 #######################################################################
 # Other installs and inits
 ########################################################################
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -333,7 +329,6 @@ eval "$(pyenv init -)"
 ########################################################################
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
-alias github='~/.gem/ruby/2.5.0/bin/github'
 alias image-viewer='eog'
 alias grep="grep --color"
 alias ls="lsd"
@@ -352,6 +347,7 @@ function things_up {
   rclone sync $HOME/things GoogleDrive-things:
 }
 alias tedit="things_down && vim $TODO $DONE_SELF $DONE_WORK && things_up &"
+alias todo="awk '/## Top/{flag=1} /## On-deck/{flag=0} flag' $HOME/things/TODO.md | pygmentize -l md"
 
 function tokens {
   echo Pulling
@@ -366,7 +362,6 @@ function tokens {
   rm -f /tmp/fun_tokens &
 }
 
-
 function postgres {
   export POSTGRES_VERSION=$1
   export DATABASE_URL="postgres://$USER@localhost:5432/$USER"
@@ -380,13 +375,15 @@ function postgres {
       docker start the-postgres-$POSTGRES_VERSION
     fi
   fi
+
+  docker exec -it the-postgres-$POSTGRES_VERSION psql -U $USER -c "CREATE OR REPLACE DATABASE \"$USER-test\";" > /dev/null
 }
 
 function psql {
   docker exec -it the-postgres-$POSTGRES_VERSION psql -U $USER
 }
 
-function pg_dump {
+function pg_ {
   docker exec the-postgres-$POSTGRES_VERSION pg_dump -U $USER "$@"
 }
 
@@ -418,3 +415,5 @@ fi
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval $(keychain --eval --quiet --quick ~/.ssh/id_rsa)
+
+echo "Finished configuring Arch"
