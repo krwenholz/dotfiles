@@ -340,3 +340,5 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Exit terminal mode
 " <C-\><C-n>
+" vim `rg --with-file-names some_pattern`
+" :Rg search then :cdo %s/search/replace/gc

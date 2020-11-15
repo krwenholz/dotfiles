@@ -46,6 +46,7 @@ if [[ ! -f /etc/iptables/iptables.rules ]]; then
 -A FORWARD -i tap+ -j ACCEPT
 # Redirect low ports to avoid sudo necessity, may need to change eth0 on VPS
 -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 3000
+-t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 COMMIT
 "
   echo $basic_rules | sudo tee -a /etc/iptables/iptables.rules
@@ -174,9 +175,6 @@ if [[ ! $installed == *"ttf-"* ]]; then
 fi
 if [[ ! $installed == *"terraform"* ]]; then
   to_install=$to_install"terraform "
-fi
-if [[ ! $installed == *"pandoc"* ]]; then
-  to_install=$to_install"pandoc "
 fi
 if [[ ! $installed == *"fwupd"* ]]; then
   # https://github.com/hughsie/fwupd
@@ -335,6 +333,7 @@ alias ls="lsd"
 alias netstat="tldr ss"
 alias iwconfig="tldr iw"
 alias ifconfig="ip a"
+alias pandoc='docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6'
 
 TODO=$HOME/things/TODO.md
 DONE_SELF=$HOME/things/DONE_SELF.md
