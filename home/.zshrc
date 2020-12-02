@@ -14,15 +14,12 @@ pacman=`which pacman`
 lsb_exists=`which lsb_release`
 if [[ $pacman == '/usr/bin/pacman' ]]; then
   host='arch'
+elif [[ -d /etc/ubuntu-advantage ]]; then
+  host='ubuntu'
 elif [[ $platform == 'linux' ]]; then
   host=$HOSTNAME
 elif [[ $platform == 'mac' ]]; then
   host=$HOST
-elif [[ lsb_exists == 0 ]]; then
-  ubuntu=`lsb_release -a`
-  if [[ $ubuntu == *"Ubuntu"* ]]; then
-    host='ubuntu'
-  fi
 fi
 
 echo "Using platform $platform on host $host"
@@ -240,6 +237,12 @@ if [[ -d /usr/share/fzf ]]; then
   source /usr/share/fzf/completion.zsh
   source /usr/share/fzf/key-bindings.zsh
 fi
+if [[ -d /usr/share/doc/fzf/examples ]]; then
+  echo "Sourcing fzf"
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.(git|hg|svg)/*"'
 export FZF_DEFAULT_OPTS="--preview-window 'right:50%:wrap' --preview '(highlight -O ansi -l {} 2> /dev/null ||
