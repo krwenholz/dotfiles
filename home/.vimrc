@@ -233,10 +233,12 @@ set hidden
 
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'go': ['go-langserver'],
+      \ 'go': ['gopls'],
       \ 'python': ['/usr/local/bin/pyls'],
       \ }
       "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
