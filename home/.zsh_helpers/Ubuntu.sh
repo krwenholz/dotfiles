@@ -1,10 +1,10 @@
 echo "Configuring Ubuntu"
 
-if [[ ! -f $HOME/bin/diff-so-fancy ]]; then
+if [[ ! -d $HOME/bin/sources/diff-so-fancy ]]; then
   mkdir -p $HOME/bin/sources
   git clone https://github.com/so-fancy/diff-so-fancy $HOME/bin/sources/diff-so-fancy
-  ln -s $HOME/bin/sources/diff-so-fancy/diff-so-fancy $HOME/bin/diff-so-fancy
 fi
+export PATH="$HOME/bin/sources/diff-so-fancy":$PATH
 
 #######################################################################
 # Rust
