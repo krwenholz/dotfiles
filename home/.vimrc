@@ -238,6 +238,8 @@ let g:LanguageClient_serverCommands = {
       \ }
       "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
 
+let g:LanguageClient_changeThrottle = 4
+
 autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
