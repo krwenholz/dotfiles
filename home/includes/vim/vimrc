@@ -1,49 +1,3 @@
-" Kyle Wenholz's vimrc
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle settings and packages
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-    " let Vundle manage Vundle and other stuff
-      Plugin 'gmarik/Vundle.vim'
-      Plugin 'https://github.com/Lokaltog/vim-easymotion'
-      Plugin 'vim-airline/vim-airline'
-      Plugin 'vim-airline/vim-airline-themes'
-      Plugin 'vim-scripts/scratch.vim'
-      Plugin 'chriskempson/base16-vim'
-    " Some awesome Git helpers
-      Plugin 'tpope/vim-fugitive'
-      Plugin 'tpope/vim-git'
-    " ide type stuff
-      Plugin 'majutsushi/tagbar'
-      Plugin 'Raimondi/delimitMate'
-      Plugin 'scrooloose/nerdtree'
-      Plugin 'tomtom/tcomment_vim'
-      Plugin 'tpope/vim-fireplace'
-      Plugin 'janko-m/vim-test'
-      Plugin 'kassio/neoterm'
-      Plugin 'ap/vim-css-color'
-      Plugin 'junegunn/fzf'
-      Plugin 'junegunn/fzf.vim'
-    " Completion
-      Plugin 'Shougo/deoplete.nvim'
-      Plugin 'autozimu/LanguageClient-neovim'
-      Plugin 'SirVer/ultisnips'
-      Plugin 'honza/vim-snippets'
-      Plugin 'tpope/vim-endwise'
-    " Syntax
-      Plugin 'vim-syntastic/syntastic'
-      Plugin 'natew/ftl-vim-syntax'
-      Plugin 'bronson/vim-trailing-whitespace'
-      Plugin 'hashivim/vim-terraform'
-      Plugin 'ambv/black'
-      Plugin 'evanleck/vim-svelte'
-      Plugin 'sheerun/vim-polyglot'
-      Plugin 'tpope/vim-markdown'
-      Plugin 'sbdchd/neoformat'
-call vundle#end()
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,7 +129,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme and right column line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let base16colorspace = 256
+let base16colorspace = 16
 colorscheme base16-default-dark
 highlight colorcolumn ctermbg=8
 highlight colorcolumn guibg=DarkBlue
@@ -221,7 +175,8 @@ let g:scratch_persistence_file=$HOME.'/Downloads/scratch'
 let g:acp_enableAtStartup = 0
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
+
+au VimEnter * call deoplete#custom#option({
       \ 'smart_case': v:true,
       \ 'max_list': 100,
       \ 'sources': { 'default' : '', 'vimshell' : $HOME.'/.vimshell_hist', 'scheme' : $HOME.'/.gosh_completions' },
@@ -289,9 +244,9 @@ set showcmd               " Show (partial) command in status line.
 set wildmenu              " This is used with wildmode(full) to cycle options
 set hidden                " Save buffers in the background (don't save on buffer switch)
 set confirm               " Confirm before closing unsaved buffers
-set t_Co=256
 set splitright
 set splitbelow
+set t_co=256
 
 nnoremap <c-n> :bn<CR>
 nnoremap <c-l> :bp<CR>
