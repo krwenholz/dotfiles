@@ -14,8 +14,8 @@
       extraConfig = {
         core.editor = "vim";
         pager = {
-          diff = "diff-so-fancy | less --tabs=1,5 -RFX";
-          show = "diff-so-fancy | less --tabs=1,5 -RFX";
+          diff = "diff-so-fancy | less --tabs=1,5 -RX";
+          show = "diff-so-fancy | less --tabs=1,5 -RX";
         };
         credential = {
           helper = "cache --timeout=36000";

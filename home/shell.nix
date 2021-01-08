@@ -40,7 +40,6 @@
         gist = "git status";
         gamit = "git commit --amend --no-edit";
         gummy = "git add .; git commit -m \"WIP `date --iso-8601=minutes`\"";
-        geb = "git checkout -b kyle/\$1";
         my-ip = "ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'";
         todos = "rg --hidden --follow --glob '!.(git|hg|svn)' -e 'TODO\(kyle\)'";
         gh = "cd `git rev-parse --show-toplevel`";
@@ -145,6 +144,10 @@
           fi
 
           pygmentize -f terminal -g $file
+        }
+
+        function geb {
+          git checkout -b kyle/$1
         }
       '';
       initExtra = ''
