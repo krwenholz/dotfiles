@@ -26,4 +26,35 @@
   programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  # Packages!
+  environment.systemPackages = with pkgs; [
+    ack
+    fwupd
+    gcc
+    git
+    gitAndTools.diff-so-fancy
+    gnumake
+    highlight
+    htop
+    jq
+    lsd
+    lsof
+    moreutils
+    neovim vim
+    ngrok
+    nix-index
+    ntp
+    oathToolkit
+    openssh
+    peek
+    rclone
+    ripgrep
+    tldr
+    tmux
+    tree
+    unzip
+    wget
+    zsh
+  ];
 }
