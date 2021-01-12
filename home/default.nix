@@ -1,4 +1,6 @@
 { config, pkgs, ... }:
+# nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
+# nix-channel --update
 {
   imports =
     [

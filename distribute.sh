@@ -1,3 +1,3 @@
 cp --recursive --force home/* $HOME
-sudo etc/nixos/configuration.nix /etc/nixos/configuration.nix
+sudo cp etc/nixos/custom-configuration.nix /etc/nixos/custom-configuration.nix
 echo "Don't forget to rebuild nix for changes to take effect"
