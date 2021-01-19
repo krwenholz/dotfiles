@@ -13,8 +13,14 @@
           /home/kyle
         ]
         else []
-      )
-    ;
+    );
+
+          # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+  console.font = "Lat2-Terminus16";
+  console.keyMap = "us";
+
+  time.timeZone = "America/Los_Angeles";
 
   users.users.kyle = {
     isNormalUser = true;
@@ -47,6 +53,7 @@
     ntp
     oathToolkit
     openssh
+    openssl
     peek
     rclone
     ripgrep
@@ -58,18 +65,18 @@
     zsh
   ];
 
-  networking.interfaces = {
-    enp0s8.ipv4.addresses = [{
-      address    = "10.110.0.2";
-      prefixLength = 24;
-    }];
-    enp0s9.ipv4.addresses = [{
-      address    = "10.110.1.2";
-      prefixLength = 24;
-    }];
-    enp0s10.ipv4.addresses = [{
-      address    = "10.110.2.2";
-      prefixLength = 24;
-    }];
-  };
+  #networking.interfaces = {
+  #  enp0s8.ipv4.addresses = [{
+  #    address    = "10.110.0.2";
+  #    prefixLength = 24;
+  #  }];
+  #  enp0s9.ipv4.addresses = [{
+  #    address    = "10.110.1.2";
+  #    prefixLength = 24;
+  #  }];
+  #  enp0s10.ipv4.addresses = [{
+  #    address    = "10.110.2.2";
+  #    prefixLength = 24;
+  #  }];
+  #};
 }
