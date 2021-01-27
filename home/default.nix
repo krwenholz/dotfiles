@@ -18,9 +18,13 @@
   home-manager.users.kyle = { pkgs, ...}: {
     programs.home-manager.enable = true;
     home.packages = with pkgs; [
-      keybase keybase-gui kbfs
       cowsay
-      go gopls
+      go
+      gopls
+      kbfs
+      keybase
+      keybase-gui
+      nodePackages.typescript-language-server
     ];
   };
 }

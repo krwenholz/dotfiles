@@ -190,6 +190,9 @@ let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'go': ['gopls'],
       \ 'python': ['/usr/local/bin/pyls'],
+      \ 'typescript': ['typescript-language-server', '--stdio'],
+      \ 'typescriptreact': ['typescript-language-server', '--stdio'],
+      \ 'javascript': ['typescript-language-server', '--stdio'],
       \ }
       "\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
 
