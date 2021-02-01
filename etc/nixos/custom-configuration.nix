@@ -30,6 +30,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.gnupg.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -41,6 +42,7 @@
     git
     gitAndTools.diff-so-fancy
     gnumake
+    gnupg
     highlight
     htop
     jq
@@ -55,6 +57,7 @@
     openssh
     openssl
     peek
+    pinentry
     rclone
     ripgrep
     tldr
