@@ -30,7 +30,7 @@
   };
 
   programs.zsh.enable = true;
-  programs.gnupg.enable = true;
+  programs.gnupg.agent.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -58,6 +58,7 @@
     openssl
     peek
     pinentry
+    pinentry-curses
     rclone
     ripgrep
     tldr
