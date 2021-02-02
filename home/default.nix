@@ -19,12 +19,19 @@
     programs.home-manager.enable = true;
     home.packages = with pkgs; [
       cowsay
+      firefox
       go
       gopls
-      kbfs
-      keybase
-      keybase-gui
       nodePackages.typescript-language-server
     ];
   };
+
+  services.xserver.enable = true;
+  services.xserver.desktopManager.lxqt.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "kyle";
+  services.xserver.layout = "us";
+  services.xserver.xkbVariant = "dvorak";
+  services.xserver.xkbOptions = "ctrl:swapcaps";
 }
