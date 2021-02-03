@@ -5,9 +5,7 @@
   environment.variables = {
     EDITOR = "vim";
     VISUAL = "vim";
-    TODO = "$HOME/things/TODO.md";
-    DONE_SELF = "$HOME/things/DONE_SELF.md";
-    DONE_WORK = "$HOME/things/DONE_WORK.md";
+    THINGS = "$HOME/dinge";
   };
 
   home-manager.users.kyle = { pkgs, ...}: {
@@ -111,23 +109,23 @@
         }
 
         function things_down {
-          rclone sync GoogleDrive-things: $HOME/things
+          (cd $THINGS; git-update)
         }
 
         function things_up {
-          rclone sync $HOME/things GoogleDrive-things:
+          (cd $THINGS; git add . && git commit -m "Things update `date`"; git push origin master)
         }
-        alias tedit="things_down && vim $TODO $DONE_SELF $DONE_WORK && things_up &"
-        alias todo="awk '/## Top/{flag=1} /## On-deck/{flag=0} flag' $HOME/things/TODO.md | pygmentize -l md"
+        alias tedit="things_down && vim $THINGS/TODO.md $THINGS/DONE_SELF.md $THINGS/DONE_WORK.md && things_up &"
+        alias todo="awk '/## Top/{flag=1} /## On-deck/{flag=0} flag' $THINGS/TODO.md | pygmentize -l md"
 
         function tokens {
           echo Pulling
           things_down
           echo Decrypting
-          gpg --decrypt --output /tmp/fun_tokens $HOME/things/fun_tokens
+          gpg --decrypt --output /tmp/fun_tokens $THINGS/fun_tokens
           vim /tmp/fun_tokens
           echo Encrypting
-          gpg --symmetric --output $HOME/things/fun_tokens /tmp/fun_tokens
+          gpg --symmetric --output $THINGS/fun_tokens /tmp/fun_tokens
           echo Uploading
           things_up &
           rm -f /tmp/fun_tokens &
