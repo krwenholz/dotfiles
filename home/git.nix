@@ -26,6 +26,7 @@
       };
       ignores = [
         "*~"
+        "nocommit-config"
 
         # KDE directory preferences
         ".directory"

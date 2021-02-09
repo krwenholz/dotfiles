@@ -5,7 +5,6 @@
   imports =
     [
       ./git.nix
-      ./rclone.nix
       ./shell.nix
       ./vim.nix
     ] ++ (
