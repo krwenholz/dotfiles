@@ -21,6 +21,7 @@
       firefox
       go
       gopls
+      goimports
       nodePackages.typescript-language-server
     ];
   };
