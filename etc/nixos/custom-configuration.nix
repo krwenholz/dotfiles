@@ -4,13 +4,29 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./hardware-builder.nix
-      ./vagrant-hostname.nix
     ] ++ (
+        if builtins.pathExists ./custom-auth.nix
+        then [
+          ./custom-auth.nix
+        ]
+        else []
+    ) ++ (
         if builtins.pathExists /home/kyle/default.nix
         then [
           <home-manager/nixos>
           /home/kyle
+        ]
+        else []
+    ) ++ (
+        if builtins.pathExists ./hardware-builder.nix
+        then [
+          ./hardware-builder.nix
+        ]
+        else []
+    ) ++ (
+        if builtins.pathExists ./vagrant-hostname.nix
+        then [
+          ./vagrant-hostname.nix
         ]
         else []
     );
@@ -68,6 +84,8 @@
     wget
     zsh
   ];
+
+  services.openssh.enable = true;
 
   #networking.interfaces = {
   #  enp0s8.ipv4.addresses = [{
