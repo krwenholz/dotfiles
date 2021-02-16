@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 # TODO(kyle): https://github.com/ducaale/xh
-# TODO(kyle): https://starship.rs/guide/
 # nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
 # nix-channel --update
 {
@@ -22,9 +21,10 @@
       cowsay
       firefox
       go
-      gopls
       goimports
+      gopls
       nodePackages.typescript-language-server
+      starship
     ];
   };
 

@@ -11,7 +11,7 @@
   home-manager.users.kyle = { pkgs, ...}: {
     home.file = {
       # TODO(kyle): not working with theme settings yet
-      ".zprezto-contrib/modules/prompt/functions/prompt_meine_setup".text = builtins.readFile includes/zsh/prompt.sh;
+      ".config/starship.toml".text = builtins.readFile includes/starship.toml;
     };
 
     programs.tmux = {
@@ -70,15 +70,12 @@
           "editor"
           "history"
           "history-substring-search"
-          "directory"
           "spectrum"
           "utility"
           "completion"
           "syntax-highlighting"
           "git"
-          "prompt"
         ];
-        prompt.theme = "sorin";
       };
       envExtra = ''
         function git-update {
@@ -145,6 +142,7 @@
       '';
       initExtra = ''
         bindkey '^F' fzf-file-widget
+        eval "$(starship init zsh)"
       '';
       loginExtra = "cowsay -f dragon \"Hey there! ツ\"";
     };
