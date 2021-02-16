@@ -54,6 +54,7 @@
         ifconfig = "ip a";
         pandoc = "docker run --rm --volume \"`pwd`:/data\" --user `id -u`:`id -g` pandoc/latex:2.6";
         simple_server="nix-shell -p python3 --command 'python3 -m http.server 8000'";
+        ipython="nix-shell -p pkgs.python38Packages.ipython --command ipython";
       };
       history = {
         save =  100000;
@@ -88,13 +89,6 @@
           git rebase origin/master
           git checkout $current_branch
           git rebase master
-        }
-        function ipython {
-          if [[ -f bin/ipython ]]; then
-            bin/ipython
-          else
-            python3 -m IPython
-          fi
         }
 
         function fig() {
