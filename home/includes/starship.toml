@@ -2,8 +2,7 @@
 add_newline = false
 
 # Default format from: https://starship.rs/config/#default-prompt-format
-format = """
-$status\
+format = """$status\
 $username\
 $hostname\
 $shlvl\
@@ -79,7 +78,7 @@ format = '[\\[$symbol$branch\\]]($style) "
 symbol = ""
 style = "green"
 
-[git_statuy]
+[git_status]
 format = '([$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind]($style) )'
 ahead = '[⇡${count}](7)'
 diverged = '[⇕⇡${ahead_count}⇣${behind_count}](7)'

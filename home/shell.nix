@@ -76,6 +76,7 @@
           "syntax-highlighting"
           "git"
         ];
+        prompt.theme = "off";
       };
       envExtra = ''
         function git-update {
@@ -143,6 +144,7 @@
       initExtra = ''
         bindkey '^F' fzf-file-widget
         eval "$(starship init zsh)"
+        RPROMPT=""
       '';
       loginExtra = "cowsay -f dragon \"Hey there! ツ\"";
     };
