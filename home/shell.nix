@@ -108,7 +108,7 @@
           (cd $THINGS; git add . && git commit -m "Things update `date`"; git push origin master)
         }
         alias tedit="things_down && vim $THINGS/TODO.md $THINGS/DONE_SELF.md $THINGS/DONE_WORK.md && things_up &"
-        alias todo="awk '/## Top/{flag=1} /## On-deck/{flag=0} flag' $THINGS/TODO.md | pygmentize -l md"
+        alias todo="nix-shell -p pkgs.python38Packages.pygments --command \"awk '/## Top/{flag=1} /## Conversations/{flag=0} flag' /home/kyle/dinge/TODO.md | pygmentize -l md\""
 
         function tokens {
           echo Pulling
