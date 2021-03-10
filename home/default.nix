@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-# TODO(kyle): https://github.com/ducaale/xh
+# TODO(kyle): https://github.com/ducaale/xh
 # nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
 # nix-channel --update
 {
@@ -23,6 +23,7 @@
       go
       goimports
       gopls
+      gron
       nodePackages.typescript-language-server
       starship
     ];
