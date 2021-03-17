@@ -13,12 +13,13 @@
         then [ ./corporate.nix ]
         else []
       )
-    ;
+      ;
+
+  environment.systemPackages = [ (import ./custom-packages.nix) ];
 
   home-manager.users.kyle = { pkgs, ...}: {
     programs.home-manager.enable = true;
     home.packages = with pkgs; [
-      cowsay
       firefox
       go
       goimports
@@ -26,6 +27,7 @@
       gron
       nodePackages.typescript-language-server
       starship
+      ncurses
     ];
   };
 

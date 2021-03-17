@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [
+    "/share/zsh"
+  ];
   environment.variables = {
     EDITOR = "vim";
     VISUAL = "vim";
@@ -140,13 +142,14 @@
         function geb {
           git checkout -b kyle/$1
         }
+        PATH=$PATH:$HOME/includes/bin
       '';
       initExtra = ''
         bindkey '^F' fzf-file-widget
         eval "$(starship init zsh)"
         RPROMPT=""
       '';
-      loginExtra = "cowsay -f dragon \"Hey there! ツ\"";
+      loginExtra = "cbonsai -p";
     };
     programs.fzf = {
       enable = true;
