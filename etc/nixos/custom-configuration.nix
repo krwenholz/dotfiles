@@ -65,6 +65,7 @@
     lsd
     lsof
     moreutils
+    mosh
     neovim vim
     ngrok
     nix-index

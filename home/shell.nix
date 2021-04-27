@@ -12,8 +12,8 @@
 
   home-manager.users.kyle = { pkgs, ...}: {
     home.file = {
-      # TODO(kyle): not working with theme settings yet
       ".config/starship.toml".text = builtins.readFile includes/starship.toml;
+      ".ipython/profile_default/ipython_config.py".text = builtins.readFile includes/ipython_config.py;
     };
 
     programs.tmux = {

@@ -28,6 +28,7 @@
       nodePackages.typescript-language-server
       starship
       ncurses
+      black
     ];
   };
 
