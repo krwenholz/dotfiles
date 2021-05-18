@@ -1,10 +1,19 @@
-{ config, pkgs, ... }:
+{ config, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ] ++ (
+  imports = [] ++ (
+        if builtins.pathExists ./hardware-configuration.nix
+        then [
+          ./hardware-configuration.nix
+        ]
+        else []
+    ) ++ (
+        if builtins.pathExists ./is_ec2
+        then [
+          "${modulesPath}/virtualisation/amazon-image.nix"
+        ]
+        else []
+    )  ++ (
         if builtins.pathExists ./custom-auth.nix
         then [
           ./custom-auth.nix
@@ -30,8 +39,10 @@
         ]
         else []
     );
+    
+  ec2.hvm = builtins.pathExists ./is_ec2;
 
-          # Select internationalisation properties.
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console.font = "Lat2-Terminus16";
   console.keyMap = "us";
@@ -88,19 +99,4 @@
   ];
 
   services.openssh.enable = true;
-
-  #networking.interfaces = {
-  #  enp0s8.ipv4.addresses = [{
-  #    address    = "10.110.0.2";
-  #    prefixLength = 24;
-  #  }];
-  #  enp0s9.ipv4.addresses = [{
-  #    address    = "10.110.1.2";
-  #    prefixLength = 24;
-  #  }];
-  #  enp0s10.ipv4.addresses = [{
-  #    address    = "10.110.2.2";
-  #    prefixLength = 24;
-  #  }];
-  #};
 }
