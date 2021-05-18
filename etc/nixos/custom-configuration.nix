@@ -78,6 +78,7 @@
     pinentry-curses
     rclone
     ripgrep
+    guardian-agent
     tldr
     tmux
     tree
