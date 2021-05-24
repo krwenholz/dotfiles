@@ -39,7 +39,7 @@
         ]
         else []
     );
-    
+
   ec2.hvm = builtins.pathExists ./is_ec2;
 
   # Select internationalisation properties.
@@ -57,6 +57,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.mosh.enable = true;
   programs.gnupg.agent.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -76,7 +77,6 @@
     lsd
     lsof
     moreutils
-    mosh
     neovim vim
     ngrok
     nix-index
@@ -98,5 +98,10 @@
     zsh
   ];
 
+  networking.firewall.enable = true;
   services.openssh.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 8000 ];
+  networking.firewall.allowedUDPPortRanges = [
+    { from = 60000; to = 61000; }
+  ];
 }
