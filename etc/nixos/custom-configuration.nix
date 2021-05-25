@@ -98,10 +98,13 @@
     zsh
   ];
 
-  networking.firewall.enable = true;
-  services.openssh.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 8000 ];
-  networking.firewall.allowedUDPPortRanges = [
-    { from = 60000; to = 61000; }
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 8000 ];
+    allowedUDPPortRanges = [
+    # Allow mosh connections
+    { from = 60000; to = 60100; }
   ];
+  };
+  services.openssh.enable = true;
 }
