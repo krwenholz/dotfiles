@@ -21,6 +21,7 @@
       keyMode = "vi";
         #bind-key -T copy-mode y send-keys -X copy-pipe-and-cancel 'xclip -selection clipboard >/dev/null'
       extraConfig = ''
+        new-session
         bind P paste-buffer
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi y send-keys -X copy-selection
@@ -30,6 +31,7 @@
         bind c   new-window   -c    "#{pane_current_path}"
         bind '"' split-window -c    "#{pane_current_path}"
         bind %   split-window -h -c "#{pane_current_path}"
+        tmux_conf_copy_to_os_clipboard=true
       '';
     };
 

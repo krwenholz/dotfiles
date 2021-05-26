@@ -58,6 +58,10 @@
 
   programs.zsh.enable = true;
   programs.mosh.enable = true;
+  services.eternal-terminal = {
+    enable = true;
+    port = 60009;
+  };
   programs.gnupg.agent.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -65,6 +69,7 @@
   # Packages!
   environment.systemPackages = with pkgs; [
     ack
+    eternal-terminal
     fwupd
     gcc
     git
@@ -101,10 +106,12 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 22 8000 ];
+    allowedTCPPortRanges = [
+      { from = 60000; to = 60100; }
+    ];
     allowedUDPPortRanges = [
-    # Allow mosh connections
-    { from = 60000; to = 60100; }
-  ];
+      { from = 60000; to = 60100; }
+    ];
   };
   services.openssh.enable = true;
 }
