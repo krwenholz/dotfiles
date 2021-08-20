@@ -19,6 +19,9 @@
 
   home-manager.users.kyle = { pkgs, ...}: {
     programs.home-manager.enable = true;
+    programs.direnv.enable = true;
+    #programs.direnv.nix-direnv.enable = true;
+
     home.packages = with pkgs; [
       firefox
       go
@@ -40,4 +43,9 @@
   services.xserver.layout = "us";
   services.xserver.xkbVariant = "dvorak";
   services.xserver.xkbOptions = "ctrl:swapcaps";
+
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
 }
