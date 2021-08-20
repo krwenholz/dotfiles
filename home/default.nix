@@ -20,7 +20,6 @@
   home-manager.users.kyle = { pkgs, ...}: {
     programs.home-manager.enable = true;
     programs.direnv.enable = true;
-    #programs.direnv.nix-direnv.enable = true;
 
     home.packages = with pkgs; [
       firefox
@@ -32,6 +31,7 @@
       starship
       ncurses
       black
+      nix-direnv
     ];
   };
 
@@ -44,6 +44,9 @@
   services.xserver.xkbVariant = "dvorak";
   services.xserver.xkbOptions = "ctrl:swapcaps";
 
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
