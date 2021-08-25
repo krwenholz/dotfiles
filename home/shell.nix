@@ -14,6 +14,7 @@
     home.file = {
       ".config/starship.toml".text = builtins.readFile includes/starship.toml;
       ".ipython/profile_default/ipython_config.py".text = builtins.readFile includes/ipython_config.py;
+      ".direnvrc".text = builtins.readFile includes/direnvrc;
     };
 
     programs.tmux = {

@@ -28,6 +28,7 @@
       gopls
       gron
       nodePackages.typescript-language-server
+      nodePackages.prettier
       starship
       ncurses
       black
