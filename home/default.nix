@@ -17,6 +17,9 @@
 
   environment.systemPackages = [ (import ./custom-packages.nix) ];
 
+  virtualisation.docker.enable = true;
+  users.users.kyle.extraGroups = [ "docker" ];
+
   home-manager.users.kyle = { pkgs, ...}: {
     programs.home-manager.enable = true;
     programs.direnv.enable = true;
