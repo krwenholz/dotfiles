@@ -60,9 +60,9 @@ disabled = true
 
 # The character stays the same!
 [character]
-success_symbol = '[%%](green)'
-error_symbol = '[%%](green)'
-vicmd_symbol = '[%%](green)'
+success_symbol = "[%%](green)"
+error_symbol = "[%%](green)"
+vicmd_symbol = "[%%](green)"
 
 [status]
 disabled = false
@@ -74,19 +74,19 @@ style = "purple"
 truncate_to_repo = false
 
 [git_branch]
-format = '[\\[$symbol$branch\\]]($style) "
+format = "[\\[$symbol$branch\\]]($style) "
 symbol = ""
 style = "green"
 
 [git_status]
-format = '([$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind]($style) )'
-ahead = '[⇡${count}](7)'
-diverged = '[⇕⇡${ahead_count}⇣${behind_count}](7)'
-behind = '[⇣${count}](7)'
-modified = '[!](red)'
-deleted = '[x](red)'
-untracked = '[?](yellow)'
-staged = '[+](yellow)'
+format = "([$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind]($style) )"
+ahead = "[⇡${count}](7)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](7)"
+behind = "[⇣${count}](7)"
+modified = "[!](red)"
+deleted = "[x](red)"
+untracked = "[?](yellow)"
+staged = "[+](yellow)"
 renamed = ""
 style = "green"
 
@@ -103,11 +103,11 @@ disabled = true
 disabled = true
 
 [hostname]
-format = '[$hostname]($style):"
+format = "[$hostname]($style):"
 style = "cyan"
 
 [username]
-format = '[$user@]($style)'
+format = "[$user@]($style)"
 style_user = "cyan"
 
 [php]

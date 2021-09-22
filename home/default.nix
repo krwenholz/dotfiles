@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 # TODO(kyle): https://github.com/ducaale/xh
-# nix-channel --add https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz home-manager
+# Upgrade:
+# nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz home-manager
+# sudo nix-channel --add https://nixos.org/channels/nixos-21.05 nixos
 # nix-channel --update
+# sudo nixos-rebuild switch --upgrade
 {
   imports =
     [
