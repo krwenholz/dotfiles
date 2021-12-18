@@ -252,10 +252,10 @@ let g:rustfmt_autosave = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible          " be iMproved
 set backspace=2           " allow backspacing over everything in insert mode
-set history=50            " keep 50 lines of command line history
+set history=500           " keep 500 lines of command line history
 set laststatus=2          " always have status bar
 set encoding=utf-8        " Let's be modern and use a real-boy encoding
-set scrolloff=2           " don't let the cursor get too close to the edge
+set scrolloff=1           " don't let the cursor get too close to the edge
 set nobackup              " Don't keep a backup file
 set ruler                 " the ruler on the bottom is useful
 set showcmd               " Show (partial) command in status line.
@@ -264,7 +264,8 @@ set hidden                " Save buffers in the background (don't save on buffer
 set confirm               " Confirm before closing unsaved buffers
 set splitright
 set splitbelow
-set t_co=256
+set t_Co=256
+set termguicolors
 
 nnoremap <c-n> :bn<CR>
 nnoremap <c-l> :bp<CR>
