@@ -29,6 +29,7 @@
 
     home.packages = with pkgs; [
       firefox
+      fx
       go
       goimports
       gopls
@@ -41,15 +42,6 @@
       nix-direnv
     ];
   };
-
-  services.xserver.enable = true;
-  services.xserver.desktopManager.lxqt.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "kyle";
-  services.xserver.layout = "us";
-  services.xserver.xkbVariant = "dvorak";
-  services.xserver.xkbOptions = "ctrl:swapcaps";
 
   environment.pathsToLink = [
     "/share/nix-direnv"

@@ -97,8 +97,7 @@ let g:neoformat_ruby_rubocop = {
 
 let g:neoformat_go_goimports = {
       \ 'exe': 'goimports',
-      \ 'args': ['-local'],
-      \ 'stdin': 1,
+      \ 'stdin': 0,
       \}
 
 let g:neoformat_markdown_prettier = {
@@ -212,7 +211,7 @@ let g:LanguageClient_serverCommands = {
 
 let g:LanguageClient_changeThrottle = 4
 
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+"autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
