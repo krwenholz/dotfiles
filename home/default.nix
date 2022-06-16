@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 # TODO(kyle): https://github.com/ducaale/xh
 # Upgrade:
-# nix-channel --add https://github.com/nix-community/home-manager/archive/release-21.05.tar.gz home-manager
-# sudo nix-channel --add https://nixos.org/channels/nixos-21.05 nixos
+# nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
+# sudo nix-channel --add https://nixos.org/channels/nixos-22.05 nixos
+# sudo nix-channel --add https://nixos.org/channels/nixos-22.05 nixpkgs
 # nix-channel --update
 # sudo nixos-rebuild switch --upgrade
 {
@@ -31,7 +32,7 @@
       firefox
       fx
       go
-      goimports
+      gotools
       gopls
       gron
       nodePackages.typescript-language-server
@@ -40,7 +41,7 @@
       ncurses
       black
       nix-direnv
-      wireguard
+      wireguard-tools
       pinentry-gtk2
     ];
   };
