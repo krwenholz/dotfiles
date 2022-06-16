@@ -40,7 +40,15 @@
       ncurses
       black
       nix-direnv
+      wireguard
+      pinentry-gtk2
     ];
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSSHSupport = true;
   };
 
   environment.pathsToLink = [
