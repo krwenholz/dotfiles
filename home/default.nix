@@ -43,6 +43,7 @@
       nix-direnv
       wireguard-tools
       pinentry-gtk2
+      sumneko-lua-language-server
     ];
   };
 

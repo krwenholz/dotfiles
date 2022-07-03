@@ -14,16 +14,24 @@ with import <nixpkgs> {};
       withNodeJs = true;
       withPython3 = true;
       plugins = with pkgs.vimPlugins; [
+        luasnip
         base16-vim
+        cmp-buffer
+        cmp-nvim-lsp
+        cmp-path
+        cmp_luasnip
+        nvim-treesitter
         delimitMate
-        deoplete-nvim
         easymotion
+        friendly-snippets
         fugitive
         fzf-vim
         fzfWrapper
         neoformat
         neoterm
         nerdtree
+        nvim-cmp
+        nvim-lspconfig
         polyglot
         syntastic
         tcomment_vim
