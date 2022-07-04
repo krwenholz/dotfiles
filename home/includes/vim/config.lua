@@ -405,6 +405,29 @@ cmp.setup({
   },
 })
 
+local function bash(command)
+	local file = io.popen(command, "r")
+	local res = {}
+	for line in file:lines() do
+		table.insert(res, line)
+	end
+	return res
+end
+
+luasnip.add_snippets("all", {
+  luasnip.snippet("todo", {
+    luasnip.function_node(function(_, snip) return snip.env.LINE_COMMENT end, {}),
+    luasnip.text_node("TODO("),
+    luasnip.function_node(function(_, _) return bash('git config --get user.email') end, {}),
+    luasnip.text_node(": "),
+    luasnip.insert_node(0),
+    luasnip.text_node(os.date("%Y-%m-%d-%H:%M:%S")),
+  }),
+  luasnip.snippet("date", {
+    luasnip.text_node(os.date("%Y-%m-%d")),
+  }),
+})
+
 ------------------------------------------------------------------
 -- Custom functions
 ------------------------------------------------------------------
