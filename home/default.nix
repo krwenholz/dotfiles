@@ -44,6 +44,9 @@
       wireguard-tools
       pinentry-gtk2
       sumneko-lua-language-server
+      stylua
+      cargo
+      rustc
     ];
   };
 
