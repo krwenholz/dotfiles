@@ -47,6 +47,7 @@
       stylua
       cargo
       rustc
+      wireshark
     ];
   };
 

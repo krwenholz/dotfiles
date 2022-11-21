@@ -88,11 +88,11 @@
         function git-update {
           current_branch=`git rev-parse --abbrev-ref HEAD`
           echo "Updating branch $current_branch"
-          git checkout master
-          git fetch origin master
-          git rebase origin/master
+          git checkout main
+          git fetch origin main
+          git rebase origin/main
           git checkout $current_branch
-          git rebase master
+          git rebase main
         }
 
         function fig() {
