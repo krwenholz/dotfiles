@@ -14,7 +14,6 @@ with import <nixpkgs> {};
       withNodeJs = true;
       withPython3 = true;
       plugins = with pkgs.vimPlugins; [
-        luasnip
         base16-vim
         cmp-buffer
         cmp-nvim-lsp
@@ -27,6 +26,8 @@ with import <nixpkgs> {};
         fugitive
         fzf-vim
         fzfWrapper
+        luasnip
+        leap-nvim
         neoformat
         neoterm
         nerdtree
