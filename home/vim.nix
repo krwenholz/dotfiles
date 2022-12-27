@@ -27,7 +27,6 @@ with import <nixpkgs> {};
         fzf-vim
         fzfWrapper
         luasnip
-        leap-nvim
         neoformat
         neoterm
         nerdtree
