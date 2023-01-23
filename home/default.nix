@@ -37,6 +37,7 @@
       gron
       nodePackages.typescript-language-server
       nodePackages.prettier
+      nodePackages_latest.graphite-cli
       starship
       ncurses
       black

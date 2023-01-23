@@ -61,6 +61,7 @@
         pandoc = "docker run --rm --volume \"`pwd`:/data\" --user `id -u`:`id -g` pandoc/latex:2.6";
         simple_server="nix-shell -p python3 --command 'python3 -m http.server 8000'";
         ipython="nix-shell -p pkgs.python38Packages.ipython --command ipython";
+        performance_test="/usr/bin/time -f '%Uu %Ss %er %MkB %C' \"$@\"";
       };
       history = {
         save =  100000;

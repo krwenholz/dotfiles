@@ -72,6 +72,7 @@ vim.api.nvim_set_keymap("n", "<F9>", ":TagbarToggle<CR>", { noremap = true, sile
 ------------------------------------------------------------------
 -- neoformat
 ------------------------------------------------------------------
+-- to temporarily disable, run `:let g/b:neoformat_enabled_LANG=[]
 vim.cmd([[
 augroup fmt
   autocmd!

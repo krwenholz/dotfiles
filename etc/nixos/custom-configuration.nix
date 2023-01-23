@@ -90,6 +90,7 @@
     openssh
     openssl
     peek
+    linuxKernel.packages.linux_5_15.perf
     pinentry
     pinentry-curses
     rclone
