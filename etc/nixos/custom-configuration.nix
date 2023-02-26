@@ -69,6 +69,7 @@
   # Packages!
   environment.systemPackages = with pkgs; [
     ack
+    entr
     eternal-terminal
     fwupd
     gcc
