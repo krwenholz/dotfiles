@@ -221,7 +221,7 @@ vim.api.nvim_create_autocmd("User", {
 		end
 
 		-- Displays hover information about the symbol under the cursor
-		bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
+		bufmap("n", "ss", "<cmd>lua vim.lsp.buf.hover()<cr>")
 
 		-- Jump to the definition
 		bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
@@ -242,7 +242,7 @@ vim.api.nvim_create_autocmd("User", {
 		--bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 
 		-- Renames all references to the symbol under the cursor
-		bufmap("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
+		bufmap("n", "sr", "<cmd>lua vim.lsp.buf.rename()<cr>")
 
 		-- Selects a code action available at the current cursor position
 		--bufmap("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
