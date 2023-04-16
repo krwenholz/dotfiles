@@ -56,13 +56,13 @@ $character"""
 
 # One-line prompt
 [line_break]
-disabled = true
+disabled = false
 
 # The character stays the same!
 [character]
-success_symbol = "[%%](green)"
-error_symbol = "[%%](green)"
-vicmd_symbol = "[%%](green)"
+success_symbol = "[ツ>](green)"
+error_symbol = "[ӧ>](green)"
+vicmd_symbol = "[웃>](green)"
 
 [status]
 disabled = false

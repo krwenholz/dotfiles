@@ -28,12 +28,12 @@
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi y send-keys -X copy-selection
         bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
-        set-option -g history-limit 100000
         set -sg escape-time 10
         bind c   new-window   -c    "#{pane_current_path}"
         bind '"' split-window -c    "#{pane_current_path}"
         bind %   split-window -h -c "#{pane_current_path}"
         tmux_conf_copy_to_os_clipboard=true
+        set-option -g history-limit 1000000
       '';
     };
 
