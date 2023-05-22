@@ -29,6 +29,7 @@
     programs.direnv.enable = true;
 
     home.packages = with pkgs; [
+      docker-compose
       firefox
       fx
       go
