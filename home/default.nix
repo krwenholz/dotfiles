@@ -32,6 +32,7 @@
       docker-compose
       firefox
       fx
+      fd
       go
       gotools
       gopls
