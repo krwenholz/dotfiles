@@ -1,0 +1,3 @@
+[submodule "home/includes/AstroNvim"]
+	path = home/includes/AstroNvim
+	url = https://github.com/AstroNvim/AstroNvim

@@ -7,8 +7,13 @@ with import <nixpkgs> {};
     home.file = {
       ".config/nvim" = {
         recursive = true;
-        source = ./includes/nvim;
+        source = ./includes/AstroNvim;
         target = ".config/nvim";
+      };
+      ".config/nvim/lua/user" = {
+        recursive = true;
+        source = ./includes/nvim.my;
+        target = ".config/nvim/lua/user";
       };
     };
     programs.neovim = {
