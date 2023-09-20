@@ -117,12 +117,12 @@ return {
           },
         }
 
-        opts.statuscolumn = { -- statuscolumn
-          status.component.foldcolumn(),
-          status.component.fill(),
-          status.component.numbercolumn(),
-          status.component.signcolumn(),
-        }
+        --opts.statuscolumn = { -- statuscolumn
+        --  status.component.foldcolumn(),
+        --  status.component.fill(),
+        --  status.component.numbercolumn(),
+        --  status.component.signcolumn(),
+        --}
 
         -- return the final configuration table
         return opts
