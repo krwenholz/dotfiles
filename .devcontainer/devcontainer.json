@@ -1,0 +1,5 @@
+{
+  "image": "ghcr.io/xtruder/nix-devcontainer:latest",
+  "features": {
+  }
+}
