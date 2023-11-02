@@ -19,6 +19,15 @@
       )
       ;
 
+  programs.zsh.enable = true;
+  programs.mosh.enable = true;
+  services.eternal-terminal = {
+    enable = true;
+    port = 60009;
+  };
+
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = [ (import ./custom-packages.nix) ];
 
   virtualisation.docker.enable = true;
@@ -29,6 +38,41 @@
     programs.direnv.enable = true;
 
     home.packages = with pkgs; [
+      ack
+    entr
+    eternal-terminal
+    fwupd
+    gcc
+    git
+    gitAndTools.diff-so-fancy
+    gnumake
+    gnupg
+    highlight
+    htop
+    jq
+    lsd
+    lsof
+    moreutils
+    neovim vim
+    ngrok
+    nix-index
+    ntp
+    oathToolkit
+    openssh
+    openssl
+    peek
+    linuxKernel.packages.linux_5_15.perf
+    pinentry
+    pinentry-curses
+    rclone
+    ripgrep
+    guardian-agent
+    tldr
+    tmux
+    tree
+    unzip
+    wget
+    zsh
       docker-compose
       firefox
       fx
