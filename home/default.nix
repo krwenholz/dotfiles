@@ -1,11 +1,4 @@
 { config, pkgs, ... }:
-# TODO(kyle): https://github.com/ducaale/xh
-# Upgrade:
-# nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz home-manager
-# sudo nix-channel --add https://nixos.org/channels/nixos-22.05 nixos
-# sudo nix-channel --add https://nixos.org/channels/nixos-22.05 nixpkgs
-# nix-channel --update
-# sudo nixos-rebuild switch --upgrade
 {
   imports =
     [
@@ -18,8 +11,8 @@
         else []
       )
       ;
+  environment.systemPackages = [ (import ./custom-packages.nix) ];
 
-  programs.zsh.enable = true;
   programs.mosh.enable = true;
   services.eternal-terminal = {
     enable = true;
@@ -27,8 +20,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = [ (import ./custom-packages.nix) ];
 
   virtualisation.docker.enable = true;
   users.users.kyle.extraGroups = [ "docker" ];
