@@ -30,40 +30,40 @@
 
     home.packages = with pkgs; [
       ack
-    entr
-    eternal-terminal
-    fwupd
-    gcc
-    git
-    gitAndTools.diff-so-fancy
-    gnumake
-    gnupg
-    highlight
-    htop
-    jq
-    lsd
-    lsof
-    moreutils
-    neovim vim
-    ngrok
-    nix-index
-    ntp
-    oathToolkit
-    openssh
-    openssl
-    peek
-    linuxKernel.packages.linux_5_15.perf
-    pinentry
-    pinentry-curses
-    rclone
-    ripgrep
-    guardian-agent
-    tldr
-    tmux
-    tree
-    unzip
-    wget
-    zsh
+      entr
+      eternal-terminal
+      fwupd
+      gcc
+      git
+      gitAndTools.diff-so-fancy
+      gnumake
+      gnupg
+      highlight
+      htop
+      jq
+      lsd
+      lsof
+      moreutils
+      neovim vim
+      ngrok
+      nix-index
+      ntp
+      oathToolkit
+      openssh
+      openssl
+      peek
+      linuxKernel.packages.linux_5_15.perf
+      pinentry
+      pinentry-curses
+      rclone
+      ripgrep
+      guardian-agent
+      tldr
+      tmux
+      tree
+      unzip
+      wget
+      zsh
       docker-compose
       firefox
       fx
