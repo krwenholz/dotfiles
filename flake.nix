@@ -3,11 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nurpkgs = {
+      url = github:nix-community/NUR;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }: {
-    homeConfiguration = import ./home/home-conf.nix;
+  outputs = { self, nixpkgs, nurpkgs, home-manager, ... }: {
+    homeConfiguration = import ./home/home-conf.nix {
+     inherit nixpkgs nurpkgs home-manager;
+    };
   };
 }
