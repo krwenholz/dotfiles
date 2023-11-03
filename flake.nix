@@ -7,12 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
-    nixosConfigurations = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./home/default.nix
-      ];
-    };
+  outputs = { self, nixpkgs, ... }: {
+    homeConfiguration = import ./home/home-conf.nix;
   };
 }
