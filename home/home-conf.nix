@@ -18,11 +18,10 @@ let
   };
 in
 {
-  main = home-manager.lib.homeManagerConfiguration rec {
-    inherit pkgs system username homeDirectory;
+  home-manager.lib.homeManagerConfiguration rec {
+    inherit pkgs;
 
-    stateVersion = "23.05";
-    configuration = import ./home.nix {
+    modules = import ./home.nix {
       inherit nur pkgs;
       inherit (pkgs) config lib stdenv;
     };

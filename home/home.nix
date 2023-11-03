@@ -25,6 +25,7 @@
   users.users.kyle.extraGroups = [ "docker" ];
 
   home-manager.users.kyle = { pkgs, ...}: {
+    stateVersion = "23.05";
     programs.home-manager.enable = true;
     programs.direnv.enable = true;
 
