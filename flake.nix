@@ -24,3 +24,5 @@
     };
   };
 }
+# nix build .#homeConfiguration.main.config
+# nix flake update && nix flake lock

@@ -21,9 +21,13 @@ in
   main = home-manager.lib.homeManagerConfiguration rec {
     inherit pkgs;
 
-    modules = import ./home.nix {
-      inherit nur pkgs;
-      inherit (pkgs) config lib stdenv;
-    };
+    modules = [
+      (import ./home.nix {
+        inherit nur pkgs;
+        inherit (pkgs) config lib stdenv;
+        inherit system;
+        inherit home-manager;
+      })
+    ];
   };
 }

@@ -1,26 +1,20 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, system, home-manager, ... }:
 {
   imports =
     [
-      ./git.nix
-      ./shell.nix
-      ./vim.nix
+      #./git.nix
+      #./shell.nix
+      #./vim.nix
     ] ++ (
         if builtins.pathExists ./corporate.nix
         then [ ./corporate.nix ]
         else []
       )
       ;
-  environment.systemPackages = [ (import ./custom-packages.nix) ];
-
-  programs.mosh.enable = true;
-  services.eternal-terminal = {
-    enable = true;
-    port = 60009;
-  };
+ # system.environment.systemPackages = [ (import ./custom-packages.nix) ];
 
   nixpkgs.config.allowUnfree = true;
-
+/*
   virtualisation.docker.enable = true;
   users.users.kyle.extraGroups = [ "docker" ];
 
@@ -96,9 +90,16 @@
     enableSSHSupport = true;
   };
 
-  environment.pathsToLink = [
+  programs.mosh.enable = true;
+  services.eternal-terminal = {
+    enable = true;
+    port = 60009;
+  };
+
+  system.environment.pathsToLink = [
     "/share/nix-direnv"
   ];
+  */
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
