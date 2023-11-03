@@ -18,6 +18,7 @@
   outputs = { self, nixpkgs, nurpkgs, home-manager, ... }: {
     homeConfiguration = import ./home/home-conf.nix {
      inherit nixpkgs nurpkgs home-manager;
+     system = "x86_64-linux";
     };
   };
 }
