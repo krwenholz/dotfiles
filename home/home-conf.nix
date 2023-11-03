@@ -18,7 +18,7 @@ let
   };
 in
 {
-  home-manager.lib.homeManagerConfiguration rec {
+  main = home-manager.lib.homeManagerConfiguration rec {
     inherit pkgs;
 
     modules = import ./home.nix {
