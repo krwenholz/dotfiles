@@ -1,15 +1,10 @@
 {
-  description = "kyle's configuration";
+  description = "krwenholz's Home Manager & NixOS configurations";
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    nurpkgs = {
-      url = github:nix-community/NUR;
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nurpkgs.url = github:nix-community/NUR;
 
     home-manager = {
       url = github:nix-community/home-manager;
@@ -17,12 +12,27 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nurpkgs, home-manager, ... }: {
-    homeConfiguration = import ./home/home-conf.nix {
-     inherit nixpkgs nurpkgs home-manager;
-     system = "x86_64-linux";
+  outputs = inputs:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      homeConfigurations =
+        import ./outputs/home-conf.nix { inherit inputs system pkgs; };
+/*
+      nixosConfigurations =
+        import ./outputs/nixos-conf.nix { inherit inputs system pkgs extraArgs; };
+
+      packages.${system} = {
+        inherit (pkgs) bazecor metals metals-updater;
+      };
+      */
     };
-  };
 }
-# nix build .#homeConfiguration.main.config
+# nix build .#homeConfigurations.home.config.system.build.toplevel
 # nix flake update && nix flake lock

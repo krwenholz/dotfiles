@@ -1,4 +1,98 @@
-{ pkgs, lib, system, home-manager, ... }:
+{ pkgs, lib, ... }:
+
+let
+  username = "kyle";
+  homeDirectory = "/home/${username}";
+  configHome = "${homeDirectory}/.config";
+in
+{
+  programs.home-manager.enable = true;
+/*
+  imports = lib.concatMap import [
+    ./modules
+    ./programs
+    ./scripts
+    ./services
+    ./themes
+  ];
+*/
+  xdg = {
+    inherit configHome;
+    enable = true;
+  };
+
+  home = {
+    inherit username homeDirectory;
+    stateVersion = "23.05";
+
+    packages = with pkgs; [
+      ack
+      entr
+      eternal-terminal
+      fwupd
+      gcc
+      git
+      gitAndTools.diff-so-fancy
+      gnumake
+      gnupg
+      highlight
+      htop
+      jq
+      lsd
+      lsof
+      moreutils
+      neovim vim
+      ngrok
+/*
+      nix-index
+      ntp
+      oathToolkit
+      openssh
+      openssl
+      peek
+      linuxKernel.packages.linux_5_15.perf
+      pinentry
+      pinentry-curses
+      rclone
+      ripgrep
+      guardian-agent
+      tldr
+      tmux
+      tree
+      unzip
+      wget
+      zsh
+      docker-compose
+      firefox
+      fx
+      fd
+      go
+      gotools
+      gopls
+      gron
+      nodePackages.typescript-language-server
+      nodePackages.prettier
+      starship
+      ncurses
+      black
+      nix-direnv
+      wireguard-tools
+      pinentry-gtk2
+      sumneko-lua-language-server
+      stylua
+      cargo
+      rustc
+      wireshark
+*/
+    ];
+  };
+
+  # restart services on change
+  systemd.user.startServices = "sd-switch";
+}
+
+
+/* TODO(kyle): get this back in there
 {
   imports =
     [
@@ -14,7 +108,7 @@
  # system.environment.systemPackages = [ (import ./custom-packages.nix) ];
 
   nixpkgs.config.allowUnfree = true;
-/*
+
   virtualisation.docker.enable = true;
   users.users.kyle.extraGroups = [ "docker" ];
 
@@ -99,9 +193,9 @@
   system.environment.pathsToLink = [
     "/share/nix-direnv"
   ];
-  */
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
   '';
 }
+*/
