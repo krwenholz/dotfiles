@@ -2,11 +2,13 @@
   description = "kyle's configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
 
     nurpkgs = {
       url = github:nix-community/NUR;
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -15,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nurpkgs, home-manager, ... }: {
+  outputs = inputs @ { self, nixpkgs, nurpkgs, home-manager, ... }: {
     homeConfiguration = import ./home/home-conf.nix {
      inherit nixpkgs nurpkgs home-manager;
      system = "x86_64-linux";
