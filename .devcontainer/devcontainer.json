@@ -17,15 +17,6 @@
 	"userEnvProbe": "loginShell",
 	"updateRemoteUserUID": false,
 
-	"portsAttributes": {
-		"5173": {
-			"label": "Transcribee",
-			"onAutoForward": "notify"
-		}
-	},
-
-	"onCreateCommand": "nix-shell shell.nix --command ./packaging/install_dependencies.sh",
-
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
