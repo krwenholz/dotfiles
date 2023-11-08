@@ -34,5 +34,5 @@
       */
     };
 }
-# nix build .#homeConfigurations.home.config.system.build.toplevel
+# nix build .#homeConfigurations.home.activationPackage
 # nix flake update && nix flake lock
