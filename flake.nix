@@ -22,7 +22,7 @@
       };
     in
     {
-      homeConfigurations =
+      homeConfiguration =
         import ./outputs/home-conf.nix { inherit inputs system pkgs; };
 /*
       nixosConfigurations =

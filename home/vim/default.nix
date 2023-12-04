@@ -3,16 +3,15 @@
 with import <nixpkgs> {};
 
 {
-  home-manager.users.kyle = { pkgs, ...}: {
-    home.file = {
+  home.file = {
       ".config/nvim" = {
         recursive = true;
-        source = ./includes/AstroNvim;
+        source = ./AstroNvim;
         target = ".config/nvim";
       };
       ".config/nvim/lua/user" = {
         recursive = true;
-        source = ./includes/nvim.my;
+        source = ./nvim.my;
         target = ".config/nvim/lua/user";
       };
     };
@@ -22,5 +21,4 @@ with import <nixpkgs> {};
       withNodeJs = true;
       withPython3 = true;
     };
-  };
 }

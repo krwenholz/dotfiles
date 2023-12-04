@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home-manager.users.kyle = { pkgs, ...}: {
-    programs.git = {
+  programs.git = {
       package = pkgs.gitAndTools.gitFull;
       enable = true;
       userName = "Kyle Wenholz";
@@ -172,5 +171,4 @@
         ".byebug_history"
       ];
     };
-  };
 }
