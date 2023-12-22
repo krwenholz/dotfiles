@@ -36,7 +36,6 @@ in
     packages = with pkgs; [
       ack
       entr
-      eternal-terminal
       fwupd
       gcc
       gitAndTools.diff-so-fancy
@@ -48,6 +47,7 @@ in
       lsd
       lsof
       moreutils
+      mosh
       vim
       ngrok
       nix-index
@@ -91,6 +91,14 @@ in
     ];
   };
 
+  systemd.user.startServices = "sd-switch";
+
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSshSupport = true;
+  };
 }
 
 
@@ -107,22 +115,11 @@ in
   virtualisation.docker.enable = true;
   users.users.kyle.extraGroups = [ "docker" ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-    enableSSHSupport = true;
-  };
-
-  programs.mosh.enable = true;
   services.eternal-terminal = {
     enable = true;
     port = 60009;
   };
 
-  home = {
+        eternal-terminal
 
-  };
-
-  # restart services on change
-  systemd.user.startServices = "sd-switch";
   */
