@@ -24,14 +24,6 @@
     {
       homeConfiguration =
         import ./outputs/home-conf.nix { inherit inputs system pkgs; };
-/*
-      nixosConfigurations =
-        import ./outputs/nixos-conf.nix { inherit inputs system pkgs extraArgs; };
-
-      packages.${system} = {
-        inherit (pkgs) bazecor metals metals-updater;
-      };
-      */
     };
 }
 # nix build .#homeConfigurations.home.activationPackage

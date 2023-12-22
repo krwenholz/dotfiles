@@ -100,26 +100,3 @@ in
     enableSshSupport = true;
   };
 }
-
-
-# TODO(kyle): get this back in there
-/*
-  system.environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-  '';
-
-  virtualisation.docker.enable = true;
-  users.users.kyle.extraGroups = [ "docker" ];
-
-  services.eternal-terminal = {
-    enable = true;
-    port = 60009;
-  };
-
-        eternal-terminal
-
-  */
