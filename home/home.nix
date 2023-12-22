@@ -32,45 +32,6 @@ in
       VISUAL = "vim";
       THINGS = "$HOME/dinge";
     };
-  };
-
-}
-
-
-# TODO(kyle): get this back in there
-/*
-  system.environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-  '';
-
-  virtualisation.docker.enable = true;
-  users.users.kyle.extraGroups = [ "docker" ];
-
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-    enableSSHSupport = true;
-  };
-
-  programs.mosh.enable = true;
-  services.eternal-terminal = {
-    enable = true;
-    port = 60009;
-  };
-
-  home = {
-    inherit username homeDirectory;
-    stateVersion = "23.05";
-    
-    sessionVariables = {
-      EDITOR = "vim";
-      VISUAL = "vim";
-      THINGS = "$HOME/dinge";
-    };
 
     packages = with pkgs; [
       ack
@@ -78,7 +39,6 @@ in
       eternal-terminal
       fwupd
       gcc
-      git
       gitAndTools.diff-so-fancy
       gnumake
       gnupg
@@ -88,7 +48,7 @@ in
       lsd
       lsof
       moreutils
-      neovim vim
+      vim
       ngrok
       nix-index
       ntp
@@ -129,6 +89,37 @@ in
       rustc
       wireshark
     ];
+  };
+
+}
+
+
+# TODO(kyle): get this back in there
+/*
+  system.environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
+
+  virtualisation.docker.enable = true;
+  users.users.kyle.extraGroups = [ "docker" ];
+
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSSHSupport = true;
+  };
+
+  programs.mosh.enable = true;
+  services.eternal-terminal = {
+    enable = true;
+    port = 60009;
+  };
+
+  home = {
 
   };
 
