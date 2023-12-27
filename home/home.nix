@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, lib, username, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -7,6 +7,7 @@
     ./shell
     ./git
     ./vim
+    ./activations
     #./custom-packages.nix
   ];
 #  ++ (

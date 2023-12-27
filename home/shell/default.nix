@@ -143,6 +143,14 @@
           bindkey '^F' fzf-file-widget
           eval "$(starship init zsh)"
           RPROMPT=""
+          mkdir -p ~/.aws
+          echo $AWS_CREDENTIALS > ~/.aws/credentials
+          
+          mkdir -p ~/.ssh
+          echo $SSH_KEY > ~/.ssh/kyle
+          echo $SSH_KEY_PUB > ~/.ssh/kyle.pub
+          chmod 644 ~/.ssh/kyle.pub && \
+          chmod 600 ~/.ssh/kyle
         '';
         loginExtra = "cbonsai -p";
       };

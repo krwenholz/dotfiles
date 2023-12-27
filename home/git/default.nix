@@ -4,12 +4,20 @@
   programs.git = {
       package = pkgs.gitAndTools.gitFull;
       enable = true;
+      diff-so-fancy.enable = true;
       userName = "Kyle Wenholz";
-      userEmail = "kyle@ngrok.com";
-      signing = {
-        key = "kyle@ngrok.com";
-        signByDefault = false;
-      };
+      userEmail = "kyle@krwenholz.com";
+      includes = [
+          {
+            contents = {
+              user = {
+                email = "kyle@ngrok.com";
+                name = "Kyle Wenholz";
+              };
+            };
+            condition = "hasconfig:remote.*.url:https://github.com/ngrok*/**";
+          }
+      ];
       extraConfig = {
         core.editor = "vim";
         pager = {
@@ -22,10 +30,13 @@
         push = {
           default = "simple";
         };
+        gpg.format = "ssh";
+        user.signingkey = "~/.ssh/kyle";
       };
       ignores = [
         "*~"
         "nocommit-config"
+        "results"
 
         # KDE directory preferences
         ".directory"
