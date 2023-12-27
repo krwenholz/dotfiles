@@ -22,9 +22,8 @@
       };
     in
     {
-      homeConfiguration =
-        import ./outputs/home-conf.nix { inherit inputs system pkgs; };
+      homeConfigurations = {
+         kyle = (with { username = "kyle"; }; import ./outputs/home-conf.nix { inherit inputs system username pkgs; });
+      };
     };
 }
-# nix build .#homeConfigurations.home.activationPackage
-# nix flake update && nix flake lock

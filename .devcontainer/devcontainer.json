@@ -32,7 +32,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"arrterian.nix-env-selector"
+				"arrterian.nix-env-selector",
+				"GitHub.copilot",
+				"vscodevim.vim"
 			]
 		}
 	},

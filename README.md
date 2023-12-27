@@ -1,4 +1,22 @@
-I'm experimenting with things. I had a working nix setup but am now venturing into Codespaces and flakes. 
-Wish me luck, and follow along with notes and more here.
+A nix based setup! It's getting good. Home Manager is activated with
 
-https://github.com/NixOS/nix/issues/6680#issuecomment-1577781769
+To update things and prove it all compiles (should work):
+
+```
+git add . && \
+nix flake update && \
+nix flake lock && \
+nix build .#homeConfigurations.kyle.home.activationPackage
+```
+
+To apply the primary Home Manager flake:
+
+```
+nix run home-manager/release-23.11 -- switch --flake .#homeConfigurations.kyle
+```
+
+# nix build .#homeConfigurations.home.activationPackage
+# 
+
+# Some resources
+[tips and tricks](https://ipetkov.dev/blog/tips-and-tricks-for-nix-flakes/)

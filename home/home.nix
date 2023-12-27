@@ -1,10 +1,5 @@
-{ pkgs, lib, ... }:
+{ pkgs, username, ... }:
 
-let
-  username = "kyle";
-  homeDirectory = "/home/${username}";
-  configHome = "${homeDirectory}/.config";
-in
 {
   programs.home-manager.enable = true;
 
@@ -23,9 +18,9 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home = {
+  inherit username;
+  homeDirectory = "/home/${username}";
   stateVersion = "23.11";
-  username = "kyle";
-  homeDirectory = "/home/kyle";  
   
     sessionVariables = {
       EDITOR = "vim";
@@ -96,7 +91,7 @@ in
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "curses";
     enableSshSupport = true;
   };
 }
