@@ -6,18 +6,15 @@ To update things and prove it all compiles (should work):
 git add . && \
 nix flake update && \
 nix flake lock && \
-nix build .#homeConfigurations.$USER.home.activationPackage 
+nix run . -- build .
 ```
 
 To apply the primary Home Manager flake:
 
 ```
-nix run home-manager/release-23.11 -- switch --flake .#homeConfigurations.$USER && \
-./result/activate
+nix run . -- switch --flake .
 ```
-
-# nix build .#homeConfigurations.home.activationPackage
-# 
 
 # Some resources
 [tips and tricks](https://ipetkov.dev/blog/tips-and-tricks-for-nix-flakes/)
+[a nice tutorial](https://www.chrisportela.com/posts/home-manager-flake/)

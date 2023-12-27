@@ -12,19 +12,28 @@
     };
   };
 
-  outputs = inputs:
+  outputs = {nixpkgs, nurpkgs, home-manager, ...}:
     let
       system = "x86_64-linux";
 
-      pkgs = import inputs.nixpkgs {
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
     in
     {
+      defaultPackage.x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
+      defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+
       homeConfigurations = {
-         kyle = (with { username = "kyle"; }; import ./outputs/home-conf.nix { inherit inputs system username pkgs; });
-         code = (with { username = "code"; }; import ./outputs/home-conf.nix { inherit inputs system username pkgs; });
+         kyle = (with { username = "kyle"; }; home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [(import ./home/home.nix { inherit pkgs username; })];
+         });
+         code = (with { username = "code"; }; home-manager.lib.homeManagerConfiguration {
+           inherit pkgs;
+           modules = [(import ./home/home.nix { inherit pkgs username; })];
+         });
       };
     };
 }

@@ -43,5 +43,5 @@
 	"forwardPorts": [],
   
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "nix run home-manager/release-23.11 -- switch --flake .#homeConfigurations.$USER && ./result/activate"
+	"postCreateCommand": "nix run . -- build . && nix run . -- switch --flake ."
   }
