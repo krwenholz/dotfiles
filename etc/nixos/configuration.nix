@@ -1,42 +1,42 @@
 {
-  imports = [] ++ (
-        if builtins.pathExists ./hardware-configuration.nix
-        then [
-          ./hardware-configuration.nix
-        ]
-        else []
-    ) ++ (
-        if builtins.pathExists ./is_ec2
-        then [
-          "${modulesPath}/virtualisation/amazon-image.nix"
-        ]
-        else []
-    )  ++ (
-        if builtins.pathExists ./custom-auth.nix
-        then [
-          ./custom-auth.nix
-        ]
-        else []
-    ) ++ (
-        if builtins.pathExists /home/kyle/default.nix
-        then [
-          <home-manager/nixos>
-          /home/kyle
-        ]
-        else []
-    ) ++ (
-        if builtins.pathExists ./hardware-builder.nix
-        then [
-          ./hardware-builder.nix
-        ]
-        else []
-    ) ++ (
-        if builtins.pathExists ./vagrant-hostname.nix
-        then [
-          ./vagrant-hostname.nix
-        ]
-        else []
-    );
+  imports = [ ] ++ (
+    if builtins.pathExists ./hardware-configuration.nix
+    then [
+      ./hardware-configuration.nix
+    ]
+    else [ ]
+  ) ++ (
+    if builtins.pathExists ./is_ec2
+    then [
+      "${modulesPath}/virtualisation/amazon-image.nix"
+    ]
+    else [ ]
+  ) ++ (
+    if builtins.pathExists ./custom-auth.nix
+    then [
+      ./custom-auth.nix
+    ]
+    else [ ]
+  ) ++ (
+    if builtins.pathExists /home/kyle/default.nix
+    then [
+      <home-manager/nixos>
+      /home/kyle
+    ]
+    else [ ]
+  ) ++ (
+    if builtins.pathExists ./hardware-builder.nix
+    then [
+      ./hardware-builder.nix
+    ]
+    else [ ]
+  ) ++ (
+    if builtins.pathExists ./vagrant-hostname.nix
+    then [
+      ./vagrant-hostname.nix
+    ]
+    else [ ]
+  );
 
   ec2.hvm = builtins.pathExists ./is_ec2;
 

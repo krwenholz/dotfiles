@@ -10,19 +10,19 @@
     ./activations
     #./custom-packages.nix
   ];
-#  ++ (
-#      if builtins.pathExists ./corporate.nix
-#      then [ ./corporate.nix ]
-#      else []
-#  );
+  #  ++ (
+  #      if builtins.pathExists ./corporate.nix
+  #      then [ ./corporate.nix ]
+  #      else []
+  #  );
 
   nixpkgs.config.allowUnfree = true;
 
   home = {
-  inherit username;
-  homeDirectory = "/home/${username}";
-  stateVersion = "23.11";
-  
+    inherit username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "23.11";
+
     sessionVariables = {
       EDITOR = "vim";
       VISUAL = "vim";
