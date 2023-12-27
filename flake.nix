@@ -24,6 +24,7 @@
     {
       homeConfigurations = {
          kyle = (with { username = "kyle"; }; import ./outputs/home-conf.nix { inherit inputs system username pkgs; });
+         code = (with { username = "code"; }; import ./outputs/home-conf.nix { inherit inputs system username pkgs; });
       };
     };
 }

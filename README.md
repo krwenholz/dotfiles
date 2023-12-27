@@ -6,13 +6,14 @@ To update things and prove it all compiles (should work):
 git add . && \
 nix flake update && \
 nix flake lock && \
-nix build .#homeConfigurations.kyle.home.activationPackage
+nix build .#homeConfigurations.$USER.home.activationPackage 
 ```
 
 To apply the primary Home Manager flake:
 
 ```
-nix run home-manager/release-23.11 -- switch --flake .#homeConfigurations.kyle
+nix run home-manager/release-23.11 -- switch --flake .#homeConfigurations.$USER && \
+./result/activate
 ```
 
 # nix build .#homeConfigurations.home.activationPackage
