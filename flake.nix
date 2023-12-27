@@ -28,11 +28,11 @@
       homeConfigurations = {
          kyle = (with { username = "kyle"; }; home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-            modules = [(import ./home/home.nix { inherit pkgs username; })];
+            modules = [(import ./home/home.nix { inherit pkgs lib username; })];
          });
          code = (with { username = "code"; }; home-manager.lib.homeManagerConfiguration {
            inherit pkgs;
-           modules = [(import ./home/home.nix { inherit pkgs username; })];
+           modules = [(import ./home/home.nix { inherit pkgs lib username; })];
          });
       };
     };
