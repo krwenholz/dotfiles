@@ -17,7 +17,7 @@
   
 	"containerEnv": {
 	   // extensions to preload before other extensions
-	  "PRELOAD_EXTENSIONS": "arrterian.nix-env-selector"
+	   //"PRELOAD_EXTENSIONS": "arrterian.nix-env-selector"
 	},
   
 	 // disable command overriding and updating remote user ID
