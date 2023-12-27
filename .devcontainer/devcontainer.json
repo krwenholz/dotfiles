@@ -7,7 +7,7 @@
 	  "args": {
 		"USER_UID": "${localEnv:USER_UID}",
 		"USER_GID": "${localEnv:USER_GID}"
-	  },
+	  }
 	},
   
 	// run arguments passed to docker
@@ -26,14 +26,14 @@
 	"updateRemoteUserUID": false,
   
 	// build development environment on creation, make sure you already have shell.nix
-	//"onCreateCommand": "nix-shell --command 'echo done building nix dev environment'",
+	//"onCreateCommand": "echo hi",
   
 	// Add the IDs of extensions you want installed when the container is created.
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"arrterian.nix-env-selector",
 				"GitHub.copilot",
+				"GitHub.copilot-chat",
 				"vscodevim.vim"
 			]
 		}
@@ -43,5 +43,5 @@
 	"forwardPorts": [],
   
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "go version",
+	"postCreateCommand": "nix run home-manager/release-23.11 -- switch --flake .#homeConfigurations.$USER && ./result/activate"
   }
