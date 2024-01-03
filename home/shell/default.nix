@@ -151,16 +151,14 @@
       echo $SSH_KEY_PUB > ~/.ssh/kyle.pub
       chmod 644 ~/.ssh/kyle.pub && \
       chmod 600 ~/.ssh/kyle
+
+      eval "$(direnv hook zsh)"
     '';
     loginExtra = ''
            ^...^
           / o,o \
           |):::(|
         ====w=w===
-    '';
-    profileExtra = ''
-      # Mostly for ngrok, so I get bash goodies by default
-      emulate sh -c 'source /etc/profile'
     '';
   };
   programs.fzf = {
