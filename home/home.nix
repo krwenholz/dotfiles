@@ -32,7 +32,6 @@
     packages = with pkgs; [
       ack
       entr
-      fwupd
       gcc
       gitAndTools.diff-so-fancy
       gnumake
@@ -52,7 +51,6 @@
       openssh
       openssl
       peek
-      linuxKernel.packages.linux_5_15.perf
       pinentry
       pinentry-curses
       rclone
@@ -65,7 +63,6 @@
       wget
       zsh
       docker-compose
-      firefox
       fx
       fd
       go
@@ -81,8 +78,6 @@
       wireguard-tools
       sumneko-lua-language-server
       stylua
-      cargo
-      rustc
       wireshark
     ];
   };

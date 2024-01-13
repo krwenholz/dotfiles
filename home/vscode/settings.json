@@ -22,5 +22,9 @@
         }
     },
     "workbench.colorTheme": "Default Dark Modern",
-    "git.autofetch": true
+    "workbench.settings.editor": "json",
+    "git.autofetch": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
