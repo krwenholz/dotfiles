@@ -10,6 +10,7 @@
   programs.tmux = {
     enable = true;
     keyMode = "vi";
+    shell = "/bin/zsh";
     #bind-key -T copy-mode y send-keys -X copy-pipe-and-cancel 'xclip -selection clipboard >/dev/null'
     extraConfig = ''
       set -g default-terminal "xterm-256color"
@@ -155,10 +156,12 @@
       eval "$(direnv hook zsh)"
     '';
     loginExtra = ''
+    echo "
            ^...^
-          / o,o \
+          / o,o \\
           |):::(|
         ====w=w===
+        "
     '';
   };
   programs.fzf = {
