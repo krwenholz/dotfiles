@@ -154,6 +154,10 @@
       chmod 600 ~/.ssh/kyle
 
       eval "$(direnv hook zsh)"
+
+      # needed to be able to open files in VS Code's editor from the command line, especially tmux
+      # https://github.com/microsoft/vscode-remote-release/issues/6362#issuecomment-1047851356
+      export VSCODE_IPC_HOOK_CLI="$( \ls 2>/dev/null -1 -t /tmp/vscode-ipc-*.sock | head -n 1 )"
     '';
     loginExtra = ''
     echo "
