@@ -138,8 +138,7 @@
         git checkout -b kyle/$1
       }
       PATH=$PATH:$HOME/includes/bin
-    '';
-    initExtra = ''
+
       bindkey '^F' fzf-file-widget
       eval "$(starship init zsh)"
       RPROMPT=""
@@ -159,11 +158,13 @@
       export VSCODE_IPC_HOOK_CLI="$( \ls 2>/dev/null -1 -t /tmp/vscode-ipc-*.sock | head -n 1 )"
 
       echo "
-            ^...^
+             ^...^
             / o,o \\
             |):::(|
           ====w=w===
           "
+    '';
+    initExtra = ''
     '';
   };
   programs.fzf = {
