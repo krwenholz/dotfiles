@@ -52,6 +52,7 @@
       simple_server = "nix-shell -p python3 --command 'python3 -m http.server 8000'";
       ipython = "nix-shell -p pkgs.python38Packages.ipython --command ipython";
       performance_test = "/usr/bin/time -f '%Uu %Ss %er %MkB %C' \"$@\"";
+      pandoc_readmes = "nix-shell --packages \"[ pandoc texliveSmall mermaid-filter ]\" --command 'pandoc README.md -o README.pdf --toc -V papersize:a4 --highlight-style pygments -N -V geometry:\"top=2cm, bottom=1.5cm, left=2cm, right=2cm\"'";
     };
     history = {
       save = 100000;
