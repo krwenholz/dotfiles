@@ -64,9 +64,6 @@
       docker-compose
       fx
       fd
-      go
-      gotools
-      gopls
       gron
       nodePackages.typescript-language-server
       nodePackages.prettier
