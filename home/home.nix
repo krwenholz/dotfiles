@@ -21,7 +21,7 @@
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
-    stateVersion = "23.11";
+    stateVersion = "unstable";
 
     sessionVariables = {
       EDITOR = "vim";
