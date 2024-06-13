@@ -21,7 +21,7 @@
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
-    stateVersion = "unstable";
+    stateVersion = "24.11";
 
     sessionVariables = {
       EDITOR = "vim";
@@ -51,7 +51,6 @@
       openssh
       openssl
       peek
-      pinentry
       pinentry-curses
       rclone
       ripgrep
@@ -83,7 +82,6 @@
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "curses";
     enableSshSupport = true;
   };
 }
