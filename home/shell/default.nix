@@ -157,7 +157,7 @@
       # Sometimes, it's just easier to have asdf around (e.g. installing elixir in docker on mac in a devcontainer on a turtle)
       if test -d "$HOME/.asdf"; then
         echo "Sourcing asdf, since it's here"
-        . "$HOME/.asdf/asdf"
+        . "$HOME/.asdf/asdf.sh"
       fi
 
       # needed to be able to open files in VS Code's editor from the command line, especially tmux
