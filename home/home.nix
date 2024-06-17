@@ -1,5 +1,7 @@
-{ pkgs, lib, username, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
 
+let
+in
 {
   programs.home-manager.enable = true;
 
@@ -19,8 +21,8 @@
   nixpkgs.config.allowUnfree = true;
 
   home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
+    username = "kyle";
+    homeDirectory = "/home/kyle";
     stateVersion = "24.11";
 
     sessionVariables = {
@@ -54,7 +56,6 @@
       pinentry-curses
       rclone
       ripgrep
-      guardian-agent
       tmux
       tree
       unzip
@@ -83,5 +84,6 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 }
