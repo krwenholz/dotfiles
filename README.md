@@ -12,7 +12,7 @@ nix run ".#home-manager" -- build --flake ".#code"
 To apply the primary Home Manager flake:
 
 ```
-nix run ".#home-manager" -- build --flake ".#code"
+nix run ".#home-manager" -- build --flake ".#code@arm"
 ```
 
 # Some resources

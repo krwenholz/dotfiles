@@ -54,25 +54,20 @@ in
       openssl
       peek
       pinentry-curses
-      rclone
       ripgrep
       tmux
       tree
       unzip
       wget
       zsh
-      docker-compose
       fx
       fd
       gron
-      nodePackages.typescript-language-server
       nodePackages.prettier
       starship
       ncurses
-      black
       nix-direnv
       wireguard-tools
-      sumneko-lua-language-server
       stylua
       wireshark
     ];

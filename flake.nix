@@ -30,9 +30,9 @@
     };
   in {
     homeConfigurations."kyle@x86_64" = mkHomeConfig "kyle" "x86_64-linux";
-    homeConfigurations."kyle@arm" = mkHomeConfig "kyle" "aarch64-linux";
+    homeConfigurations."kyle@aarch64" = mkHomeConfig "kyle" "aarch64-linux";
     homeConfigurations."code@x86_64" = mkHomeConfig "code" "x86_64-linux";
-    homeConfigurations."code@arm" = mkHomeConfig "code" "aarch64-linux";
+    homeConfigurations."code@aarch64" = mkHomeConfig "code" "aarch64-linux";
 
     inherit home-manager;
     inherit (home-manager) packages;

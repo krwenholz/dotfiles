@@ -39,8 +39,8 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [],
+  "forwardPorts": []
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "nix run . -- build --flake . && nix run . -- switch --flake ."
+  //"postCreateCommand": "nix run . -- build --flake . && nix run . -- switch --flake ."
 }

@@ -1,1 +1,2 @@
-nix run home-manager/release-23.11 -- switch --flake github:krwenholz/dotfiles
+# home-manager switch --flake "github:krwenholz/dotfiles.#code@$(uname -m)-linux"
+nix run home-manager/release-24.05 -- switch --flake "github:krwenholz/dotfiles.#code@$(uname -m)-linux"
