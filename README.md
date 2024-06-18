@@ -12,7 +12,13 @@ nix run ".#home-manager" -- build --flake ".#code"
 To apply the primary Home Manager flake:
 
 ```
-nix run ".#home-manager" -- build --flake ".#code@arm"
+nix run ".#home-manager" -- build --flake "#code@aarch64"
+```
+
+or
+
+```
+home-manager switch --flake "github:krwenholz/dotfiles#$(whoami)@$(uname -m)"
 ```
 
 # Some resources
