@@ -43,7 +43,7 @@ in
       jq
       lsd
       lsof
-      #moreutils # WARN: not currently working on mac
+      moreutils
       mosh
       vim
       ngrok

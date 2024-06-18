@@ -12,31 +12,42 @@
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, utils }:
-    let
-      pkgsForSystem = system: import nixpkgs {
-        inherit system;
+  outputs = { nixpkgs, home-manager, utils, ... }:
+    {
+      legacyPackages = import nixpkgs {
+        system = "aarch64-linux";
         config.allowUnfree = true;
       };
-
-      mkHomeConfiguration = args: home-manager.lib.homeManagerConfiguration (rec {
-        modules = [ (import ./home/home.nix) ] ++ (args.modules or []);
-        pkgs = pkgsForSystem (args.system or "x86_64-linux");
-      }) // { inherit (args) extraSpecialArgs; };
-
-    in utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ] (system: rec {
-      legacyPackages = pkgsForSystem system;
-    }) // {
-      homeConfigurations.kyle = mkHomeConfiguration {
-        extraSpecialArgs = {};
+      homeConfigurations.kyle = home-manager.lib.homeManagerConfiguration {
+        modules = [
+          (import ./home/home.nix)
+          ({lib,...}:
+          {
+            home.username = lib.mkForce "code";
+            home.homeDirectory = lib.mkForce "/home/code";
+          })
+        ];
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
       };
-      homeConfigurations.code = mkHomeConfiguration {
-        modules = [ ({lib,...}:
-        {
-          home.username = lib.mkForce "code";
-          home.homeDirectory = lib.mkForce "/home/code";
-        })];
-        extraSpecialArgs = {};
+      homeConfigurations.code = home-manager.lib.homeManagerConfiguration {
+        modules = [
+          (import ./home/home.nix)
+          ({lib,...}:
+          {
+            home.username = lib.mkForce "code";
+            home.homeDirectory = lib.mkForce "/home/code";
+          })
+        ];
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          config.allowUnfree = true;
+        };
       };
+
+      inherit home-manager;
+      inherit (home-manager) packages;
     };
 }
