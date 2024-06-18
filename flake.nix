@@ -13,41 +13,28 @@
   };
 
   outputs = { nixpkgs, home-manager, utils, ... }:
-    {
-      legacyPackages = import nixpkgs {
-        system = "aarch64-linux";
+  let
+    mkHomeConfig = usr: system: home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        inherit system;
         config.allowUnfree = true;
       };
-      homeConfigurations.kyle = home-manager.lib.homeManagerConfiguration {
-        modules = [
-          (import ./home/home.nix)
-          ({lib,...}:
-          {
-            home.username = lib.mkForce "code";
-            home.homeDirectory = lib.mkForce "/home/code";
-          })
-        ];
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-          config.allowUnfree = true;
-        };
-      };
-      homeConfigurations.code = home-manager.lib.homeManagerConfiguration {
-        modules = [
-          (import ./home/home.nix)
-          ({lib,...}:
-          {
-            home.username = lib.mkForce "code";
-            home.homeDirectory = lib.mkForce "/home/code";
-          })
-        ];
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-          config.allowUnfree = true;
-        };
-      };
-
-      inherit home-manager;
-      inherit (home-manager) packages;
+      modules = [
+        (import ./home/home.nix)
+        ({lib,...}:
+        {
+          home.username = lib.mkForce (usr);
+          home.homeDirectory = lib.mkForce "/home/${usr}";
+        })
+      ];
     };
+  in {
+    homeConfigurations."kyle@x86_64" = mkHomeConfig "kyle" "x86_64-linux";
+    homeConfigurations."kyle@arm" = mkHomeConfig "kyle" "aarch64-linux";
+    homeConfigurations."code@x86_64" = mkHomeConfig "code" "x86_64-linux";
+    homeConfigurations."code@arm" = mkHomeConfig "code" "aarch64-linux";
+
+    inherit home-manager;
+    inherit (home-manager) packages;
+  };
 }
