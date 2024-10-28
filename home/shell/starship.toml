@@ -60,9 +60,9 @@ disabled = false
 
 # The character stays the same!
 [character]
-success_symbol = "[ツ>](green)"
-error_symbol = "[ӧ>](green)"
-vicmd_symbol = "[웃>](green)"
+success_symbol = "[>>>](green)"
+error_symbol = "[>>>](red)"
+vicmd_symbol = "[>>>](bg:white fg:green)"
 
 [status]
 disabled = false

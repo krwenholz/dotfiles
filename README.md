@@ -6,13 +6,13 @@ To update things and prove it all compiles (should work):
 git add . && \
 nix flake update && \
 nix flake lock && \
-nix run ".#home-manager" -- build --flake ".#code"
+nix run ".#home-manager" -- build --flake ".#code@aarch64"
 ```
 
 To apply the primary Home Manager flake:
 
 ```
-nix run ".#home-manager" -- build --flake "#code@aarch64"
+nix run ".#home-manager" -- build --flake ".#code@aarch64"
 ```
 
 or
