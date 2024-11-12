@@ -60,6 +60,8 @@ disabled = false
 
 # The character stays the same!
 [character]
+# Careful that these are simple chars, otherwise VSCode might render them improperly, breaking
+# line-wrapping.
 success_symbol = "[>>>](green)"
 error_symbol = "[>>>](red)"
 vicmd_symbol = "[>>>](bg:white fg:green)"
