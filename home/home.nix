@@ -34,20 +34,26 @@ in
     packages = with pkgs; [
       ack
       entr
+      fd
+      fx
       gcc
       gitAndTools.diff-so-fancy
       gnumake
       gnupg
+      gron
       highlight
       htop
       jq
+      litecli
       lsd
       lsof
       moreutils
       mosh
-      vim
+      ncurses
       ngrok
+      nix-direnv
       nix-index
+      nodePackages.prettier
       ntp
       oathToolkit
       openssh
@@ -55,21 +61,16 @@ in
       peek
       pinentry-curses
       ripgrep
+      starship
+      stylua
       tmux
       tree
       unzip
+      vim
       wget
-      zsh
-      fx
-      fd
-      gron
-      nodePackages.prettier
-      starship
-      ncurses
-      nix-direnv
       wireguard-tools
-      stylua
       wireshark
+      zsh
     ];
   };
 
