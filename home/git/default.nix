@@ -180,6 +180,10 @@
       "bundle/"
       ".bundle"
       ".byebug_history"
+
+      # jujutsu #
+      ###########
+      ".jj/"
     ];
   };
 }

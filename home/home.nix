@@ -44,11 +44,10 @@ in
       highlight
       htop
       jq
-      litecli
+      jujutsu
       lsd
       lsof
       moreutils
-      mosh
       ncurses
       ngrok
       nix-direnv
@@ -66,7 +65,6 @@ in
       tmux
       tree
       unzip
-      vim
       wget
       wireguard-tools
       wireshark

@@ -12,7 +12,7 @@ nix run ".#home-manager" -- build --flake ".#code@aarch64"
 To apply the primary Home Manager flake:
 
 ```
-nix run ".#home-manager" -- build --flake ".#code@aarch64"
+nix run ".#home-manager" -- switch --flake ".#code@aarch64"
 ```
 
 or
