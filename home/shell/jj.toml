@@ -6,3 +6,6 @@ email = "kyle@krwenholz.com"
 # Show commits that are not in `main@origin`
 log = "main@origin.."
 # Default is 'present(@) | ancestors(immutable_heads().., 2) | present(trunk())'
+
+[git]
+auto-local-bookmark = true
