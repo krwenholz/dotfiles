@@ -6,52 +6,10 @@ format = """$status\
 $username\
 $hostname\
 $shlvl\
-$kubernetes\
 $directory\
-$git_branch\
-$git_commit\
-$git_state\
-$git_status\
-$hg_branch\
-$docker_context\
-$package\
-$cmake\
-$dart\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$golang\
-$helm\
-$java\
-$julia\
-$nim\
-$nodejs\
-$ocaml\
-$perl\
-$php\
-$purescript\
-$python\
-$ruby\
-$rust\
-$swift\
-$terraform\
-$zig\
-$nix_shell\
-$conda\
-$memory_usage\
-$aws\
-$gcloud\
-$openstack\
-$env_var\
-$crystal\
 $cmd_duration\
 $custom\
 $line_break\
-$lua\
-$jobs\
-$battery\
-$time\
 $character"""
 
 # One-line prompt
@@ -62,9 +20,16 @@ disabled = false
 [character]
 # Careful that these are simple chars, otherwise VSCode might render them improperly, breaking
 # line-wrapping.
-success_symbol = "[>>>](green)"
-error_symbol = "[>>>](red)"
-vicmd_symbol = "[>>>](bg:white fg:green)"
+success_symbol = "[-->](green)"
+error_symbol = "[-->](red)"
+vicmd_symbol = "[-->](bg:white fg:green)"
+
+# https://starship.rs/config/#example-81
+# [custom.foo]
+# command = 'echo foo' # shows output of command
+# detect_files = ['foo'] # can specify filters but wildcards are not supported
+# when = ''' test "$HOME" = "$PWD" '''
+# format = ' transcending [$output]($style)'
 
 [status]
 disabled = false
@@ -74,35 +39,13 @@ style = "yellow"
 [directory]
 style = "purple"
 truncate_to_repo = false
-
-[git_branch]
-format = "[\\[$symbol$branch\\]]($style) "
-symbol = ""
-style = "green"
-
-[git_status]
-format = "([$conflicted$deleted$renamed$modified$staged$untracked$ahead_behind]($style) )"
-ahead = "[⇡${count}](7)"
-diverged = "[⇕⇡${ahead_count}⇣${behind_count}](7)"
-behind = "[⇣${count}](7)"
-modified = "[!](red)"
-deleted = "[x](red)"
-untracked = "[?](yellow)"
-staged = "[+](yellow)"
-renamed = ""
-style = "green"
+format = '[$path]($style) '
+truncation_length = 8
 
 [cmd_duration]
 disabled = false
-
-[aws]
-disabled = true
-
-[jobs]
-disabled = true
-
-[nix_shell]
-disabled = true
+min_time = 500 # milliseconds
+format = 'took [$duration]($style) '
 
 [hostname]
 format = "[$hostname]($style):"
@@ -111,31 +54,3 @@ style = "cyan"
 [username]
 format = "[$user@]($style)"
 style_user = "cyan"
-
-[php]
-disabled = true
-
-[ruby]
-disabled = true
-
-[python]
-disabled = true
-
-[nodejs]
-disabled = true
-
-[java]
-disabled = true
-
-[rust]
-disabled = true
-
-[package]
-disabled = true
-
-[terraform]
-disabled = true
-
-[elm]
-disabled = true
-
