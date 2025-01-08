@@ -34,11 +34,8 @@ in
     packages = with pkgs; [
       ack
       entr
-      gcc
       gitAndTools.diff-so-fancy
-      gnumake
       gnupg
-      highlight
       htop
       jq
       jujutsu
