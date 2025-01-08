@@ -34,19 +34,15 @@ in
     packages = with pkgs; [
       ack
       entr
-      fd
-      fx
       gcc
       gitAndTools.diff-so-fancy
       gnumake
       gnupg
-      gron
       highlight
       htop
       jq
       jujutsu
       lsd
-      lsof
       moreutils
       ncurses
       ngrok
@@ -54,10 +50,8 @@ in
       nix-index
       nodePackages.prettier
       ntp
-      oathToolkit
       openssh
       openssl
-      peek
       pinentry-curses
       ripgrep
       starship
@@ -67,7 +61,6 @@ in
       unzip
       wget
       wireguard-tools
-      wireshark
       zsh
     ];
   };

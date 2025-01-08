@@ -55,11 +55,6 @@
   };
 
   programs.zsh.enable = true;
-  programs.mosh.enable = true;
-  services.eternal-terminal = {
-    enable = true;
-    port = 60009;
-  };
 
   networking.firewall = {
     enable = true;
