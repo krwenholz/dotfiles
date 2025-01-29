@@ -17,6 +17,15 @@
         };
         condition = "hasconfig:remote.*.url:https://github.com/ngrok*/**";
       }
+      {
+        contents = {
+          user = {
+            email = "kwenholz@faynutrition.com";
+            name = "Kyle Wenholz";
+          };
+        };
+        condition = "hasconfig:remote.*.url:*fayhealthinc*";
+      }
     ];
     extraConfig = {
       core.editor = "vim";

@@ -165,10 +165,10 @@
       # https://github.com/microsoft/vscode-remote-release/issues/6362#issuecomment-1047851356
       export VSCODE_IPC_HOOK_CLI="$( \ls 2>/dev/null -1 -t /tmp/vscode-ipc-*.sock | head -n 1 )"
 
-      # Shell completions
+      # Dynamic jj completions
       autoload -U compinit
       compinit
-      source <(jj util completion zsh)
+      source <(COMPLETE=zsh jj)
 
       echo "
              ^...^
