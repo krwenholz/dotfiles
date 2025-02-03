@@ -18,7 +18,7 @@ nix run ".#home-manager" -- switch --flake ".#code@aarch64"
 or
 
 ```
-home-manager switch --flake "github:krwenholz/dotfiles#$(whoami)@$(uname -m)"
+nix run home-manager/release-24.05 -- switch --flake "github:krwenholz/dotfiles#$(whoami)@$(uname -m)"
 ```
 
 # Some resources
