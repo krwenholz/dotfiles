@@ -170,6 +170,9 @@
       compinit
       source <(COMPLETE=zsh jj)
 
+      # Minor Fay things
+      export FAY_USER=kwenholz
+
       echo "
              ^...^
             / o,o \\
