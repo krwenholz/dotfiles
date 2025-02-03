@@ -143,8 +143,10 @@
 
       bindkey '^F' fzf-file-widget
       RPROMPT=""
-      mkdir -p ~/.aws
-      echo $AWS_CREDENTIALS > ~/.aws/credentials
+      if [ -v AWS_CREDENTIALS ]; then
+        mkdir -p ~/.aws
+        echo $AWS_CREDENTIALS > ~/.aws/credentials
+      fi
           
       mkdir -p ~/.ssh
       echo $SSH_KEY > ~/.ssh/kyle
