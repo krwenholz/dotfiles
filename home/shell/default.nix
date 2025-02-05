@@ -164,8 +164,11 @@
       # https://github.com/microsoft/vscode-remote-release/issues/6362#issuecomment-1047851356
       export VSCODE_IPC_HOOK_CLI="$( \ls 2>/dev/null -1 -t /tmp/vscode-ipc-*.sock | head -n 1 )"
 
-      # Minor Fay things
+      # Company things
       export FAY_USER=kwenholz
+      if [ -e "$HOME/corporate_things.sh" ]; then
+        source "$HOME/corporate_things.sh"
+      fi
 
       echo "
              ^...^
