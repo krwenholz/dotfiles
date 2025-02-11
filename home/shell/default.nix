@@ -4,6 +4,7 @@
   home.file = {
     ".config/starship.toml".text = builtins.readFile ./starship.toml;
     ".config/jj/config.toml".text = builtins.readFile ./jj.toml;
+    ".config/pgcli/config".text = builtins.readFile ./pgcli.toml;
     ".ipython/profile_default/ipython_config.py".text = builtins.readFile ./ipython_config.py;
   };
 
