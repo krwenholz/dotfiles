@@ -11,16 +11,7 @@
       {
         contents = {
           user = {
-            email = "kyle@ngrok.com";
-            name = "Kyle Wenholz";
-          };
-        };
-        condition = "hasconfig:remote.*.url:https://github.com/ngrok*/**";
-      }
-      {
-        contents = {
-          user = {
-            email = "kwenholz@faynutrition.com";
+            email = "krwenholz@faynutrition.com";
             name = "Kyle Wenholz";
           };
         };
