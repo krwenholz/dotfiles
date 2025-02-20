@@ -166,7 +166,7 @@
       export VSCODE_IPC_HOOK_CLI="$( \ls 2>/dev/null -1 -t /tmp/vscode-ipc-*.sock | head -n 1 )"
 
       # Company things
-      export FAY_USER=kwenholz
+      export FAY_USER=krwenholz
       if [ -e "$HOME/corporate_things.sh" ]; then
         source "$HOME/corporate_things.sh"
       fi
