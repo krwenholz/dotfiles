@@ -146,9 +146,17 @@
       rfv() (
         RELOAD='reload:rg --column --color=always --smart-case {q} || :'
         OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-                  vim {1} +{2}     # No selection. Open the current line in Vim.
+                  if [[ command -v code-insiders; then
+                    code-insiders {1} +{2}
+                  else
+                    vim {1} +{2}     # No selection. Open the current line in Vim.
+                  fi
                 else
-                  vim +cw -q {+f}  # Build quickfix list for the selected items.
+                  if [[ command -v code-insiders; then
+                    code-insiders {+f}
+                  else
+                    vim +cw -q {+f}  # Build quickfix list for the selected items.
+                  fi
                 fi'
         fzf --disabled --ansi --multi \
             --bind "start:$RELOAD" --bind "change:$RELOAD" \
