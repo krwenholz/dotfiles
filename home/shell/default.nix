@@ -168,13 +168,9 @@
             --preview-window '~4,+{2}+4/3,<80(up)' \
             --query "$*"
       )
-      bindkey '^F' rfv
+      zle -N rfv
+      bindkey '^f' rfv
 
-
-      PATH=$PATH:$HOME/includes/bin
-
-      bindkey '^F' fzf-file-widget
-      RPROMPT=""
       if [ -v AWS_CREDENTIALS ]; then
         mkdir -p ~/.aws
         echo $AWS_CREDENTIALS > ~/.aws/credentials
@@ -201,6 +197,9 @@
       if [ -e "$HOME/corporate_things.sh" ]; then
         source "$HOME/corporate_things.sh"
       fi
+
+      PATH=$PATH:$HOME/includes/bin
+      RPROMPT=""
 
       echo "
              ^...^
