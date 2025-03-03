@@ -33,6 +33,7 @@ in
 
     packages = with pkgs; [
       ack
+      bat
       entr
       gitAndTools.diff-so-fancy
       gnupg
