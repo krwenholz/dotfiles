@@ -169,7 +169,7 @@
             --query "$*"
       )
       zle -N rfv
-      bindkey '^f' rfv
+      bindkey '^F' rfv
 
       if [ -v AWS_CREDENTIALS ]; then
         mkdir -p ~/.aws

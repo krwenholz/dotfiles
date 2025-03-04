@@ -5,10 +5,8 @@ add_newline = false
 format = """$status\
 $username\
 $hostname\
-$shlvl\
 $directory\
 $cmd_duration\
-$custom\
 $line_break\
 $character"""
 
