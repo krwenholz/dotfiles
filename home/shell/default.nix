@@ -169,7 +169,6 @@
             --query "$*"
       )
       zle -N rfv
-      bindkey '^F' rfv
 
       if [ -v AWS_CREDENTIALS ]; then
         mkdir -p ~/.aws
@@ -218,6 +217,9 @@
       autoload -U compinit
       compinit
       source <(COMPLETE=zsh jj)
+
+      # Keyboindings
+      bindkey '^F' rfv
     '';
   };
   programs.fzf = {
