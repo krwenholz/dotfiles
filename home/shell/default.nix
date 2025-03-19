@@ -5,7 +5,6 @@
     ".config/starship.toml".text = builtins.readFile ./starship.toml;
     ".config/jj/config.toml".text = builtins.readFile ./jj.toml;
     ".config/pgcli/config".text = builtins.readFile ./pgcli.toml;
-    ".ipython/profile_default/ipython_config.py".text = builtins.readFile ./ipython_config.py;
   };
 
   programs.tmux = {
@@ -52,7 +51,6 @@
       ifconfig = "ip a";
       pandoc = "docker run --rm --volume \"`pwd`:/data\" --user `id -u`:`id -g` pandoc/latex:2.6";
       simple_server = "nix-shell -p python3 --command 'python3 -m http.server 8000'";
-      ipython = "nix-shell -p pkgs.python38Packages.ipython --command ipython";
       performance_test = "/usr/bin/time -f '%Uu %Ss %er %MkB %C' \"$@\"";
       pandoc_readmes = "nix-shell --packages \"[ pandoc texliveSmall mermaid-filter ]\" --command 'pandoc README.md -o README.pdf --toc -V papersize:a4 --highlight-style pygments -N -V geometry:\"top=2cm, bottom=1.5cm, left=2cm, right=2cm\"'";
     };
@@ -146,13 +144,15 @@
       rfv() (
         RELOAD='reload:rg --column --color=always --smart-case {q} || :'
         OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-                  if [[ command -v code-insiders; then
+                  if command -v code-insiders 2>&1 >/dev/null
+                  then
                     code-insiders {1} +{2}
                   else
                     vim {1} +{2}     # No selection. Open the current line in Vim.
                   fi
                 else
-                  if [[ command -v code-insiders; then
+                  if command -v code-insiders 2>&1 >/dev/null
+                  then
                     code-insiders {+f}
                   else
                     vim +cw -q {+f}  # Build quickfix list for the selected items.
@@ -199,6 +199,8 @@
 
       PATH=$PATH:$HOME/includes/bin
       RPROMPT=""
+
+      export PYTHONBREAKPOINT=IPython.embed
 
       echo "
              ^...^
