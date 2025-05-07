@@ -37,7 +37,6 @@
       gummy = "git add .; git commit -m \"WIP `date --iso-8601=minutes`\"";
       my-ip = "ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print \$2}' | cut -f1  -d'/'";
       todos = "rg --hidden --follow --glob '!.(git|hg|svn)' -e 'TODO\(kyle\)'";
-      gh = "cd `git rev-parse --show-toplevel`";
       shrug = "echo '¯\\_(ツ)_/¯'";
       flip_table = "echo '(╯°□°）╯︵ ┻━┻'";
       # TODO(kyle): might be able to improve these commands using `tmux set-buffer/save-buffer`
