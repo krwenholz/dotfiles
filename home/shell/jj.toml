@@ -2,6 +2,11 @@
 name = "Kyle Wenholz"
 email = "kyle@krwenholz.com"
 
+[[--scope]]
+--when.repositories = ["/workspaces/fay-service", "/workspaces/fay-ui"]
+[--scope.user]
+email = "krwenholz@faynutrition.com"
+
 [revsets]
 # Show commits that are not in `main@origin`
 log = "main@origin.."
@@ -9,3 +14,14 @@ log = "main@origin.."
 
 [git]
 auto-local-bookmark = true
+
+[aliases]
+# See https://jj-vcs.github.io/jj/latest/config/#aliases 
+pre-commit = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  "jj diff --from @ --to main --name-only --no-pager | xargs pre-commit run --files",
+]
