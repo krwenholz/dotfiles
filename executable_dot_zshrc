@@ -67,4 +67,8 @@ alias -- shrug='echo '\''¯\_(ツ)_/¯'\'''
 alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.server 8000'\'''
 alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
 
+if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
+  echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto, downloading"
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+fi
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
