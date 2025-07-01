@@ -15,8 +15,8 @@ packages:
       - libncursesw5-dev
       - lsd
       - moreutils
-      - neovim
       - ngrok
+      - neovim
       - ntp
       - openssh
       - openssl
