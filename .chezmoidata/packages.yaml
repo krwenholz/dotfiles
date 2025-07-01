@@ -3,23 +3,26 @@ packages:
     pkgs:
       - ack
       - bat
+      - build-essential
       - entr
+      - fzf
       - gnupg
+      - gpg-agent
       - htop
+      - install
       - jq
-      - jujutsu
+      - libncurses5-dev
+      - libncursesw5-dev
       - lsd
       - moreutils
-      - ncurses
+      - neovim
       - ngrok
-      - nix-direnv
-      - nix-index
-      - prettier
       - ntp
       - openssh
       - openssl
       - pinentry-curses
       - ripgrep
+      - rustup
       - starship
       - tmux
       - tree
@@ -27,3 +30,7 @@ packages:
       - wget
       - wireguard-tools
       - zsh
+    rustpkgs:
+      - jj
+      - jj-cli
+      - starship
