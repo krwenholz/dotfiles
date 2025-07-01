@@ -1,8 +1,0 @@
-Install [nssm](https://nssm.cc/usage).
-
-Then install the following (saved as a .bat file). Be sure to set the login credentials.
-
-```
-"C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm meine --type headless
-pause
-```

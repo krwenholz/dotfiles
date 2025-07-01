@@ -1,0 +1,29 @@
+packages:
+  ubuntu:
+    pkgs:
+      - ack
+      - bat
+      - entr
+      - gnupg
+      - htop
+      - jq
+      - jujutsu
+      - lsd
+      - moreutils
+      - ncurses
+      - ngrok
+      - nix-direnv
+      - nix-index
+      - prettier
+      - ntp
+      - openssh
+      - openssl
+      - pinentry-curses
+      - ripgrep
+      - starship
+      - tmux
+      - tree
+      - unzip
+      - wget
+      - wireguard-tools
+      - zsh

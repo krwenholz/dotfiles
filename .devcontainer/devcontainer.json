@@ -1,30 +1,12 @@
 {
   // NOTE: it's all based on https://github.com/xtruder/nix-devcontainer
   "name": "krwenholz/dotfiles",
-  "dockerFile": "Dockerfile",
-  "context": "${localWorkspaceFolder}",
-  "build": {
-    "args": {
-      "USER_UID": "${localEnv:USER_UID}",
-      "USER_GID": "${localEnv:USER_GID}"
-    }
-  },
-
-  // run arguments passed to docker
-  "runArgs": ["--security-opt", "label=disable"],
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
   "containerEnv": {
     // extensions to preload before other extensions
     //"PRELOAD_EXTENSIONS": "arrterian.nix-env-selector"
   },
-
-  // disable command overriding and updating remote user ID
-  "overrideCommand": false,
-  "userEnvProbe": "loginShell",
-  "updateRemoteUserUID": false,
-
-  // build development environment on creation, make sure you already have shell.nix
-  //"onCreateCommand": "echo hi",
 
   // Add the IDs of extensions you want installed when the container is created.
   "customizations": {

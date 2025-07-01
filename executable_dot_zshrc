@@ -1,0 +1,81 @@
+typeset -U path cdpath fpath manpath
+for profile in ${(z)NIX_PROFILES}; do
+  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
+done
+
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+#if [[ -s "$HOME/zsh-init.zsh" ]]; then
+#  source "/nix/store/lmw0cb328zwqy5a1dwm09rwxmzsbms4c-zsh-prezto-0-unstable-2025-01-10/share/zsh-prezto/init.zsh"
+#fi
+
+# Customize to your needs...
+# History options should be set in .zshrc and after oh-my-zsh sourcing.
+# See https://github.com/nix-community/home-manager/issues/177.
+HISTSIZE="100000"
+SAVEHIST="100000"
+
+HISTFILE="$HOME/.zsh_history"
+mkdir -p "$(dirname "$HISTFILE")"
+
+setopt HIST_FCNTL_LOCK
+unsetopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+unsetopt HIST_IGNORE_ALL_DUPS
+unsetopt HIST_SAVE_NO_DUPS
+unsetopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+unsetopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+unsetopt EXTENDED_HISTORY
+
+
+if [[ $options[zle] = on ]]; then
+  eval "$(fzf --zsh)"
+
+  export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.(git|hg|svg)/*'";
+  export FZF_DEFAULT_OPTS="--preview-window 'right:50%:wrap'\" \"--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -100'"
+fi
+
+eval "$(starship init zsh)"
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# Dynamic completions
+autoload -U compinit
+compinit
+source <(COMPLETE=zsh jj)
+
+# Keyboindings
+bindkey '^F' rfv
+
+export GPG_TTY=$TTY
+gpg-connect-agent updatestartuptty /bye > /dev/null
+
+alias -- flip_table='echo '\''(╯°□°）╯︵ ┻━┻'\'''
+alias -- gamit='git commit --amend --no-edit'
+alias -- gist='git status'
+alias -- grep='grep --color'
+alias -- gummy='git add .; git commit -m "WIP `date --iso-8601=minutes`"'
+alias -- ifconfig='ip a'
+alias -- image-viewer=eog
+alias -- iwconfig='tldr iw'
+alias -- ls=lsd
+alias -- my-ip='ip addr | grep '\''state UP'\'' -A2 | tail -n1 | awk '\''{print $2}'\'' | cut -f1  -d'\''/'\'''
+alias -- netstat='tldr ss'
+alias -- pandoc='docker run --rm --volume "`pwd`:/data" --user `id -u`:`id -g` pandoc/latex:2.6'
+alias -- pandoc_readmes='nix-shell --packages "[ pandoc texliveSmall mermaid-filter ]" --command '\''pandoc README.md -o README.pdf --toc -V papersize:a4 --highlight-style pygments -N -V geometry:"top=2cm, bottom=1.5cm, left=2cm, right=2cm"'\'''
+alias -- pbcopy='xsel --clipboard --input'
+alias -- pbpaste='xsel --clipboard --output'
+alias -- performance_test='/usr/bin/time -f '\''%Uu %Ss %er %MkB %C'\'' "$@"'
+alias -- pingtest='ping -c 3 google.com'
+alias -- shrug='echo '\''¯\_(ツ)_/¯'\'''
+alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.server 8000'\'''
+alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
