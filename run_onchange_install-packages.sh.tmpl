@@ -18,6 +18,6 @@ sudo apt update
 
 rustup default stable
 {{ range .packages.ubuntu.rustpkgs -}}
-    cargo install --locked --bin {{ . | quote }}
+    cargo install --locked {{ . | quote }}
 {{ end -}}
 {{ end -}}
