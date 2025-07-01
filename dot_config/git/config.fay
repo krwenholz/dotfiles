@@ -1,0 +1,4 @@
+[user]
+	email = "krwenholz@faynutrition.com"
+	name = "Kyle Wenholz"
+	signingkey = "~/.ssh/kyle"

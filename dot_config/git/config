@@ -1,6 +1,6 @@
 [core]
 	editor = "vim"
-	pager = "/nix/store/d1japhgpyb5b7pjnly4q6451scwijbmx-diff-so-fancy-1.4.4/bin/diff-so-fancy | /nix/store/63z4p3qlgpsyjp4r355yrv4vmlywyx5q-less-668/bin/less '--tabs=4' -RFX"
+	pager = "diff-so-fancy | less '--tabs=4' -RFX"
 
 [credential]
 	helper = "cache --timeout=36000"
@@ -15,10 +15,10 @@
 	format = "ssh"
 
 [gpg "openpgp"]
-	program = "/nix/store/lyvdg9dqh26la6jjkv9890d7qv7lnqxs-gnupg-2.4.7/bin/gpg"
+	program = "gpg"
 
 [interactive]
-	diffFilter = "/nix/store/d1japhgpyb5b7pjnly4q6451scwijbmx-diff-so-fancy-1.4.4/bin/diff-so-fancy --patch"
+	diffFilter = "diff-so-fancy --patch"
 
 [pager]
 	diff = "diff-so-fancy | less --tabs=1,5 -RX"
@@ -33,4 +33,4 @@
 	signingkey = "~/.ssh/kyle"
 
 [includeIf "hasconfig:remote.*.url:*fayhealthinc*"]
-	path = "/nix/store/r05hd0lizhykqy6hhnxm3x1jvd65k50p-hm_gitconfig"
+	path = ".config/git/config.fay"
