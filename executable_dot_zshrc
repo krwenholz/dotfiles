@@ -1,8 +1,3 @@
- -U path cdpath fpath manpath
-for profile in ${(z)NIX_PROFILES}; do
-  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
-done
-
 export PATH=$PATH:$HOME/.cargo/bin
 
 # Customize to your needs...
@@ -68,7 +63,7 @@ alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.serve
 alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
 
 if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
-  echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto, downloading"
+  echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto"
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
