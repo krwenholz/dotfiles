@@ -5,18 +5,6 @@ done
 
 export PATH=$PATH:$HOME/.cargo/bin
 
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-# Source Prezto.
-#if [[ -s "$HOME/zsh-init.zsh" ]]; then
-#  source "/nix/store/lmw0cb328zwqy5a1dwm09rwxmzsbms4c-zsh-prezto-0-unstable-2025-01-10/share/zsh-prezto/init.zsh"
-#fi
-
 # Customize to your needs...
 # History options should be set in .zshrc and after oh-my-zsh sourcing.
 # See https://github.com/nix-community/home-manager/issues/177.
@@ -78,3 +66,5 @@ alias -- pingtest='ping -c 3 google.com'
 alias -- shrug='echo '\''¯\_(ツ)_/¯'\'''
 alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.server 8000'\'''
 alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
+
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
