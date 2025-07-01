@@ -4,6 +4,7 @@ packages:
       - ack
       - bat
       - build-essential
+      - diff-so-fancy
       - entr
       - fzf
       - gnupg
