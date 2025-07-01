@@ -1,4 +1,4 @@
-typeset -U path cdpath fpath manpath
+ -U path cdpath fpath manpath
 for profile in ${(z)NIX_PROFILES}; do
   fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
 done
@@ -53,6 +53,7 @@ source <(COMPLETE=zsh jj)
 
 # Keyboindings
 bindkey '^F' rfv
+bindkey -v
 
 export GPG_TTY=$TTY
 gpg-connect-agent updatestartuptty /bye > /dev/null

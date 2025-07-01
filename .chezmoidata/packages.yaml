@@ -23,7 +23,6 @@ packages:
       - pinentry-curses
       - ripgrep
       - rustup
-      - starship
       - tmux
       - tree
       - unzip
@@ -31,6 +30,5 @@ packages:
       - wireguard-tools
       - zsh
     rustpkgs:
-      - jj
       - jj-cli
       - starship
