@@ -15,6 +15,7 @@ packages:
       - libncursesw5-dev
       - lsd
       - moreutils
+      - nano
       - ngrok
       - neovim
       - ntp
