@@ -39,7 +39,6 @@ bindkey '^F' rfv
 bindkey -v
 
 export GPG_TTY=$TTY
-gpg-connect-agent updatestartuptty /bye > /dev/null
 
 alias -- flip_table='echo '\''(╯°□°）╯︵ ┻━┻'\'''
 alias -- gamit='git commit --amend --no-edit'
@@ -62,8 +61,4 @@ alias -- shrug='echo '\''¯\_(ツ)_/¯'\'''
 alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.server 8000'\'''
 alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
 
-if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
-  echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto"
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-fi
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"

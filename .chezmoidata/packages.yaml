@@ -7,10 +7,9 @@ packages:
       - diff-so-fancy
       - entr
       - fzf
-      - gnupg
+      - gnupg2
       - gpg-agent
       - htop
-      - install
       - jq
       - libncurses5-dev
       - libncursesw5-dev

@@ -21,3 +21,8 @@ rustup default stable
     cargo install --locked {{ . | quote }}
 {{ end -}}
 {{ end -}}
+
+if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
+  echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto"
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+fi
