@@ -7,6 +7,9 @@ email = "kyle@krwenholz.com"
 [--scope.user]
 email = "krwenholz@faynutrition.com"
 
+[ui]
+editor = "nvim"
+
 [revsets]
 # Show commits that are not in `main@origin`
 log = "main@origin.."
