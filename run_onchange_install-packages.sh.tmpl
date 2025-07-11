@@ -26,3 +26,13 @@ if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
   echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto"
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
+
+if command -v granted >/dev/null 2>&1; then
+  echo "Granted is already installed"
+else
+  wget -O- https://apt.releases.commonfate.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/common-fate-linux.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/common-fate-linux.gpg] https://apt.releases.commonfate.io stable main" | sudo tee /etc/apt/sources.list.d/common-fate.list
+  sudo apt update
+  sudo apt install granted
+fi
+
