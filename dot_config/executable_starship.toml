@@ -3,6 +3,7 @@ add_newline = false
 
 # Default format from: https://starship.rs/config/#default-prompt-format
 format = """$status\
+$aws\
 $username\
 $hostname\
 $directory\
@@ -52,3 +53,11 @@ style = "cyan"
 [username]
 format = "[$user@]($style)"
 style_user = "cyan"
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
+style = 'bold blue'
+symbol = '🅰 '
+[aws.profile_aliases]
+'Fay/AWSAdministratorAccess' = 'prod'
+'fay-dev-engineer-krwenholz/AWSAdministratorAccess' = 'dev'
