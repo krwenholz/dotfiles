@@ -9,6 +9,7 @@ packages:
       - fzf
       - gnupg2
       - gpg-agent
+      - golang-go
       - htop
       - jq
       - libncurses5-dev
