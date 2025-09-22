@@ -76,3 +76,5 @@ bundle/
 .bundle
 .byebug_history
 .jj/
+
+**/.claude/settings.local.json
