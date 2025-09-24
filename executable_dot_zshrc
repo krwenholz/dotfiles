@@ -22,7 +22,9 @@ unsetopt EXTENDED_HISTORY
 
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.(git|hg|svg)/*'";
-export FZF_DEFAULT_OPTS="--preview-window 'right:50%:wrap'\" \"--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -100'"
+#export FZF_DEFAULT_OPTS="--preview-window 'right:50%:wrap'\" \"--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -100'"
+source $HOME/.config/fzf_completion.sh # only necessary until we upgrade to a newer version
+
 
 eval "$(starship init zsh)"
 if command -v direnv &> /dev/null; then
