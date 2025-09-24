@@ -6,7 +6,6 @@ packages:
       - build-essential
       - diff-so-fancy
       - entr
-      - fzf
       - gnupg2
       - gpg-agent
       - golang-go

@@ -21,9 +21,10 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 
 
+# Wrap!
+setterm -linewrap on
+
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.(git|hg|svg)/*'";
-#export FZF_DEFAULT_OPTS="--preview-window 'right:50%:wrap'\" \"--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -100'"
-source $HOME/.config/fzf_completion.sh # only necessary until we upgrade to a newer version
 
 
 eval "$(starship init zsh)"
@@ -64,3 +65,5 @@ alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.serve
 alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+source <(fzf --zsh)

@@ -22,3 +22,7 @@
     type = "git-repo"
     url = "https://github.com/erikw/tmux-powerline.git"
     refreshPeriod = "168h"  # Weekly update
+[".local/bin/fzf"]
+    type = "archive-file"
+    url = "https://github.com/junegunn/fzf/releases/download/v0.65.2/fzf-0.65.2-{{ .chezmoi.os }}_{{ .chezmoi.arch }}.tar.gz"
+    path = "fzf"
