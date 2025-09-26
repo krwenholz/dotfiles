@@ -15,6 +15,9 @@ editor = "nvim"
 log = "main@origin.."
 # Default is 'present(@) | ancestors(immutable_heads().., 2) | present(trunk())'
 
+[revset-aliases]
+'MINE' = '(trunk()..(visible_heads() & mine()))'
+
 [git]
 auto-local-bookmark = true
 
