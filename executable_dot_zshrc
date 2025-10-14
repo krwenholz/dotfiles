@@ -37,10 +37,6 @@ autoload -U compinit
 compinit
 source <(COMPLETE=zsh jj)
 
-# Keyboindings
-bindkey '^F' rfv
-bindkey -v
-
 export GPG_TTY=$TTY
 
 alias -- flip_table='echo '\''(╯°□°）╯︵ ┻━┻'\'''
@@ -67,3 +63,7 @@ alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(k
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 source <(fzf --zsh)
+
+# Keybindings
+bindkey '^F' rfv
+bindkey -v
