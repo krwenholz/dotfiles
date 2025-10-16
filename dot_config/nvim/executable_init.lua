@@ -8,6 +8,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -88,6 +89,87 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+    -- LSP Setup (auto-install language servers)
+  {
+    "mason-org/mason.nvim",
+    opts = {},
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      ensure_installed = {
+        "gopls",          -- Go
+        "rust_analyzer",  -- Rust
+        "ts_server",      -- TypeScript/JavaScript
+        "pyright",        -- Python
+        -- Add more language servers as needed
+      },
+    },
+  },
+  { "neovim/nvim-lspconfig" },
+
+  -- Telescope for file finding and search
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
+    config = function()
+      require("telescope").setup()
+      require("telescope").load_extension("fzf")
+      
+      -- Keymaps
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
+    end,
+  },
+
+  -- Breadcrumbs showing class/function context
+  {
+    "Bekaboo/dropbar.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim"
+    },
+  },
+
+  -- Autocomplete from LSP
+  {
+    "saghen/blink.cmp",
+    version = "1.*",
+    opts = {
+      keymap = { preset = "default" },
+      sources = {
+        default = { "lsp", "path", "buffer", "snippets" },
+      },
+    },
+  },
+
+  -- AI Completion (supports Claude, OpenAI, etc.)
+  {
+    "milanglacier/minuet-ai.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("minuet").setup({
+        provider = "claude",  -- or "openai", "gemini", etc.
+        -- Add your API key via environment variable or here
+        -- For Claude: export ANTHROPIC_API_KEY=your_key
+      })
+    end,
+  },
+
+  -- Optional: GitHub Copilot (if you have access)
+  -- Uncomment if you want to use Copilot instead
+  -- {
+  --   "github/copilot.vim",
+  -- },
+
 }, {})
 
 -- [[ Setting options ]]
@@ -154,3 +236,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- [[ LSP Keymaps ]]
+-- these work when LSP is attached
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local opts = { buffer = args.buf }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  end,
+})
