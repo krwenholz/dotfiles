@@ -147,7 +147,22 @@ require('lazy').setup({
       },
     },
     config = function()
-      require("telescope").setup()
+      require("telescope").setup({
+        defaults = {
+          -- Show hidden files by default
+          file_ignore_patterns = { "^.git/" }, -- Still ignore .git directory
+        },
+        pickers = {
+          find_files = {
+            hidden = true,  -- Show hidden files
+          },
+          live_grep = {
+            additional_args = function()
+              return { "--hidden" }  -- Search in hidden files
+            end,
+          },
+        },
+      })
       require("telescope").load_extension("fzf")
       
       -- Keymaps
