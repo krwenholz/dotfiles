@@ -142,6 +142,10 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
+# We love utf-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # For Granted
 # https://docs.commonfate.io/granted/usage/assuming-roles
 alias assume=". assume"
