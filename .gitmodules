@@ -7,6 +7,3 @@
 [submodule "Astronvim"]
 	path = Astronvim
 	url = https://github.com/AstroNvim/Astronvim
-[submodule "home/vim/AstroNvim"]
-	path = home/vim/AstroNvim
-	url = https://github.com/AstroNvim/AstroNvim
