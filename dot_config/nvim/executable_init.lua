@@ -1,13 +1,13 @@
 --[[
   borrowed, liberally, from https://github.com/nvim-lua/kickstart.nvim
---]]
+--]--[[ ] ]]
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.opt.ttimeoutlen = 1000 -- Wait for input after leader key
+vim.opt.ttimeoutlen = 3000 -- Wait for input after leader key
 
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -278,5 +278,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, opts)
+    vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
   end,
 })
