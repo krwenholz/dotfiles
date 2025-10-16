@@ -7,6 +7,7 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.ttimeoutlen = 1000 -- Wait for input after leader key
 
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -51,6 +52,45 @@ require('lazy').setup({
   },
 
   {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        -- Install parsers for these languages
+        ensure_installed = {
+          "lua", "vim", "vimdoc", "query",
+          "python", "javascript", "typescript",
+          "json", "yaml", "markdown", "bash",
+          "rust", "go", "terraform", "toml",
+          "xml", "html", "jq", "json", "mermaid"
+        },
+        
+        -- Install parsers synchronously (only applied to `ensure_installed`)
+        sync_install = false,
+        
+        -- Automatically install missing parsers when entering buffer
+        auto_install = true,
+        
+        highlight = {
+          enable = true,
+          -- Disable for large files
+          disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
+        },
+        
+        indent = {
+          enable = true
+        },
+      })
+    end,
+  },
+
+  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -73,22 +113,9 @@ require('lazy').setup({
     opts = {},
   },
 
-  -- "gc" to comment visual regions/lines
+    -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
     -- LSP Setup (auto-install language servers)
   {
     "mason-org/mason.nvim",
@@ -101,7 +128,7 @@ require('lazy').setup({
       ensure_installed = {
         "gopls",          -- Go
         "rust_analyzer",  -- Rust
-        "ts_server",      -- TypeScript/JavaScript
+        "ts_ls",      -- TypeScript/JavaScript
         "pyright",        -- Python
         -- Add more language servers as needed
       },
@@ -131,11 +158,16 @@ require('lazy').setup({
     end,
   },
 
+  { "nvim-tree/nvim-web-devicons", opts = { override = {}, default = true } },
+
   -- Breadcrumbs showing class/function context
+  -- You'll need "Symbols Nerd Font" installed for this to look decent
   {
     "Bekaboo/dropbar.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim"
+      "nvim-telescope/telescope-fzf-native.nvim",
+      "nvim-tree/nvim-web-devicons",
+      build = 'make'
     },
   },
 
