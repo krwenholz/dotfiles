@@ -24,6 +24,7 @@ packages:
       - pinentry-curses
       - ripgrep
       - rustup
+      - stylua
       - tmux
       - tree
       - unzip

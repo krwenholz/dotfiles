@@ -116,6 +116,19 @@ require('lazy').setup({
     -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- Let's close brackets and stuff!
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,  -- Use Treesitter for better context
+      ts_config = {
+        lua = { "string" },  -- Don't add pairs in lua string treesitter nodes
+        javascript = { "template_string" },
+      },
+    },
+  },
+
     -- LSP Setup (auto-install language servers)
   {
     "mason-org/mason.nvim",
@@ -199,24 +212,48 @@ require('lazy').setup({
   },
 
   -- AI Completion (supports Claude, OpenAI, etc.)
-  {
-    "milanglacier/minuet-ai.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("minuet").setup({
-        provider = "claude",  -- or "openai", "gemini", etc.
-        -- Add your API key via environment variable or here
-        -- For Claude: export ANTHROPIC_API_KEY=your_key
-      })
-    end,
-  },
+  -- {
+  --   "milanglacier/minuet-ai.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("minuet").setup({
+  --       provider = "claude",  -- or "openai", "gemini", etc.
+  --       -- Add your API key via environment variable or here
+  --       -- For Claude: export ANTHROPIC_API_KEY=your_key
+  --     })
+  --   end,
+  -- },
 
   -- Optional: GitHub Copilot (if you have access)
   -- Uncomment if you want to use Copilot instead
-  -- {
-  --   "github/copilot.vim",
-  -- },
+  {
+   "github/copilot.vim",
+  },
 
+  -- And some nice autoformatting
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "ruff" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        go = { "gofmt" },
+        rust = { "rustfmt" },
+        terraform = { "tflint" },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,  -- Use LSP formatting if no formatter available
+      },
+    },
+  },
 }, {})
 
 -- [[ Setting options ]]
