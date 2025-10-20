@@ -115,6 +115,31 @@ require("lazy").setup({
 				component_separators = "|",
 				section_separators = "",
 			},
+			sections = {
+				lualine_a = {
+					{
+						"mode",
+						fmt = function(str)
+							return str:sub(1, 1)
+						end,
+					},
+				},
+				lualine_c = {
+					{
+						"buffers",
+						show_filename_only = true,
+						hide_filename_extension = false,
+						show_modified_status = true,
+						mode = 2, -- Shows buffer name + buffer index
+						max_length = vim.o.columns * 2 / 3, -- Takes up to 2/3 of statusline width
+						symbols = {
+							modified = " [+]",
+							alternate_file = "",
+							directory = "",
+						},
+					},
+				},
+			},
 		},
 	},
 
