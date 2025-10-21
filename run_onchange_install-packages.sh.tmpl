@@ -37,3 +37,8 @@ else
   sudo apt install granted
 fi
 
+if command -v claude >/dev/null 2>&1; then
+   echo "claude is already installed"
+else
+  curl -fsSL https://claude.ai/install.sh | bash -s latest
+fi
