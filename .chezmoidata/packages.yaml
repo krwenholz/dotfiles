@@ -24,6 +24,8 @@ packages:
       - pinentry-curses
       - ripgrep
       - rustup
+      - sqlite3
+      - libsqlite3-dev
       - stylua
       - tmux
       - tree

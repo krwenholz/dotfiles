@@ -196,29 +196,68 @@ require("lazy").setup({
       },
     },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+
+      telescope.setup({
         defaults = {
-          -- Show hidden files by default
-          file_ignore_patterns = { "^.git/" }, -- Still ignore .git directory
+          file_ignore_patterns = { "^.git/" },
+          cache_picker = {
+            num_pickers = 10,
+          },
         },
         pickers = {
           find_files = {
-            hidden = true, -- Show hidden files
+            hidden = true,
           },
           live_grep = {
             additional_args = function()
-              return { "--hidden" } -- Search in hidden files
+              return { "--hidden" }
             end,
           },
         },
       })
-      require("telescope").load_extension("fzf")
+      telescope.load_extension("fzf")
 
-      -- Keymaps
       local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
+
+      -- Helper function to check if last picker matches a title
+      local function get_last_picker_title()
+        -- Access the internal state where cached pickers are stored
+        local state = require("telescope.state")
+        local cached_pickers = state.get_global_key("cached_pickers") or {}
+        if cached_pickers[1] then
+          return cached_pickers[1].prompt_title
+        end
+        return nil
+      end
+
+      -- Smart find_files that resumes if last picker was find_files
+      local function smart_find_files()
+        local last_title = get_last_picker_title()
+        if last_title == "Find Files" then
+          builtin.resume()
+        else
+          builtin.find_files()
+        end
+      end
+
+      -- Smart live_grep that resumes if last picker was live_grep
+      local function smart_live_grep()
+        local last_title = get_last_picker_title()
+        if last_title == "Live Grep" then
+          builtin.resume()
+        else
+          builtin.live_grep()
+        end
+      end
+
+      vim.keymap.set("n", "<leader>ff", smart_find_files, { desc = "Find files (smart resume)" })
+      vim.keymap.set("n", "<leader>fg", smart_live_grep, { desc = "Live grep (smart resume)" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
+
+      -- Manual resume for any picker
+      vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume last picker" })
+      vim.keymap.set("n", "<leader>fp", builtin.pickers, { desc = "Previous pickers" })
     end,
   },
 
