@@ -1,0 +1,8 @@
+DefaultBrowser = "CUSTOM"
+CustomBrowserPath = ""
+CustomSSOBrowserPath = ""
+Ordering = ""
+ExportCredentialSuffix = ""
+
+[AWSConsoleBrowserLaunchTemplate]
+  Command = ""
