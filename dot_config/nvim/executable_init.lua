@@ -38,12 +38,26 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
 
+  -- {
+  --   "RRethy/nvim-base16",
+  --   priority = 1000,
+  --   config = function()
+  --     --vim.cmd.colorscheme("base16-default-dark")
+  --     vim.cmd.colorscheme("base16-solarized-light")
+  --   end,
+  -- },
   {
-    "RRethy/nvim-base16",
+    "maxmx03/solarized.nvim",
     priority = 1000,
     config = function()
-      --vim.cmd.colorscheme("base16-default-dark")
-      vim.cmd.colorscheme("base16-solarized-light")
+      require("solarized").setup({
+        transparent = {
+          enabled = false,
+        },
+        variant = "autumn", -- "spring" | "summer" | "autumn" | "winter" (default)
+      })
+      vim.cmd.colorscheme("solarized")
+      vim.o.background = "light"
     end,
   },
 
