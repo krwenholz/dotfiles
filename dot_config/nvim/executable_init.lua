@@ -43,7 +43,7 @@ require("lazy").setup({
     priority = 1000,
     config = function()
       --vim.cmd.colorscheme("base16-default-dark")
-      vim.cmd.colorscheme("base16-solarized-dark")
+      vim.cmd.colorscheme("base16-solarized-light")
     end,
   },
 
