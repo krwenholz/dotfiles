@@ -470,20 +470,33 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- Jump back and forward (like VS Code's back/forward buttons)
+vim.keymap.set("n", "<C-(>", "<C-o>", { desc = "Jump back" })
+vim.keymap.set("n", "<C-)>", "<C-i>", { desc = "Jump forward" })
 
 -- [[ LSP Keymaps ]]
 -- these work when LSP is attached
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local opts = { buffer = args.buf }
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    local builtin = require("telescope.builtin")
+
+    -- Use Telescope for definitions and references (auto-closes on selection)
+    vim.keymap.set("n", "gd", builtin.lsp_definitions, opts)
+    vim.keymap.set("n", "gr", builtin.lsp_references, opts)
+    vim.keymap.set("n", "gi", builtin.lsp_implementations, opts)
+
+    -- built-in LSP stuff
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+    -- Diagnostics
     vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, opts)
     vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "<leader>dd", builtin.diagnostics, opts)
   end,
 })
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
