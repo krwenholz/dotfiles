@@ -54,7 +54,7 @@ require("lazy").setup({
         transparent = {
           enabled = false,
         },
-        variant = "autumn", -- "spring" | "summer" | "autumn" | "winter" (default)
+        variant = "spring", -- "spring" | "summer" | "autumn" | "winter" (default)
       })
       vim.cmd.colorscheme("solarized")
       vim.o.background = "light"
