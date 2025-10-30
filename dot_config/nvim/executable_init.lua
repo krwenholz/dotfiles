@@ -234,37 +234,37 @@ require("lazy").setup({
 
       local builtin = require("telescope.builtin")
 
-      -- Helper function to check if last picker matches a title
-      local function get_last_picker_title()
-        -- Access the internal state where cached pickers are stored
-        local state = require("telescope.state")
-        local cached_pickers = state.get_global_key("cached_pickers") or {}
-        if cached_pickers[1] then
-          return cached_pickers[1].prompt_title
-        end
-        return nil
-      end
-
-      -- Smart find_files that resumes if last picker was find_files
+      -- Smart find_files that preserves query but refreshes results
       local function smart_find_files()
-        local last_title = get_last_picker_title()
-        if last_title == "Find Files" then
-          builtin.resume()
-        else
-          builtin.find_files()
-        end
+        builtin.find_files({
+          default_text = last_find_files_query,
+          attach_mappings = function(_, map)
+            -- Save query on close
+            map("i", "<CR>", function(prompt_bufnr)
+              local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+              last_find_files_query = picker:_get_prompt()
+              require("telescope.actions").select_default(prompt_bufnr)
+            end)
+            return true
+          end,
+        })
       end
 
-      -- Smart live_grep that resumes if last picker was live_grep
+      -- Smart live_grep that preserves query but refreshes results
       local function smart_live_grep()
-        local last_title = get_last_picker_title()
-        if last_title == "Live Grep" then
-          builtin.resume()
-        else
-          builtin.live_grep()
-        end
+        builtin.live_grep({
+          default_text = last_live_grep_query,
+          attach_mappings = function(_, map)
+            -- Save query on close
+            map("i", "<CR>", function(prompt_bufnr)
+              local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+              last_live_grep_query = picker:_get_prompt()
+              require("telescope.actions").select_default(prompt_bufnr)
+            end)
+            return true
+          end,
+        })
       end
-
       vim.keymap.set("n", "<leader>ff", smart_find_files, { desc = "Find files (smart resume)" })
       vim.keymap.set("n", "<leader>fg", smart_live_grep, { desc = "Live grep (smart resume)" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
