@@ -327,7 +327,7 @@ require("lazy").setup({
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff" },
+        python = { "ruff_poetry" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         json = { "prettier" },
@@ -336,6 +336,13 @@ require("lazy").setup({
         go = { "gofmt" },
         rust = { "rustfmt" },
         terraform = { "tflint" },
+      },
+      formatters = {
+        ruff_poetry = {
+          command = "poetry",
+          args = { "run", "ruff", "format", "--stdin-filename", "$FILENAME", "-" },
+          stdin = true,
+        },
       },
       format_on_save = {
         timeout_ms = 500,
