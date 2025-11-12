@@ -197,7 +197,40 @@ require("lazy").setup({
       },
     },
   },
-  { "neovim/nvim-lspconfig" },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+
+      -- Auto-detect poetry venv
+      local function get_python_path()
+        local cwd = vim.fn.getcwd()
+        local venv_path = cwd .. "/.venv/bin/python"
+        if vim.fn.filereadable(venv_path) == 1 then
+          return venv_path
+        end
+        return "python3" -- fallback
+      end
+
+      vim.lsp.config.pyright = {
+        cmd = { "pyright-langserver", "--stdio" },
+        filetypes = { "python" },
+        root_markers = { "pyproject.toml", "setup.py", ".git" },
+        settings = {
+          python = {
+            pythonPath = get_python_path(),
+            analysis = {
+              typeCheckingMode = "basic",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      }
+
+      -- Other LSPs...
+    end,
+  },
 
   -- Telescope for file finding and search
   {
