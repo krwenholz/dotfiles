@@ -7,7 +7,6 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.opt.ttimeoutlen = 3000 -- Wait for input after leader key
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -467,7 +466,7 @@ vim.wo.signcolumn = "yes"
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.timeoutlen = 1000 -- Wait for input after leader key
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
