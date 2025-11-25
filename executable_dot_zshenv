@@ -149,3 +149,6 @@ export LC_ALL=en_US.UTF-8
 # For Granted
 # https://docs.commonfate.io/granted/usage/assuming-roles
 alias assume=". assume"
+
+# And use vim to edit things!
+export EDITOR='nvim'
