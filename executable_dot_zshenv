@@ -102,13 +102,14 @@ if [ -v AWS_CREDENTIALS ]; then
   mkdir -p ~/.aws
   echo $AWS_CREDENTIALS > ~/.aws/credentials
 fi
-    
-mkdir -p ~/.ssh
-echo $SSH_KEY > ~/.ssh/kyle
-echo $SSH_KEY_PUB > ~/.ssh/kyle.pub
-chmod 644 ~/.ssh/kyle.pub && \
-chmod 600 ~/.ssh/kyle
 
+if [ ! -d "$HOME/.ssh" ] && [ -n "$SSH_KEY" ]; then
+  echo $SSH_KEY > ~/.ssh/kyle
+  echo $SSH_KEY_PUB > ~/.ssh/kyle.pub
+  chmod 644 ~/.ssh/kyle.pub
+  chmod 600 ~/.ssh/kyle
+fi
+    
 # Sometimes, it's just easier to have asdf around (e.g. installing elixir in docker on mac in a devcontainer on a turtle)
 if test -d "$HOME/.asdf"; then
   echo "Sourcing asdf, since it's here"
@@ -151,4 +152,4 @@ export LC_ALL=en_US.UTF-8
 alias assume=". assume"
 
 # And use vim to edit things!
-export EDITOR='nvim'
+export EDITOR=nvim
