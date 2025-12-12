@@ -300,6 +300,7 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>ff", smart_find_files, { desc = "Find files (smart resume)" })
       vim.keymap.set("n", "<leader>fg", smart_live_grep, { desc = "Live grep (smart resume)" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
+      vim.keymap.set("n", "<leader>bf", builtin.buffers, { desc = "Buffers" })
 
       -- Manual resume for any picker
       vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume last picker" })
@@ -526,6 +527,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Jump back and forward (like VS Code's back/forward buttons)
 vim.keymap.set("n", "<C-(>", "<C-o>", { desc = "Jump back" })
 vim.keymap.set("n", "<C-)>", "<C-i>", { desc = "Jump forward" })
+-- And easily switch buffers
+vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>bprev<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete buffer" })
 
 -- [[ LSP Keymaps ]]
 -- these work when LSP is attached
