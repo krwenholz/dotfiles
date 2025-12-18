@@ -129,6 +129,10 @@ fi
 PATH=$PATH:$HOME/includes/bin
 RPROMPT=""
 
+if test -d "$HOME/.bun"; then
+  PATH=$PATH:$HOME/.bun/bin
+fi
+
 export PYTHONBREAKPOINT=IPython.embed
 
 echo "
