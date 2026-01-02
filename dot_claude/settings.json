@@ -67,7 +67,7 @@
       "mcp__metabase__executeQuery",
       "mcp__metabase__listDashboards",
       "mcp__metabase__listDatabases",
-      "mcp__plugin_episodic-memory_episodic-memory__search",
+      "mcp__plugin_episodic-memory_episodic-memory__search"
     ]
   }
 }
