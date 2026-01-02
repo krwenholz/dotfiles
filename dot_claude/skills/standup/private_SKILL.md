@@ -65,28 +65,24 @@ Format with Slack-compatible markdown. Group items by project/area when patterns
 **Template:**
 ```
 # Yesterday
-- [PR title](github_url)
-- [ISSUE-ID: Issue title](linear_url)
+- [PR title](github_url) - Description sentence.
+- [ISSUE-ID: Issue title](linear_url) - Description sentence.
 ## [Project Area] (if multiple items relate)
-- item
-- item
+- [Link](url) - Description.
 
 # Today
-- [Open PR title](github_url)
-- [ISSUE-ID: In-progress issue](linear_url)
-- (additional plans)
-
-# FYIs
-- (prompt user)
+- [Open PR title](github_url) - What you're doing with it.
+- [ISSUE-ID: In-progress issue](linear_url) - What you're focusing on.
 
 Happy [Day]!
 ```
 
+Note: Use a dash to separate the link from the description for better readability.
+
 ### Step 5: Ask for User Input
 
 After presenting the draft, ask:
-1. "Any FYIs to add?"
-2. "Anything to add or tweak?"
+1. "Any FYIs to add or tweaks?"
 
 ### Step 6: Generate Gemini Image Prompt
 
@@ -111,6 +107,7 @@ Write like Kyle - casual, direct, and friendly:
 - **Be honest about uncertainty**: "Some PRs I'm forgetting" is better than forced completeness
 - **Group by project**: Use `## Heading` for project areas (e.g., `## Provider Payouts`)
 - **Keep bullets brief**: One line each, no fluff
+- **Use complete sentences**: End bullets with periods for readability
 - **Light humor welcome**: Self-deprecating acknowledgments, fun observations
 - **Address team as "folks"** when relevant
 - **End with day greeting**: "Happy [Day]!" - occasionally add flair when appropriate
@@ -129,4 +126,9 @@ Write like Kyle - casual, direct, and friendly:
 
 ## Output
 
-Present the complete standup post in a code block for easy copying, then show the Gemini prompt separately.
+After user confirms the standup content, present both blocks for easy copying:
+
+1. **Gemini image prompt** in a code block
+2. **Standup text** in a code block (repeated here for easy copy-paste after the image prompt)
+
+This order lets the user copy the image prompt first, generate the image, then grab the standup text right below it.
