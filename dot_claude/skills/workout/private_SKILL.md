@@ -9,27 +9,33 @@ Parse journal entries for workout data, review recent activity patterns, and hel
 
 ## Configuration
 
-- **Journal location**: `~/journal/` (adjust if different)
-- **Journal file pattern**: `*.md` files, typically named by date (e.g., `2025-01-20.md` or `january-2025.md`)
+- **Journal location**: `~/journal/`
+- **Journal file pattern**: `YYYY-MM-DD.md` (e.g., `2026-01-20.md`)
 - **Workout section marker**: `# Workout` (H1 header)
 - **Review period**: Last 7 days by default for weekly planning
 
-## Process
-
-### Step 1: Locate Journal Files
-
-Try these methods in order:
-
-**Method A: Common locations**
-```bash
-# Check common journal paths
-ls ~/journal/*.md 2>/dev/null | head -20
-ls ~/notes/*.md 2>/dev/null | head -20
-ls ~/Documents/journal/*.md 2>/dev/null | head -20
+**Directory structure:**
+```
+~/journal/
+├── 2026-01-20.md
+├── 2026-01-19.md
+├── ...
+├── weekly-design/     # Weekly planning docs (ignore for workout parsing)
+├── yearly-design/     # Yearly reviews (ignore for workout parsing)
+└── TEMPLATE           # Template file (ignore)
 ```
 
-**Method B: Ask the user**
-If no journals found, ask: "Where do you keep your journal files? (e.g., ~/journal/)"
+## Process
+
+### Step 1: Find Recent Journal Files
+
+List journal files from the last 7 days:
+```bash
+# Get files matching date pattern in ~/journal/
+ls ~/journal/????-??-??.md 2>/dev/null | sort -r | head -14
+```
+
+Only parse files directly in `~/journal/` - skip subdirectories like `weekly-design/` and `yearly-design/`.
 
 ### Step 2: Parse Workout Entries
 
@@ -110,101 +116,6 @@ If the user wants more:
 
 ## Future Integrations
 
-### TODO: Strava Integration
-
-Strava requires OAuth authentication. Options to explore:
-
-**Option A: Manual export**
-- User can export activities from Strava settings
-- Parse the exported CSV/GPX files
-
-**Option B: API with user's own credentials**
-- User creates a Strava API application at https://developers.strava.com/
-- Stores their access token securely
-- Script fetches recent activities
-
-**Useful endpoints (once authenticated):**
-- `GET /athlete/activities` - list activities
-- `GET /activities/{id}` - activity details
-
-**Resources:**
-- [Strava API Docs](https://developers.strava.com/docs/)
-- [Getting Started Guide](https://developers.strava.com/docs/getting-started/)
-
-**To implement:** Create a setup guide for OAuth, store token securely, add fetch step before journal parsing.
-
----
-
-### TODO: Garmin Connect Integration
-
-Garmin's official API requires partner approval. Alternatives:
-
-**Option A: python-garminconnect library**
-- Unofficial but well-maintained Python wrapper
-- GitHub: https://github.com/cyberjunky/python-garminconnect
-- Supports: heart rate, sleep, stress, activities, body composition
-
-**Example usage:**
-```python
-from garminconnect import Garmin
-client = Garmin("email", "password")
-client.login()
-activities = client.get_activities(0, 10)  # last 10 activities
-```
-
-**Option B: GDPR data export**
-- Garmin allows bulk export of all data
-- One-time download, not automated
-- Good for historical analysis
-
-**Option C: Terra API**
-- Third-party aggregator (https://tryterra.co/integrations/garmin)
-- Normalizes data from multiple fitness platforms
-- Requires subscription
-
-**Useful Garmin data for workout planning:**
-- Training status & load
-- Recovery time estimates
-- Sleep quality (affects workout readiness)
-- Resting heart rate trends
-- VO2 max estimates
-
-**To implement:** Test python-garminconnect, add health metrics summary to weekly review.
-
----
-
-### TODO: Apple Health Integration (macOS)
-
-Apple Health data syncs to Mac via iCloud. Options for access:
-
-**Option A: Health Auto Export app (Recommended)**
-- App Store: [Health Auto Export](https://apps.apple.com/us/app/health-auto-export-json-csv/id1115567069)
-- Syncs health data to Mac automatically
-- Exports to JSON/CSV, iCloud Drive, REST APIs
-- Can automate with Shortcuts
-- Requires macOS 14.0+, iOS 17.0+
-
-**Option B: Manual XML export**
-- iPhone Health app → Profile → Export All Health Data
-- Creates `export.xml` (large, complex)
-- Parse with Python or use [applehealth](https://github.com/krumjahn/applehealth) tool
-
-**Option C: Shortcuts automation**
-- Create a Shortcut to export daily/weekly summaries
-- Save to a known location for this skill to read
-
-**Useful Apple Health data:**
-- Workouts (with heart rate, calories, duration)
-- Active energy burned
-- Exercise minutes
-- Stand hours
-- Sleep analysis
-- Heart rate variability (recovery indicator)
-
-**To implement:** Set up Health Auto Export to sync JSON to `~/health-data/`, add parsing step to weekly review.
-
----
-
 ### TODO: Exercise Reference Database
 
 Use the free-exercise-db for offline exercise lookup and suggestions.
@@ -244,24 +155,6 @@ curl -o ~/.local/share/workout-data/exercises.json \
 - Build balanced workout plans by muscle group coverage
 
 **To implement:** Download JSON, add lookup function, integrate into planning step to suggest specific exercises.
-
----
-
-### TODO: Combined Health Dashboard
-
-Once integrations are working, add a "readiness" section:
-
-```
-## Weekly Health Context
-- Avg sleep: X hrs (from Garmin)
-- Avg resting HR: X bpm
-- Training load: [status]
-- Strava activities: X runs, Y rides
-- Journal workouts: Z logged
-
-## Readiness Assessment
-[Based on sleep, recovery, recent load - suggest intensity for the week]
-```
 
 ---
 
