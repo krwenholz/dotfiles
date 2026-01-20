@@ -173,6 +173,80 @@ activities = client.get_activities(0, 10)  # last 10 activities
 
 ---
 
+### TODO: Apple Health Integration (macOS)
+
+Apple Health data syncs to Mac via iCloud. Options for access:
+
+**Option A: Health Auto Export app (Recommended)**
+- App Store: [Health Auto Export](https://apps.apple.com/us/app/health-auto-export-json-csv/id1115567069)
+- Syncs health data to Mac automatically
+- Exports to JSON/CSV, iCloud Drive, REST APIs
+- Can automate with Shortcuts
+- Requires macOS 14.0+, iOS 17.0+
+
+**Option B: Manual XML export**
+- iPhone Health app → Profile → Export All Health Data
+- Creates `export.xml` (large, complex)
+- Parse with Python or use [applehealth](https://github.com/krumjahn/applehealth) tool
+
+**Option C: Shortcuts automation**
+- Create a Shortcut to export daily/weekly summaries
+- Save to a known location for this skill to read
+
+**Useful Apple Health data:**
+- Workouts (with heart rate, calories, duration)
+- Active energy burned
+- Exercise minutes
+- Stand hours
+- Sleep analysis
+- Heart rate variability (recovery indicator)
+
+**To implement:** Set up Health Auto Export to sync JSON to `~/health-data/`, add parsing step to weekly review.
+
+---
+
+### TODO: Exercise Reference Database
+
+Use the free-exercise-db for offline exercise lookup and suggestions.
+
+**Source:** [yuhonas/free-exercise-db](https://github.com/yuhonas/free-exercise-db)
+- **License:** Unlicense (public domain)
+- **Count:** 800+ exercises
+- **Format:** JSON
+
+**Download for offline use:**
+```bash
+mkdir -p ~/.local/share/workout-data
+curl -o ~/.local/share/workout-data/exercises.json \
+  https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/dist/exercises.json
+```
+
+**Data structure per exercise:**
+```json
+{
+  "id": "...",
+  "name": "Barbell Bench Press",
+  "force": "push",
+  "mechanic": "compound",
+  "equipment": "barbell",
+  "primaryMuscles": ["chest"],
+  "secondaryMuscles": ["shoulders", "triceps"],
+  "instructions": ["Step 1...", "Step 2..."],
+  "category": "strength",
+  "level": "intermediate"
+}
+```
+
+**Use cases:**
+- Suggest exercises targeting neglected muscle groups
+- Provide alternatives if user lacks certain equipment
+- Show proper form instructions for logged exercises
+- Build balanced workout plans by muscle group coverage
+
+**To implement:** Download JSON, add lookup function, integrate into planning step to suggest specific exercises.
+
+---
+
 ### TODO: Combined Health Dashboard
 
 Once integrations are working, add a "readiness" section:
