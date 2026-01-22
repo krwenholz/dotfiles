@@ -51,6 +51,21 @@ Parse journal entries for workout data, review recent activity patterns, and hel
 
 When suggesting exercises, prefer equipment the user actually has. For home workouts, stick to home gym equipment. For gym days, can use LA Fitness equipment.
 
+### Workout Structure Preferences
+
+**Training types** (use these to guide rep/set counts):
+- **Strength**: Heavy weight, low reps (3-5 reps, 4-6 sets, longer rest)
+- **Hypertrophy**: Moderate weight, medium reps (8-12 reps, 3-4 sets)
+- **Endurance**: Lighter weight, high reps (15+ reps, 2-3 sets, shorter rest)
+
+**Super sets**: Preferred for efficiency - pair exercises back-to-back with minimal rest between.
+
+**Pool days**: When swimming at LA Fitness, typically add a short strength session or stationary bike work.
+
+**Two-week rotation blocks**: Gym workouts rotate on a two-week cycle to keep the body adapting. When planning, consider what was done in the previous block and vary it.
+
+**Deload schedule**: Every other month, schedule a lighter week - not complete rest, but reduced intensity/volume. Look for signs it's needed: accumulated fatigue, stalled progress, or just hitting the ~8 week mark.
+
 ## Process
 
 ### Step 1: Find Recent Journal Files
