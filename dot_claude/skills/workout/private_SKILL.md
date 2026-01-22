@@ -25,6 +25,32 @@ Parse journal entries for workout data, review recent activity patterns, and hel
 └── TEMPLATE           # Template file (ignore)
 ```
 
+### Available Equipment
+
+**LA Fitness:**
+- Stationary bike
+- Pool (swimming)
+- Battle ropes
+- Pull-up bar
+- Slam balls
+- Kettlebells
+- Plyo boxes
+
+**Home gym:**
+- Gymnastic rings
+- Kettlebells
+- 40 lb slam ball
+- Dumbbells (5-45 lb range)
+- Jump rope
+- Plyo box
+- Weight bench
+- Resistance bands
+
+**Outdoor (weather permitting):**
+- Road bike - only suggest when weather is decent (no rain, ice, or extreme conditions)
+
+When suggesting exercises, prefer equipment the user actually has. For home workouts, stick to home gym equipment. For gym days, can use LA Fitness equipment.
+
 ## Process
 
 ### Step 1: Find Recent Journal Files
