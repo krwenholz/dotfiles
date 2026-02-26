@@ -18,9 +18,6 @@ log = "main@origin.."
 [revset-aliases]
 'MINE' = '(trunk()..(visible_heads() & mine()))'
 
-[git]
-auto-local-bookmark = true
-
 [aliases]
 # See https://jj-vcs.github.io/jj/latest/config/#aliases 
 pre-commit = [
@@ -31,3 +28,6 @@ pre-commit = [
   "-c",
   "jj diff --from @ --to main --name-only --no-pager | xargs pre-commit run --files",
 ]
+
+[remotes.origin]
+auto-track-bookmarks = "*"
