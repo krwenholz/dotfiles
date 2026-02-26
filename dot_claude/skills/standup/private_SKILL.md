@@ -47,44 +47,76 @@ If automated methods fail, ask the user to paste recent activity from:
 - https://github.com/pulls?q=is%3Apr+author%3Akrwenholz+archived%3Afalse
 - Their Linear recent issues view
 
-### Step 3: Gather Data
+### Step 3: Check Slack for Uncaptured Work
+
+After fetching GitHub and Linear data, review Slack for anything not already represented:
+
+1. **Ask the user** which Slack channels to check (e.g., team channels, project channels, DMs with relevant context). Use `mcp__claude_ai_Slack__slack_search_channels` to find channels by name if needed.
+2. **Read each channel** using `mcp__claude_ai_Slack__slack_read_channel` with `oldest` and `latest` timestamps matching the date range from Step 1. Use `response_format: "concise"` to keep output manageable.
+3. **Scan for standup-worthy items** the user participated in:
+   - Discussions about completed work not tied to a PR or Linear issue
+   - Decisions made, questions answered, or blockers resolved
+   - Ad-hoc reviews, pairing sessions, or help given to others
+   - FYIs, announcements, or context shared with the team
+4. **Cross-reference** against the GitHub/Linear data already collected. Only surface items that aren't already captured.
+5. **Present Slack-sourced items** to the user for confirmation before including them.
+
+### Step 4: Gather Data
 
 **For Yesterday:**
 - Closed/merged PRs within date range
 - Completed Linear issues
+- Slack-sourced items confirmed in Step 3
 
 **For Today:**
 - Open PRs (in review or draft)
 - In-progress Linear issues
+- Slack-sourced upcoming items (if any)
 - Ask user what they're planning to work on
 
-### Step 4: Generate the Standup
+### Step 5: Generate the Standup
 
-Format with Slack-compatible markdown. Group items by project/area when patterns emerge.
+Format with Slack-compatible markdown. **Every item MUST be a markdown link.** No bare text items without a link.
 
-**Template:**
+**Formatting rules (follow exactly):**
+- Every bullet starts with a markdown link: `[visible text](url)`
+- PRs link to GitHub: `[PR title](https://github.com/org/repo/pull/123)`
+- Linear issues link to Linear: `[FAY-123: Issue title](https://linear.app/faynutrition/issue/FAY-123)`
+- Slack-sourced items with no URL: use a descriptive label without a link, but prefer linking to the Slack message permalink if available
+- A dash ` - ` separates the link from the description sentence
+- Group related items under `## Project Area` subheadings when 2+ items relate
+- End with `Happy [Day]!`
+
+**Template (follow this structure rigorously):**
 ```
 # Yesterday
-- [PR title](github_url) - Description sentence.
-- [ISSUE-ID: Issue title](linear_url) - Description sentence.
-## [Project Area] (if multiple items relate)
-- [Link](url) - Description.
+## [Project Area]
+- [PR title](github_pr_url) - Description sentence.
+- [FAY-123: Issue title](linear_issue_url) - Description sentence.
+
+## [Another Area]
+- [PR title](github_pr_url) - Description sentence.
 
 # Today
-- [Open PR title](github_url) - What you're doing with it.
-- [ISSUE-ID: In-progress issue](linear_url) - What you're focusing on.
+## [Project Area]
+- [Open PR title](github_pr_url) - What you're doing with it.
+- [FAY-456: In-progress issue](linear_issue_url) - What you're focusing on.
 
 Happy [Day]!
 ```
 
-Note: Use a dash to separate the link from the description for better readability.
+**Link checklist (verify before presenting draft):**
+- [ ] Every PR has a clickable `[title](url)` link to the GitHub PR
+- [ ] Every Linear issue has a clickable `[ID: title](url)` link to Linear
+- [ ] No bare titles without links
+- [ ] All URLs are real, not placeholders
 
-### Step 5: Ask for User Input
+### Step 6: Ask for User Input
 
 After presenting the draft, ask:
 1. "Any FYIs to add or tweaks?"
 
-### Step 6: Generate Gemini Image Prompt
+### Step 7: Generate Gemini Image Prompt
 
 Pick ONE random aesthetic from this list:
 - Star chart / celestial map
