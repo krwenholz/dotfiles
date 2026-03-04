@@ -51,7 +51,7 @@ If automated methods fail, ask the user to paste recent activity from:
 
 After fetching GitHub and Linear data, review Slack for anything not already represented:
 
-1. **Ask the user** which Slack channels to check (e.g., team channels, project channels, DMs with relevant context). Use `mcp__claude_ai_Slack__slack_search_channels` to find channels by name if needed.
+1. **Check default channels first**, then **ask the user** if they want to add more. Default channels: `#engineering-discussions`, `#engineering-public`, `#engineering-errors`, `#data-pod`, `#octo`. Use `mcp__claude_ai_Slack__slack_search_channels` to find additional channels by name if needed.
 2. **Read each channel** using `mcp__claude_ai_Slack__slack_read_channel` with `oldest` and `latest` timestamps matching the date range from Step 1. Use `response_format: "concise"` to keep output manageable.
 3. **Scan for standup-worthy items** the user participated in:
    - Discussions about completed work not tied to a PR or Linear issue
