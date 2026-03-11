@@ -17,3 +17,8 @@ For GitHub CLI operations, verify authentication status before attempting API ca
 ## Output Formatting
 
 When formatting output for Slack, use strict Slack mrkdwn syntax (not standard markdown). Do not include extraneous content in final output.
+
+# Bash tool preferences
+
+- Avoid command substitutions (`$(...)` and backticks) in Bash commands where possible. Prefer writing values directly or using simpler alternatives that don't require subshell
+execution.
