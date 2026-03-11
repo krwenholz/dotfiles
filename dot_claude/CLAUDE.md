@@ -6,6 +6,8 @@
 
 Use `jj` instead of `git` for all version control operations. Do not use git commands.
 
+For new jj bookmarks (and git branches), use the format of krw/ISSUE_ID (if working on work stuff) or krw/feature-name (if working on personal projects). For example, `jj bookmark krw/1234` or `jj bookmark krw/add-new-thing`.
+
 ## Testing
 
 Always run the full test suite (`make check` or equivalent) after making code changes before presenting work as complete.
