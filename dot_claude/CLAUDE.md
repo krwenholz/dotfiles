@@ -8,6 +8,19 @@ Use `jj` instead of `git` for all version control operations. Do not use git com
 
 For new jj bookmarks (and git branches), use the format of krw/ISSUE_ID (if working on work stuff) or krw/feature-name (if working on personal projects). For example, `jj bookmark krw/1234` or `jj bookmark krw/add-new-thing`.
 
+### jj commit workflow
+
+Prefer creating new commits (with `jj new` or just letting the working copy advance) over amending/squashing into existing ones. Each concrete change should be its own commit with a short descriptive message. Move the bookmark forward to the new commit each time:
+
+```
+jj describe -m "Short description of change"
+jj new
+jj bookmark set krw/branch-name -r @-
+jj git push --bookmark krw/branch-name
+```
+
+This preserves a readable history of individual changes. Offer to squash commits at natural milestones — e.g. when an issue is complete, a bug has been fully tracked down and fixed, or a logical unit of work is done and ready for review.
+
 ## Testing
 
 Always run the full test suite (`make check` or equivalent) after making code changes before presenting work as complete.
