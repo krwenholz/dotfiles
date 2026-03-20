@@ -33,6 +33,14 @@ For GitHub CLI operations, verify authentication status before attempting API ca
 
 When formatting output for Slack, use strict Slack mrkdwn syntax (not standard markdown). Do not include extraneous content in final output.
 
+## Pull Request Descriptions
+
+When writing PR descriptions:
+- Keep them short — cover logical areas of the change, not individual files
+- Tone: direct, a little playful, professional but not stiff (see `kyles-voice` skill for voice reference)
+- Skip incidental changes (import cleanup, reformatting, linting)
+- For any UI/frontend changes, always include a to-do checkbox for a video demo
+
 # Bash tool preferences
 
 - Avoid command substitutions (`$(...)` and backticks) in Bash commands where possible. Prefer writing values directly or using simpler alternatives that don't require subshell

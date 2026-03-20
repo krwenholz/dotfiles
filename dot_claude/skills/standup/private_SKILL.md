@@ -65,14 +65,20 @@ After fetching GitHub and Linear data, review Slack for anything not already rep
 
 **For Yesterday:**
 - Closed/merged PRs within date range
-- Completed Linear issues
+- Completed Linear issues (include the `project` field from Linear data)
 - Slack-sourced items confirmed in Step 3
+- Match PRs to Linear issues by ticket ID in PR title (e.g., `[FAY-1234]`) to inherit the project grouping
 
 **For Today:**
 - Open PRs (in review or draft)
-- In-progress Linear issues
+- In-progress Linear issues (include the `project` field)
 - Slack-sourced upcoming items (if any)
 - Ask user what they're planning to work on
+
+**Cycle Commitments & What's Next:**
+- Fetch the user's current cycle issues using `mcp__claude_ai_Linear__list_issues` with `assignee: "me"` and the current cycle filter. List any cycle issues not yet started or in a blocked state — these are candidates for "what's next."
+- After the standup draft, present a **Cycle check-in** section showing remaining cycle commitments (Todo, In Progress, In Review) with their status, and suggest which issue to pick up next based on priority.
+- If it's not clear what the next steps are on an issue (vague title, no description, unclear scope), **ask the user** to clarify before suggesting it.
 
 ### Step 5: Generate the Standup
 
@@ -84,22 +90,27 @@ Format with Slack-compatible markdown. **Every item MUST be a markdown link.** N
 - Linear issues link to Linear: `[FAY-123: Issue title](https://linear.app/faynutrition/issue/FAY-123)`
 - Slack-sourced items with no URL: use a descriptive label without a link, but prefer linking to the Slack message permalink if available
 - A dash ` - ` separates the link from the description sentence
-- Group related items under `## Project Area` subheadings when 2+ items relate
+- Group items under `## Project Name` subheadings using the **Linear project name** from the issue data. Match PRs to their Linear issue's project when possible (e.g., a PR titled `[FAY-8609] ...` belongs to whatever project FAY-8609 is in).
+- Items with **no Linear project** (e.g., CI/CD cleanup PRs, ad-hoc fixes) go ungrouped at the top of the Yesterday/Today section, before any project headings.
+- Only create a `## Project Name` heading when 2+ items share that project. A single item from a project can stay ungrouped at the top.
 - End with `Happy [Day]!`
 
 **Template (follow this structure rigorously):**
 ```
 # Yesterday
-## [Project Area]
+- [PR title](github_pr_url) - Description sentence. (ungrouped, no Linear project)
+
+## [Linear Project Name]
 - [PR title](github_pr_url) - Description sentence.
 - [FAY-123: Issue title](linear_issue_url) - Description sentence.
 
-## [Another Area]
+## [Another Linear Project Name]
 - [PR title](github_pr_url) - Description sentence.
 
 # Today
-## [Project Area]
-- [Open PR title](github_pr_url) - What you're doing with it.
+- [Open PR title](github_pr_url) - What you're doing with it. (ungrouped)
+
+## [Linear Project Name]
 - [FAY-456: In-progress issue](linear_issue_url) - What you're focusing on.
 
 Happy [Day]!
@@ -113,8 +124,9 @@ Happy [Day]!
 
 ### Step 6: Ask for User Input
 
-After presenting the draft, ask:
+After presenting the draft and cycle check-in, ask:
 1. "Any FYIs to add or tweaks?"
+2. If any cycle issues have unclear next steps, ask about those specifically.
 
 ### Step 7: Generate Gemini Image Prompt
 
@@ -137,7 +149,7 @@ Write like Kyle - casual, direct, and friendly:
 
 - **Use contractions and casual language**: "gonna", "kinda", "I'll probably..."
 - **Be honest about uncertainty**: "Some PRs I'm forgetting" is better than forced completeness
-- **Group by project**: Use `## Heading` for project areas (e.g., `## Provider Payouts`)
+- **Group by Linear project**: Use `## Heading` with the actual Linear project name — don't invent section names
 - **Keep bullets brief**: One line each, no fluff
 - **Use complete sentences**: End bullets with periods for readability
 - **Light humor welcome**: Self-deprecating acknowledgments, fun observations
