@@ -22,7 +22,23 @@ Generate a Slack-ready standup post by pulling from GitHub PRs and Linear issues
 
 Use today's date to calculate appropriately.
 
-### Step 2: Fetch Data (Try Multiple Methods)
+### Step 2: Review Previous Standups for Carry-Over
+
+Check the last week of standup posts in `#engineering-daily-updates` to understand what's been in flight and spot lingering items.
+
+1. **Find the channel** using `mcp__claude_ai_Slack__slack_search_channels` for `engineering-daily-updates`.
+2. **Read the last 7 days** of messages using `mcp__claude_ai_Slack__slack_read_channel` with `oldest` set to 7 days before today. Use `response_format: "concise"`.
+3. **Identify Kyle's standup threads.** The infographic image is usually the first message; the standup text is typically the first reply in the thread. Sometimes the order is swapped — grab whichever message contains the standup text. Use `mcp__claude_ai_Slack__slack_read_thread` on each standup message to get the actual content.
+4. **Extract carry-over context:**
+   - Items that appeared in previous "Today" sections — use similar wording for continuity when they show up again.
+   - Items that have appeared in "Today" for 3+ days — flag these as lingering.
+5. **Apply light coaching** on lingering items. After presenting the draft, include a short `## Coaching` section (not part of the final standup text) with suggestions like:
+   - "This has been in Today for [N] days — worth reaching out for help?"
+   - "Could you cut scope or break this into a smaller deliverable?"
+   - "Maybe time to narrow focus and knock this one out?"
+   Keep it casual and helpful, not naggy. Only flag genuinely lingering items, not things that naturally span a few days.
+
+### Step 3: Fetch Data (Try Multiple Methods)
 
 Try these methods in order until one works:
 
@@ -47,7 +63,7 @@ If automated methods fail, ask the user to paste recent activity from:
 - https://github.com/pulls?q=is%3Apr+author%3Akrwenholz+archived%3Afalse
 - Their Linear recent issues view
 
-### Step 3: Check Slack for Uncaptured Work
+### Step 4: Check Slack for Uncaptured Work
 
 After fetching GitHub and Linear data, review Slack for anything not already represented:
 
@@ -61,7 +77,7 @@ After fetching GitHub and Linear data, review Slack for anything not already rep
 4. **Cross-reference** against the GitHub/Linear data already collected. Only surface items that aren't already captured.
 5. **Present Slack-sourced items** to the user for confirmation before including them.
 
-### Step 4: Gather Data
+### Step 5: Gather Data
 
 **For Yesterday:**
 - Closed/merged PRs within date range
@@ -80,7 +96,7 @@ After fetching GitHub and Linear data, review Slack for anything not already rep
 - After the standup draft, present a **Cycle check-in** section showing remaining cycle commitments (Todo, In Progress, In Review) with their status, and suggest which issue to pick up next based on priority.
 - If it's not clear what the next steps are on an issue (vague title, no description, unclear scope), **ask the user** to clarify before suggesting it.
 
-### Step 5: Generate the Standup
+### Step 6: Generate the Standup
 
 Format with Slack-compatible markdown. **Every item MUST be a markdown link.** No bare text items without a link.
 
@@ -122,25 +138,21 @@ Happy [Day]!
 - [ ] No bare titles without links
 - [ ] All URLs are real, not placeholders
 
-### Step 6: Ask for User Input
+### Step 7: Ask for User Input
 
 After presenting the draft and cycle check-in, ask:
 1. "Any FYIs to add or tweaks?"
 2. If any cycle issues have unclear next steps, ask about those specifically.
 
-### Step 7: Generate Gemini Image Prompt
-
-Pick ONE random aesthetic from this list:
-- Star chart / celestial map
-- Retro pixel art dashboard
-- Botanical illustration with data vines
-- Blueprint / architectural schematic
+### Step 8: Generate Image Prompt
 
 Generate a short prompt with just the aesthetic and vibe — no summary stats or item counts. Gemini will have the full standup text to work from.
 
 ```
-Create an infographic in a [AESTHETIC] style, in a fun animated style. Keep it playful and celebratory of the work done. [Optional vibe note, e.g. "Friday vibes, beach PTO incoming."]
+I'd like your help generating a great infographic for my standup post. Use the aesthetic and characters of TODO.
 ```
+
+The user will fill in `TODO` with their chosen aesthetic each day.
 
 ## Voice & Tone Guidelines
 
