@@ -36,3 +36,4 @@ packages:
       - jj-cli
       - starship
       - stylua
+      - tuicr
