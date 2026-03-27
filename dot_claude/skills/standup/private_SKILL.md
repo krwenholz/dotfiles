@@ -136,11 +136,10 @@ Pick ONE random aesthetic from this list:
 - Botanical illustration with data vines
 - Blueprint / architectural schematic
 
-Generate a prompt like:
+Generate a short prompt with just the aesthetic and vibe — no summary stats or item counts. Gemini will have the full standup text to work from.
+
 ```
-Create an infographic in a [AESTHETIC] style, in a fun animated style, showing:
-[X] PRs merged, [Y] issues completed. Key themes: [extracted from PR/issue titles].
-Keep it playful and celebratory of the work done.
+Create an infographic in a [AESTHETIC] style, in a fun animated style. Keep it playful and celebratory of the work done. [Optional vibe note, e.g. "Friday vibes, beach PTO incoming."]
 ```
 
 ## Voice & Tone Guidelines
@@ -176,3 +175,12 @@ After user confirms the standup content, present both blocks for easy copying:
 2. **Standup text** in a code block (repeated here for easy copy-paste after the image prompt)
 
 This order lets the user copy the image prompt first, generate the image, then grab the standup text right below it.
+
+### Step 8: Write to /tmp/my-standup and open in nvim
+
+After the user confirms the final standup text:
+
+1. Write to `/tmp/my-standup` with the Gemini image prompt (no label, just the raw prompt text) at the top, followed by a `---` separator, then the standup text.
+2. Open it in a new tmux pane: `tmux split-window -h -t <current_pane> "nvim /tmp/my-standup"`
+
+This gives the user an easy copy-paste surface for both the standup and the image prompt.

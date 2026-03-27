@@ -10,6 +10,11 @@
       "Bash(echo:*)",
       "Bash(env)",
       "Bash(find:*)",
+      "Bash(read:*)",
+      "Read",
+      "Grep",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
       "Bash(git add:*)",
       "Bash(git log:*)",
       "Bash(git mv:*)",
@@ -52,15 +57,22 @@
       "mcp__metabase__executeQuery",
       "mcp__metabase__listDashboards",
       "mcp__metabase__listDatabases",
-      "mcp__plugin_episodic-memory_episodic-memory__search"
+      "mcp__plugin_episodic-memory_episodic-memory__search",
+      "Bash(jj:*)"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/code/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
     "elements-of-style@superpowers-marketplace": true,
     "episodic-memory@superpowers-marketplace": true,
     "superpowers-lab@superpowers-marketplace": true,
-    "superpowers@superpowers-dev": true
+    "superpowers@superpowers-dev": true,
+    "jj-git-guard@fay-plugin-marketplace": true,
+    "playwright@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
