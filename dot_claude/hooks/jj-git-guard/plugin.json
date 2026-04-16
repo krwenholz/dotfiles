@@ -1,0 +1,10 @@
+{
+  "name": "jj-git-guard",
+  "description": "Prevents Claude from using git commands in Jujutsu (jj) repositories. Automatically detects .jj directories and blocks git, suggesting jj equivalents instead.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jack Michaud"
+  },
+  "keywords": ["jj", "jujutsu", "git", "hooks", "guard"],
+  "hooks": "./hooks/hooks.json"
+}

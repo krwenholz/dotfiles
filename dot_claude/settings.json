@@ -71,7 +71,6 @@
     "episodic-memory@superpowers-marketplace": true,
     "superpowers-lab@superpowers-marketplace": true,
     "superpowers@superpowers-dev": true,
-    "jj-git-guard@fay-plugin-marketplace": true,
     "playwright@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
@@ -81,5 +80,19 @@
         "repo": "obra/superpowers"
       }
     }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/jj-git-guard/scripts/block-git-in-jj.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
   }
 }
