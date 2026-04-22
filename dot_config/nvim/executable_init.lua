@@ -512,6 +512,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
+-- Open current file (or selection) on GitHub at main branch
+vim.keymap.set("n", "<leader>go", ":GBrowse main:%<CR>", { desc = "Open file on GitHub at main" })
+vim.keymap.set("v", "<leader>go", ":'<,'>GBrowse main:%<CR>", { desc = "Open selection on GitHub at main" })
+
 -- Jump back and forward (like VS Code's back/forward buttons)
 vim.keymap.set("n", "<C-(>", "<C-o>", { desc = "Jump back" })
 vim.keymap.set("n", "<C-)>", "<C-i>", { desc = "Jump forward" })
