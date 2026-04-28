@@ -1,0 +1,9 @@
+{
+  "name": "pr-description-writer",
+  "description": "Create draft pull requests on GitHub with concise, well-structured descriptions.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyle Wrenholz"
+  },
+  "keywords": ["pr", "pull-request", "github", "writing"]
+}

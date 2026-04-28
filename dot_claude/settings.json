@@ -71,13 +71,23 @@
     "episodic-memory@superpowers-marketplace": true,
     "superpowers-lab@superpowers-marketplace": true,
     "superpowers@superpowers-dev": true,
-    "playwright@claude-plugins-official": true
+    "playwright@claude-plugins-official": true,
+    "pr-description-writer@krwenholz-dotfiles": true,
+    "tuicr@krwenholz-dotfiles": true,
+    "kyles-voice@krwenholz-dotfiles": true,
+    "jj-git-guard@krwenholz-dotfiles": true
   },
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
       "source": {
         "source": "github",
         "repo": "obra/superpowers"
+      }
+    },
+    "krwenholz-dotfiles": {
+      "source": {
+        "source": "github",
+        "repo": "krwenholz/dotfiles"
       }
     }
   },

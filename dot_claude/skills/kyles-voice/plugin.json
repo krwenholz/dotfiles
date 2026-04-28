@@ -1,0 +1,9 @@
+{
+  "name": "kyles-voice",
+  "description": "Rewrite or draft text to match Kyle's direct, practical writing voice.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyle Wrenholz"
+  },
+  "keywords": ["writing", "voice", "style", "tone"]
+}

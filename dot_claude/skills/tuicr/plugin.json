@@ -1,0 +1,9 @@
+{
+  "name": "tuicr",
+  "description": "Review local git changes with the tuicr TUI via a tmux split pane.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyle Wrenholz"
+  },
+  "keywords": ["tuicr", "tui", "git", "review", "tmux"]
+}
