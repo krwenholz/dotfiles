@@ -37,6 +37,17 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
 
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      delay = 500,
+    },
+    keys = {
+      { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)" },
+    },
+  },
+
   -- {
   --   "RRethy/nvim-base16",
   --   priority = 1000,
