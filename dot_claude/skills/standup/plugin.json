@@ -1,0 +1,9 @@
+{
+  "name": "standup",
+  "description": "Generate a daily standup post for Slack from GitHub PRs and Linear issues.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyle Wrenholz"
+  },
+  "keywords": ["standup", "slack", "github", "linear", "productivity"]
+}

@@ -75,6 +75,7 @@
     "pr-description-writer@krwenholz-dotfiles": true,
     "tuicr@krwenholz-dotfiles": true,
     "kyles-voice@krwenholz-dotfiles": true,
+    "standup@krwenholz-dotfiles": true,
     "jj-git-guard@krwenholz-dotfiles": true
   },
   "extraKnownMarketplaces": {

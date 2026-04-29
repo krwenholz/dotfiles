@@ -33,6 +33,15 @@
       }
     },
     {
+      "name": "standup",
+      "description": "Generate a daily standup post for Slack from GitHub PRs and Linear issues.",
+      "version": "1.0.0",
+      "source": "./dot_claude/skills/standup",
+      "author": {
+        "name": "Kyle Wrenholz"
+      }
+    },
+    {
       "name": "jj-git-guard",
       "description": "Prevents Claude from using git commands in Jujutsu (jj) repositories.",
       "version": "1.0.0",
