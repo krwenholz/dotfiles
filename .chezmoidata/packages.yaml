@@ -37,3 +37,5 @@ packages:
       - starship
       - stylua
       - tuicr
+    rustpkgs-git:
+      - rtk-ai/rtk

@@ -21,6 +21,8 @@ rustup default stable
 {{ range .packages.ubuntu.rustpkgs -}}
     cargo install --locked {{ . | quote }}
 {{ end -}}
+{{ range .packages.ubuntu.rustpkgs-git -}}
+    cargo install --git https://github.com/{{ . }}
 {{ end -}}
 
 if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
@@ -41,4 +43,5 @@ if command -v claude >/dev/null 2>&1; then
    echo "claude is already installed"
 else
   curl -fsSL https://claude.ai/install.sh | bash -s latest
+  rtk init -g
 fi
