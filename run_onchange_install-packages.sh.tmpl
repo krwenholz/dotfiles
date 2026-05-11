@@ -1,9 +1,3 @@
-{{ if eq .chezmoi.os "darwin" -}}
-#!/bin/sh
-{{ range .packages.mac.pkgs -}}
-    brew install {{ .name | quote }}
-{{ end -}}
-{{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 sudo apt-get install -y software-properties-common
@@ -33,6 +27,13 @@ fi
 {{ end -}}
 {{ end -}}
 
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+{{ range .packages.mac.pkgs -}}
+    brew install {{ .name | quote }}
+{{ end -}}
+{{ end -}}
+
 rustup default stable
 {{ range .packages.ubuntu.rustpkgs -}}
     cargo install --locked {{ .name | quote }}
@@ -57,3 +58,4 @@ else
   rtk init -g
 fi
 {{ end -}}
+

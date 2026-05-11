@@ -62,7 +62,15 @@ packages:
       - name: ngrok
       - name: openssl
       - name: ripgrep
+      - name: rustup
       - name: tmux
       - name: tree
       - name: wget
       - name: wireguard-tools
+    rustpkgs:
+      - name: starship
+      - name: stylua
+      - name: tuicr
+    rustpkgsgit:
+      - name: rtk
+        install: cargo install --git https://github.com/rtk-ai/rtk
