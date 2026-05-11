@@ -34,3 +34,6 @@
 
 [includeIf "hasconfig:remote.*.url:*fayhealthinc*"]
 	path = ".config/git/config.fay"
+
+[includeIf "gitdir:~/Source/maintainx/"]
+	path = ".config/git/config.maintainx"

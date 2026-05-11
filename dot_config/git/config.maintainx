@@ -1,0 +1,4 @@
+[user]
+	email = "kyle.wenholz@getmaintainx.com"
+	name = "Kyle Wenholz"
+	signingkey = "~/.ssh/kyle"

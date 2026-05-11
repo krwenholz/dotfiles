@@ -7,6 +7,12 @@ email = "kyle@krwenholz.com"
 [--scope.user]
 email = "krwenholz@faynutrition.com"
 
+[[--scope]]
+--when.repositories = ["/Users/kylewenholz/Source/maintainx/*"]
+[--scope.user]
+email = "kyle.wenholz@getmaintainx.com"
+name = "Kyle Wenholz"
+
 [ui]
 editor = "nvim"
 
