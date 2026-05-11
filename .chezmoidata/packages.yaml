@@ -26,7 +26,7 @@ packages:
       - name: rustup
       - name: sqlite3
       - name: libsqlite3-dev
-      - name: tmux
+      - name: tgux
       - name: tree
       - name: unzip
       - name: wget
@@ -50,6 +50,7 @@ packages:
   mac:
     pkgs:
       - name: ack
+      - name: agavra/tap/tuicr
       - name: bat
       - name: diff-so-fancy
       - name: entr
@@ -63,14 +64,12 @@ packages:
       - name: openssl
       - name: ripgrep
       - name: rustup
+      - name: starship
+      - name: stylua
       - name: tmux
       - name: tree
       - name: wget
       - name: wireguard-tools
-    rustpkgs:
-      - name: starship
-      - name: stylua
-      - name: tuicr
     rustpkgsgit:
       - name: rtk
         install: cargo install --git https://github.com/rtk-ai/rtk

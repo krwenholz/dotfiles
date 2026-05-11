@@ -20,10 +20,6 @@ unsetopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 
-
-# Wrap!
-setterm -linewrap on
-
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.(git|hg|svg)/*'";
 
 

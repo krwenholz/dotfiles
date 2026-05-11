@@ -126,7 +126,7 @@ if [ -e "$HOME/corporate_things.sh" ]; then
   source "$HOME/corporate_things.sh"
 fi
 
-PATH=$PATH:$HOME/includes/bin
+PATH=$PATH:$HOME/includes/bin:$HOME/.local/bin
 RPROMPT=""
 
 if test -d "$HOME/.bun"; then
