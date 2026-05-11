@@ -1,3 +1,9 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+{{ range .packages.mac.pkgs -}}
+    brew install {{ .name | quote }}
+{{ end -}}
+{{ end -}}
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/sh
 sudo apt-get install -y software-properties-common
@@ -14,29 +20,34 @@ sudo apt update
 
 
 {{ range .packages.ubuntu.pkgs -}}
-    sudo apt install -y {{ . | quote }}
+{{ if .install -}}
+{{ if .check -}}
+if ! {{ .check }} >/dev/null 2>&1; then
+{{ .install -}}
+fi
+{{ else -}}
+{{ .install -}}
+{{ end -}}
+{{ else -}}
+    sudo apt install -y {{ .name | quote }}
+{{ end -}}
 {{ end -}}
 
 rustup default stable
 {{ range .packages.ubuntu.rustpkgs -}}
-    cargo install --locked {{ . | quote }}
+    cargo install --locked {{ .name | quote }}
 {{ end -}}
-{{ range .packages.ubuntu.rustpkgs-git -}}
-    cargo install --git https://github.com/{{ . }}
+{{ range .packages.ubuntu.rustpkgsgit -}}
+{{ if .install -}}
+    {{ .install }}
+{{ else -}}
+    cargo install --git https://github.com/{{ .name }}
+{{ end -}}
 {{ end -}}
 
 if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
   echo "Warning: Prezto directory not found at ${ZDOTDIR:-$HOME}/.zprezto"
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-fi
-
-if command -v granted >/dev/null 2>&1; then
-  echo "Granted is already installed"
-else
-  wget -O- https://apt.releases.commonfate.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/common-fate-linux.gpg
-  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/common-fate-linux.gpg] https://apt.releases.commonfate.io stable main" | sudo tee /etc/apt/sources.list.d/common-fate.list
-  sudo apt update
-  sudo apt install granted
 fi
 
 if command -v claude >/dev/null 2>&1; then
@@ -45,3 +56,4 @@ else
   curl -fsSL https://claude.ai/install.sh | bash -s latest
   rtk init -g
 fi
+{{ end -}}

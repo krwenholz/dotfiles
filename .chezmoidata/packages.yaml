@@ -1,41 +1,68 @@
 packages:
   ubuntu:
     pkgs:
-      - ack
-      - bat
-      - build-essential
-      - diff-so-fancy
-      - entr
-      - gnupg2
-      - gpg-agent
-      - golang-go
-      - htop
-      - jq
-      - libncurses5-dev
-      - libncursesw5-dev
-      - lsd
-      - moreutils
-      - nano
-      - ngrok
-      - neovim
-      - ntp
-      - openssh
-      - openssl
-      - pinentry-curses
-      - ripgrep
-      - rustup
-      - sqlite3
-      - libsqlite3-dev
-      - tmux
-      - tree
-      - unzip
-      - wget
-      - wireguard-tools
-      - zsh
+      - name: ack
+      - name: bat
+      - name: build-essential
+      - name: diff-so-fancy
+      - name: entr
+      - name: gnupg2
+      - name: gpg-agent
+      - name: golang-go
+      - name: htop
+      - name: jq
+      - name: libncurses5-dev
+      - name: libncursesw5-dev
+      - name: lsd
+      - name: moreutils
+      - name: nano
+      - name: ngrok
+      - name: neovim
+      - name: ntp
+      - name: openssh
+      - name: openssl
+      - name: pinentry-curses
+      - name: ripgrep
+      - name: rustup
+      - name: sqlite3
+      - name: libsqlite3-dev
+      - name: tmux
+      - name: tree
+      - name: unzip
+      - name: wget
+      - name: wireguard-tools
+      - name: zsh
+      - name: granted
+        check: command -v granted
+        install: |
+          wget -O- https://apt.releases.commonfate.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/common-fate-linux.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/common-fate-linux.gpg] https://apt.releases.commonfate.io stable main" | sudo tee /etc/apt/sources.list.d/common-fate.list
+          sudo apt update
+          sudo apt install granted
     rustpkgs:
-      - jj-cli
-      - starship
-      - stylua
-      - tuicr
-    rustpkgs-git:
-      - rtk-ai/rtk
+      - name: jj-cli
+      - name: starship
+      - name: stylua
+      - name: tuicr
+    rustpkgsgit:
+      - name: rtk
+        install: cargo install --git https://github.com/rtk-ai/rtk
+  mac:
+    pkgs:
+      - name: ack
+      - name: bat
+      - name: diff-so-fancy
+      - name: entr
+      - name: gnupg
+      - name: htop
+      - name: jq
+      - name: lsd
+      - name: moreutils
+      - name: neovim
+      - name: ngrok
+      - name: openssl
+      - name: ripgrep
+      - name: tmux
+      - name: tree
+      - name: wget
+      - name: wireguard-tools
