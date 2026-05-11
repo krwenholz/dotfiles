@@ -182,6 +182,14 @@ require("lazy").setup({
         "pyright", -- Python
         -- Add more language servers as needed
       },
+      handlers = {
+        function(server_name)
+          local ok, err = pcall(vim.lsp.enable, server_name)
+          if not ok then
+            vim.notify("LSP: " .. server_name .. " not available: " .. tostring(err), vim.log.levels.WARN)
+          end
+        end,
+      },
     },
   },
   {
