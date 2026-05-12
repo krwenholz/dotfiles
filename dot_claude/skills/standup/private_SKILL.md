@@ -10,8 +10,12 @@ Generate a Slack-ready standup post by pulling from GitHub PRs and Linear issues
 ## Configuration
 
 - **GitHub username**: krwenholz
-- **Linear workspace**: faynutrition
-- **Linear view for recent issues**: krws-recent-issues-8dfe000ddcb4
+- **Linear workspace**: maintainx
+- **Linear team**: AI Builder Tools
+- **Linear ticket prefix**: BUILD-
+- **Standup post channel**: #team-eng-ai-builder-tools
+
+Recent issues come straight from `mcp__claude_ai_Linear__list_issues` with `assignee: "me"` and `team: "AI Builder Tools"` — no saved view needed.
 
 ## Process
 
@@ -24,9 +28,9 @@ Use today's date to calculate appropriately.
 
 ### Step 2: Review Previous Standups for Carry-Over
 
-Check the last week of standup posts in `#engineering-daily-updates` to understand what's been in flight and spot lingering items.
+Check the last week of standup posts in `#team-eng-ai-builder-tools` to understand what's been in flight and spot lingering items.
 
-1. **Find the channel** using `mcp__claude_ai_Slack__slack_search_channels` for `engineering-daily-updates`.
+1. **Find the channel** using `mcp__claude_ai_Slack__slack_search_channels` for `team-eng-ai-builder-tools`.
 2. **Read the last 7 days** of messages using `mcp__claude_ai_Slack__slack_read_channel` with `oldest` set to 7 days before today. Use `response_format: "concise"`.
 3. **Identify Kyle's standup threads.** The infographic image is usually the first message; the standup text is typically the first reply in the thread. Sometimes the order is swapped — grab whichever message contains the standup text. Use `mcp__claude_ai_Slack__slack_read_thread` on each standup message to get the actual content.
 4. **Extract carry-over context:**
@@ -67,7 +71,7 @@ If automated methods fail, ask the user to paste recent activity from:
 
 After fetching GitHub and Linear data, review Slack for anything not already represented:
 
-1. **Check default channels first**, then **ask the user** if they want to add more. Default channels: `#engineering-discussions`, `#engineering-public`, `#engineering-errors`, `#data-pod`, `#octo`. Use `mcp__claude_ai_Slack__slack_search_channels` to find additional channels by name if needed.
+1. **Check default channels first**, then **ask the user** if they want to add more. Default channels: `#team-eng-ai-builder-tools`, `#team-eng-ai-guild`, `#team-engineering`, `#updates-engineering-review`. Use `mcp__claude_ai_Slack__slack_search_channels` to find additional channels by name if needed.
 2. **Read each channel** using `mcp__claude_ai_Slack__slack_read_channel` with `oldest` and `latest` timestamps matching the date range from Step 1. Use `response_format: "concise"` to keep output manageable.
 3. **Scan for standup-worthy items** the user participated in:
    - Discussions about completed work not tied to a PR or Linear issue
@@ -83,7 +87,7 @@ After fetching GitHub and Linear data, review Slack for anything not already rep
 - Closed/merged PRs within date range
 - Completed Linear issues (include the `project` field from Linear data)
 - Slack-sourced items confirmed in Step 3
-- Match PRs to Linear issues by ticket ID in PR title (e.g., `[FAY-1234]`) to inherit the project grouping
+- Match PRs to Linear issues by ticket ID in PR title (e.g., `[BUILD-1234]`) to inherit the project grouping
 
 **For Today:**
 - Open PRs (in review or draft)
@@ -103,10 +107,10 @@ Format with Slack-compatible markdown. **Every item MUST be a markdown link.** N
 **Formatting rules (follow exactly):**
 - Every bullet starts with a markdown link: `[visible text](url)`
 - PRs link to GitHub: `[PR title](https://github.com/org/repo/pull/123)`
-- Linear issues link to Linear: `[FAY-123: Issue title](https://linear.app/faynutrition/issue/FAY-123)`
+- Linear issues link to Linear: `[BUILD-123: Issue title](https://linear.app/maintainx/issue/BUILD-123)`
 - Slack-sourced items with no URL: use a descriptive label without a link, but prefer linking to the Slack message permalink if available
 - A dash ` - ` separates the link from the description sentence
-- Group items under `## Project Name` subheadings using the **Linear project name** from the issue data. Match PRs to their Linear issue's project when possible (e.g., a PR titled `[FAY-8609] ...` belongs to whatever project FAY-8609 is in).
+- Group items under `## Project Name` subheadings using the **Linear project name** from the issue data. Match PRs to their Linear issue's project when possible (e.g., a PR titled `[BUILD-8609] ...` belongs to whatever project BUILD-8609 is in).
 - Items with **no Linear project** (e.g., CI/CD cleanup PRs, ad-hoc fixes) go ungrouped at the top of the Yesterday/Today section, before any project headings.
 - Only create a `## Project Name` heading when 2+ items share that project. A single item from a project can stay ungrouped at the top.
 - End with `Happy [Day]!`
@@ -118,7 +122,7 @@ Format with Slack-compatible markdown. **Every item MUST be a markdown link.** N
 
 ## [Linear Project Name]
 - [PR title](github_pr_url) - Description sentence.
-- [FAY-123: Issue title](linear_issue_url) - Description sentence.
+- [BUILD-123: Issue title](linear_issue_url) - Description sentence.
 
 ## [Another Linear Project Name]
 - [PR title](github_pr_url) - Description sentence.
@@ -127,7 +131,7 @@ Format with Slack-compatible markdown. **Every item MUST be a markdown link.** N
 - [Open PR title](github_pr_url) - What you're doing with it. (ungrouped)
 
 ## [Linear Project Name]
-- [FAY-456: In-progress issue](linear_issue_url) - What you're focusing on.
+- [BUILD-456: In-progress issue](linear_issue_url) - What you're focusing on.
 
 Happy [Day]!
 ```

@@ -56,6 +56,7 @@ alias -- shrug='echo '\''¯\_(ツ)_/¯'\'''
 alias -- simple_server='nix-shell -p python3 --command '\''python3 -m http.server 8000'\'''
 alias -- todos='rg --hidden --follow --glob '\''!.(git|hg|svn)'\'' -e '\''TODO(kyle)'\'''
 alias -- vim='nvim'
+alias -- chezmoi-home='cd $(chezmoi source-path)'
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 

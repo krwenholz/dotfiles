@@ -45,3 +45,5 @@ When writing PR descriptions:
 
 - Avoid command substitutions (`$(...)` and backticks) in Bash commands where possible. Prefer writing values directly or using simpler alternatives that don't require subshell
 execution.
+
+@RTK.md
