@@ -102,7 +102,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash /home/code/.claude/statusline-command.sh"
+    "command": "bash $HOME/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
