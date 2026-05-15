@@ -17,8 +17,8 @@ name = "Kyle Wenholz"
 editor = "nvim"
 
 [revsets]
-# Show commits that are not in `main@origin`
-log = "main@origin.."
+# Show commits that are not in trunk (auto-detects main/master/trunk on origin)
+log = "trunk().."
 # Default is 'present(@) | ancestors(immutable_heads().., 2) | present(trunk())'
 
 [revset-aliases]
@@ -32,7 +32,7 @@ pre-commit = [
   "--",
   "bash",
   "-c",
-  "jj diff --from @ --to main --name-only --no-pager | xargs pre-commit run --files",
+  "jj diff --from @ --to 'trunk()' --name-only --no-pager | xargs pre-commit run --files",
 ]
 
 [remotes.origin]
