@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "Bash(/usr/bin/make check:*)",
       "Bash(bash -c:*)",
@@ -111,13 +112,22 @@
     "superpowers-lab@superpowers-marketplace": true,
     "superpowers@superpowers-dev": true,
     "playwright@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true
+    "hookify@claude-plugins-official": true,
+    "kyle-wenholz@maintainx-skills": true,
+    "antoine-poellhuber@maintainx-skills": true
   },
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
       "source": {
         "source": "github",
         "repo": "obra/superpowers"
+      }
+    },
+    "maintainx-skills": {
+      "source": {
+        "source": "github",
+        "repo": "MaintainX/skill-share",
+        "ref": "krw/plugin-marketplace"
       }
     }
   },
