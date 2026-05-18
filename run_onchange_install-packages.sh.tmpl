@@ -14,8 +14,8 @@ sudo apt update
 
 
 {{ range .packages.ubuntu.pkgs -}}
-{{ if .install -}}
-{{ if .check -}}
+{{ if index . "install" -}}
+{{ if index . "check" -}}
 if ! {{ .check }} >/dev/null 2>&1; then
 {{ .install -}}
 fi
@@ -39,7 +39,7 @@ rustup default stable
     cargo install --locked {{ .name | quote }}
 {{ end -}}
 {{ range .packages.ubuntu.rustpkgsgit -}}
-{{ if .install -}}
+{{ if index . "install" -}}
     {{ .install }}
 {{ else -}}
     cargo install --git https://github.com/{{ .name }}
