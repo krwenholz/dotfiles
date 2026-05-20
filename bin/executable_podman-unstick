@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Force-recover a hung podman machine (runaway krunkit/gvproxy VM process).
+# Kills the machine's VM processes directly, then restarts it cleanly.
+set -euo pipefail
+
+echo "Looking for stuck podman VM processes..."
+PIDS=$(ps aux | grep -E "krunkit|gvproxy" | grep -v grep | awk '{print $2}' || true)
+
+if [ -z "$PIDS" ]; then
+  echo "No krunkit/gvproxy processes found."
+else
+  echo "Killing: $PIDS"
+  kill -9 $PIDS 2>/dev/null || true
+  sleep 1
+fi
+
+echo "Machine status:"
+podman machine list
+
+echo "Starting podman machine..."
+podman machine start
+
+echo "Verifying with 'podman ps -a':"
+podman ps -a
