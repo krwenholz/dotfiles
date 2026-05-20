@@ -54,6 +54,8 @@ packages:
       - name: bat
       - name: diff-so-fancy
       - name: entr
+      - name: fnm
+      - name: go
       - name: gnupg
       - name: htop
       - name: jq
@@ -68,6 +70,7 @@ packages:
       - name: stylua
       - name: tmux
       - name: tree
+      - name: uv
       - name: wget
       - name: wireguard-tools
     rustpkgsgit:
