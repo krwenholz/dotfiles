@@ -2,7 +2,8 @@
 # block-git-in-jj.sh - Block git commands in jj (Jujutsu) repositories
 
 INPUT=$(cat)
-CWD=$(echo "$INPUT" | jq -r '.cwd')
+CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
+[[ -z "$CWD" ]] && exit 0
 COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
 # Check if we're in a jj repository by walking up from cwd
