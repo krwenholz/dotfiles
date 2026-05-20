@@ -174,21 +174,7 @@ require("lazy").setup({
   {
     "mason-org/mason-lspconfig.nvim",
     dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
-    config = function()
-      local servers = {
-        { server = "gopls",         exe = "go" },
-        { server = "rust_analyzer", exe = "rustc" },
-        { server = "ts_ls",         exe = "node" },
-        { server = "pyright",       exe = "python3" },
-      }
-      local ensure_installed = {}
-      for _, s in ipairs(servers) do
-        if vim.fn.executable(s.exe) == 1 then
-          table.insert(ensure_installed, s.server)
-        end
-      end
-      require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-    end,
+    opts = {},
   },
   {
     "neovim/nvim-lspconfig",
