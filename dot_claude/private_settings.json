@@ -1,4 +1,97 @@
 {
+  "editorMode": "vim",
+  "enabledPlugins": {
+    "elements-of-style@superpowers-marketplace": true,
+    "episodic-memory@superpowers-marketplace": true,
+    "hookify@claude-plugins-official": true,
+    "kyle-wenholz@maintainx-skills": true,
+    "playwright@claude-plugins-official": true,
+    "superpowers-lab@superpowers-marketplace": true,
+    "superpowers@superpowers-dev": true,
+    "superpowers@superpowers-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "maintainx-skills": {
+      "source": {
+        "ref": "krw/plugin-marketplace",
+        "repo": "MaintainX/skill-share",
+        "source": "github"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "repo": "obra/superpowers",
+        "source": "github"
+      }
+    }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2,
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit|MultiEdit"
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "$HOME/.claude/hooks/jj-git-guard/scripts/block-git-in-jj.sh",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "rtk hook claude",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      },
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2,
+            "type": "command"
+          }
+        ],
+        "matcher": "Write|Edit|MultiEdit"
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2,
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
       "Bash(/usr/bin/make check:*)",
@@ -78,61 +171,9 @@
     ],
     "defaultMode": "auto"
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/jj-git-guard/scripts/block-git-in-jj.sh",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rtk hook claude"
-          }
-        ]
-      }
-    ]
-  },
+  "skipAutoPermissionPrompt": true,
   "statusLine": {
-    "type": "command",
-    "command": "bash $HOME/.claude/statusline-command.sh"
-  },
-  "enabledPlugins": {
-    "superpowers@superpowers-marketplace": true,
-    "elements-of-style@superpowers-marketplace": true,
-    "episodic-memory@superpowers-marketplace": true,
-    "superpowers-lab@superpowers-marketplace": true,
-    "superpowers@superpowers-dev": true,
-    "playwright@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true,
-    "kyle-wenholz@maintainx-skills": true,
-    "antoine-poellhuber@maintainx-skills": true
-  },
-  "extraKnownMarketplaces": {
-    "superpowers-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers"
-      }
-    },
-    "maintainx-skills": {
-      "source": {
-        "source": "github",
-        "repo": "MaintainX/skill-share",
-        "ref": "krw/plugin-marketplace"
-      }
-    }
-  },
-  "autoUpdatesChannel": "latest",
-  "theme": "dark",
-  "editorMode": "vim",
-  "skipAutoPermissionPrompt": true
+    "command": "bash $HOME/.claude/statusline-command.sh",
+    "type": "command"
+  }
 }
