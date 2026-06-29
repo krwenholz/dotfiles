@@ -37,3 +37,12 @@ pre-commit = [
 
 [remotes.origin]
 auto-track-bookmarks = "*"
+
+# Use watchman as the filesystem monitor so working-copy snapshots query "what
+# changed" instead of walking the whole tree — matters in huge repos like
+# maintainx (~40k tracked files). Requires the watchman package (see packages.yaml).
+[fsmonitor]
+backend = "watchman"
+
+[fsmonitor.watchman]
+register-snapshot-trigger = true

@@ -29,6 +29,7 @@ packages:
       - name: tgux
       - name: tree
       - name: unzip
+      - name: watchman
       - name: wget
       - name: wireguard-tools
       - name: zsh
@@ -71,6 +72,7 @@ packages:
       - name: tmux
       - name: tree
       - name: uv
+      - name: watchman
       - name: wget
       - name: wireguard-tools
     rustpkgsgit:
