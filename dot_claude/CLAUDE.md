@@ -8,6 +8,16 @@ Use `jj` instead of `git` for all version control operations. Do not use git com
 
 For new jj bookmarks (and git branches), use the format of krw/ISSUE_ID (if working on work stuff) or krw/feature-name (if working on personal projects). For example, `jj bookmark krw/1234` or `jj bookmark krw/add-new-thing`.
 
+### jj workspaces
+
+We do a lot of parallel work, so prefer making changes in a dedicated jj workspace rather than the main working copy. Each unit of work gets its own workspace so concurrent changes stay isolated and don't collide.
+
+- Create one per unit of work, named after the bookmark: `jj workspace add ../maintainx-krw-1234`. In the maintainx repo, run `mise trust` in the new workspace before working in it.
+- Changes happen in that directory — `cd` into the workspace path to work there.
+- `jj workspace list` shows all workspaces and their paths; `jj workspace forget <name>` removes one when the work is done.
+
+Agents: I will forget how to get back to a workspace, so proactively remind me. When I ask where the work is or how to see it, tell me to `cd` into the workspace directory, then `jj log` to see that workspace's commits. Use `jj workspace list` to point me at the right path.
+
 ### jj commit workflow
 
 Prefer creating new commits (with `jj new` or just letting the working copy advance) over amending/squashing into existing ones. Each concrete change should be its own commit with a short descriptive message. Move the bookmark forward to the new commit each time:
