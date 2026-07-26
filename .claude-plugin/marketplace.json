@@ -1,0 +1,19 @@
+{
+  "name": "krw-dotfiles",
+  "owner": {
+    "name": "Kyle Wenholz",
+    "email": "kyle@krw.dev",
+    "url": "https://github.com/krwenholz"
+  },
+  "metadata": {
+    "description": "Kyle's personal Claude Code plugin marketplace, published from his dotfiles repo."
+  },
+  "plugins": [
+    {
+      "name": "personal-skills",
+      "source": "./.claude-plugins/personal-skills",
+      "description": "Kyle's personal Claude Code skills (commit messages, PR descriptions, voice matching, domain-model interviews) plus a jj/git guardrail hook.",
+      "version": "1.0.0"
+    }
+  ]
+}

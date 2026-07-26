@@ -5,12 +5,19 @@
     "episodic-memory@superpowers-marketplace": true,
     "hookify@claude-plugins-official": true,
     "kyle-wenholz@maintainx-skills": true,
+    "personal-skills@krw-dotfiles": true,
     "playwright@claude-plugins-official": true,
     "superpowers-lab@superpowers-marketplace": true,
     "superpowers@superpowers-dev": true,
     "superpowers@superpowers-marketplace": true
   },
   "extraKnownMarketplaces": {
+    "krw-dotfiles": {
+      "source": {
+        "repo": "krwenholz/dotfiles",
+        "source": "github"
+      }
+    },
     "maintainx-skills": {
       "source": {
         "ref": "krw/plugin-marketplace",
@@ -50,16 +57,6 @@
       }
     ],
     "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "$HOME/.claude/hooks/jj-git-guard/scripts/block-git-in-jj.sh",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      },
       {
         "hooks": [
           {
