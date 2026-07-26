@@ -5,9 +5,7 @@
     "email": "kyle@krw.dev",
     "url": "https://github.com/krwenholz"
   },
-  "metadata": {
-    "description": "Kyle's personal Claude Code plugin marketplace, published from his dotfiles repo."
-  },
+  "description": "Kyle's personal Claude Code plugin marketplace, published from his dotfiles repo.",
   "plugins": [
     {
       "name": "personal-skills",
