@@ -57,14 +57,13 @@ logs. Just enough context for a reviewer to understand what's happening and why.
 
 ### Tone
 
-Write like Kyle: direct, a little playful, professional but not stiff. Short sentences. Active
-voice. No corporate buzzwords. Imagine you're explaining this to a teammate over Slack — but polished
-enough for async reading.
+**Load the prose rubric from the `kyles-taste` skill** (`rubrics/prose.md`) and follow it. That's
+the source of truth for how Kyle writes — don't work from a paraphrase.
 
-- "Hooks into the existing retry logic" not "Leverages the pre-existing retry infrastructure"
-- "This was tricky because..." not "It is important to note that..."
-- Contractions are fine. Fragments occasionally. Jargon only if the reader obviously knows it.
-- One light touch of personality is fine. Don't overdo it.
+Two things specific to PR descriptions:
+
+- Use the external register, not the Slack one. Polished enough for async reading, no emoji.
+- One light touch of personality. Don't overdo it — a PR description is not a Wizard post.
 
 ### Length and structure
 

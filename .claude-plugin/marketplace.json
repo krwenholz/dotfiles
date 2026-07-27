@@ -10,7 +10,7 @@
     {
       "name": "personal-skills",
       "source": "./.claude-plugins/personal-skills",
-      "description": "Kyle's personal Claude Code skills (commit messages, PR descriptions, voice matching, domain-model interviews) plus a jj/git guardrail hook.",
+      "description": "Kyle's personal Claude Code skills (taste rubrics for prose/code/planning, commit messages, PR descriptions, domain-model interviews) plus a jj/git guardrail hook.",
       "version": "1.0.0"
     }
   ]

@@ -1,6 +1,6 @@
 {
   "name": "personal-skills",
-  "description": "Kyle's personal Claude Code skills: commit messages, PR descriptions, voice matching, domain-model interviews, tuicr review, and a jj/git guardrail hook.",
+  "description": "Kyle's personal Claude Code skills: taste rubrics for prose, code, and planning; commit messages; PR descriptions; domain-model interviews; tuicr review; and a jj/git guardrail hook.",
   "version": "1.0.0",
   "author": {
     "name": "Kyle Wenholz",
@@ -8,5 +8,5 @@
     "url": "https://github.com/krwenholz"
   },
   "homepage": "https://github.com/krwenholz/dotfiles",
-  "keywords": ["commit-message", "pull-request", "voice", "jj", "jujutsu", "code-review"]
+  "keywords": ["taste", "rubric", "voice", "commit-message", "pull-request", "jj", "jujutsu", "code-review"]
 }

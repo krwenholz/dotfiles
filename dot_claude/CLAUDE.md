@@ -45,11 +45,18 @@ For `gh api` JSON, use `--jq` (gh has jq built in) instead of piping to `python3
 
 When formatting output for Slack, use strict Slack mrkdwn syntax (not standard markdown). Do not include extraneous content in final output.
 
+## Taste
+
+The `kyles-taste` skill holds Kyle's standards for prose, code, and planning. Load the matching
+rubric before non-trivial work — writing anything Kyle will send, making a non-trivial code
+change, or shaping an approach. Don't rely on it triggering on its own; the request usually
+doesn't look like a taste question.
+
 ## Pull Request Descriptions
 
 When writing PR descriptions:
 - Keep them short — cover logical areas of the change, not individual files
-- Tone: direct, a little playful, professional but not stiff (see `kyles-voice` skill for voice reference)
+- Tone: see the prose rubric in `kyles-taste`
 - Skip incidental changes (import cleanup, reformatting, linting)
 - For any UI/frontend changes, always include a to-do checkbox for a video demo
 
