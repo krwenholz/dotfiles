@@ -5,11 +5,11 @@ sample of Kyle's Slack voice.
 
 ---
 
-1. Go set your `MX_SLUG` as a personal env var in cursor.com/dashboard/cloud-agents. Use your
-   maintainx email with the `.` removed for the best experience. (This does not impact your
+1. Go set your `ORG_SLUG` as a personal env var in cursor.com/dashboard/cloud-agents. Use your
+   work email with the `.` removed for the best experience. (This does not impact your
    local environment.)
 2. Head to cursor.com/agents
-3. Select the maintainx repo
+3. Select the repo
 4. And get started with Cursor Cloud Agents
 
 **Helpful links**
@@ -20,7 +20,7 @@ sample of Kyle's Slack voice.
   - Getting Started with Cursor
   - Getting your repo started with Cursor Cloud Agents
   - Cursor Cloud Agents: Help
-- Come to #help-team-eng-ai-builder-tools with any questions or issues!
+- Come to #help-team-platform-tools with any questions or issues!
 
 **What's different from local**
 
@@ -31,7 +31,7 @@ sample of Kyle's Slack voice.
 - Only your agent has access to the new AWS account it runs in. We're trying this out to see if
   we can push the envelope on agent autonomy. Let us know what you think!
 
-P.S. This required switching the team AWS IAM role to our new devagent AWS account. If you have
+P.S. This required switching the team AWS IAM role to our new agent AWS account. If you have
 a workflow that was broken and think this is the cause, please reach out! We can work to create
 parity and advise you with a workaround to use the old role.
 
@@ -46,7 +46,7 @@ FYI on some early feedback
 
 1. Initial runs are slower than advertised. Infrastructure needs to be stood up. I forgot to
    note this since I've been living with stood up infra for a week 😅
-2. Many folks are having luck not setting `MX_SLUG`. The env is configured to figure it out for
+2. Many folks are having luck not setting `ORG_SLUG`. The env is configured to figure it out for
    you, but this agent-driven. That means non-determinism, and Kyle _hates_ non-determinism.
 
 ---

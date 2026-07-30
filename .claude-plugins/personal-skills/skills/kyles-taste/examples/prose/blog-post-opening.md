@@ -10,8 +10,8 @@ constructed than Slack.
 > Let's chat about slop smells in our prose and codebase. And then what we might do about it.
 
 I read this post about human effort the other day. It got me thinking about the annoyances of AI
-generated content. (Mostly code and PR comments.) Also, Sam reached out and asked how I got an AI
-generated PR to read so handcrafted. Sam gives me too much credit, but Phil ~~threatened~~
+generated content. (Mostly code and PR comments.) Also, Jordan reached out and asked how I got an
+AI generated PR to read so handcrafted. Jordan gives me too much credit, but Dana ~~threatened~~
 encouraged me to write a Wizard post about some smells and mitigations I shared.
 
 ---
@@ -27,9 +27,9 @@ encouraged me to write a Wizard post about some smells and mitigations I shared.
   practical half. Kyle almost always promises the practical half.
 - **Parenthetical narrowing.** "(Mostly code and PR comments.)" A full-sentence parenthetical
   that scopes the complaint honestly.
-- **Name the people.** Sam and Phil, by name, doing specific things.
-- **Deflect the credit.** "Sam gives me too much credit." Said once, not milked.
-- **The strikethrough joke.** "Phil ~~threatened~~ encouraged me." Cheap, effective, very Kyle.
+- **Name the people.** Jordan and Dana, by name, doing specific things.
+- **Deflect the credit.** "Jordan gives me too much credit." Said once, not milked.
+- **The strikethrough joke.** "Dana ~~threatened~~ encouraged me." Cheap, effective, very Kyle.
   One per piece.
 - **The origin story is the introduction.** No thesis statement — Kyle explains how he came to
   be writing this, and the thesis falls out of it.

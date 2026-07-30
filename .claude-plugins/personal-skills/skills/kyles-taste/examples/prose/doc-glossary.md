@@ -20,11 +20,11 @@ get stiff. Kyle doesn't.
 
 - **Cloud Agent environment**: an agent environment capable of running the monolith and similarly
   complex systems with just a prompt and minimal developer _account_ setup.
-- **Cursor Cloud Agents GA:** AI Builder Tools has a working POC of the monolith in Cursor Cloud
+- **Cursor Cloud Agents GA:** Platform Tools has a working POC of the monolith in Cursor Cloud
   Agents, but we feel it needs various infrastructure and security guardrails in place before
   making it generally available. Similarly, we're limiting enablement work to a subset of
   non-monorepo repos while we build confidence in the implementation.
-- **AIBT:** AI Builder Tools when I'm lazy.
+- **PT:** Platform Tools when I'm lazy.
 
 ---
 
@@ -43,5 +43,5 @@ get stiff. Kyle doesn't.
 - **The honest status, in the definition itself.** "we feel it needs various infrastructure and
   security guardrails in place before making it generally available." A glossary entry that
   admits the thing isn't ready.
-- **End on a joke.** "**AIBT:** AI Builder Tools when I'm lazy." A dry, self-deprecating last
-  entry after a page of precision. This is very on-brand — earn it by being rigorous first.
+- **End on a joke.** "**PT:** Platform Tools when I'm lazy." A dry, self-deprecating last entry
+  after a page of precision. This is very on-brand — earn it by being rigorous first.

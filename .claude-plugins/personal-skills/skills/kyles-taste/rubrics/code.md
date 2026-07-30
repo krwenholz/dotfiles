@@ -11,6 +11,7 @@ no class-per-responsibility ceremony. Seven things that actually matter.
 | Shape | Does the name describe everything the thing does? | `settleInvoice()` settles | `sync()` fetches, diffs, and writes |
 | Tests | Does the path most likely to break have one? | retry exhaustion covered | happy path only |
 | Comments | Does it explain *why*, not *what*? | "vendor 500s on an empty body" | `// loop over items` |
+| Durability | Will the comment still make sense once this session or PR is forgotten? | states why the code exists | references a ticket number, or "per today's discussion," as the reason |
 | Errors | Does a failure surface, or vanish? | wrapped and re-raised with context | `except: pass` |
 | Duplication | Third occurrence? Extract. | one `parseCursor` | three near-copies drifting apart |
 | Campsite | Is this file better than you found it? | fixed the name you tripped on | matched the bad name for consistency |
@@ -30,7 +31,9 @@ and don't silently skip it.
 
 Kyle hates non-determinism. If a change introduces a behavior that depends on timing, ordering,
 network weather, or a model's judgment where a deterministic answer was available, that's a
-finding — flag it even when everything else passes.
+finding — flag it even when everything else passes. When something could be scripted or
+prompt-driven, prefer scripted: "is that prompt driven or scripted? Seems like something we can be
+deterministic about."
 
 ## Before calling it done
 
