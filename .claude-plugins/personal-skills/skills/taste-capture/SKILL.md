@@ -55,7 +55,30 @@ Rules for a good row:
 - **No ALL-CAPS MUST/NEVER.** Rules in caps get followed literally and miss the cases they
   weren't written for. State the rule; the why lives in the prose section below the table.
 
-## 4. Add and reconcile — don't delete
+## 4. Anonymize it
+
+This skill ships publicly through a plugin marketplace, and it should outlive any one job. What
+you capture almost always comes from real work, so scrub it on the way in.
+
+Replace, keeping the shape and the register:
+
+| Kind | Replace with |
+|---|---|
+| Coworker, candidate, or manager names | placeholder first names — Ana, Ben, Cleo |
+| Repo, service, and product names | what the thing is — `api-gateway`, `monorepo`, "the help doc" |
+| Ticket IDs and project keys | `PROJ-402`, `TEAM-104` |
+| Company, employer, and internal meeting names | the generic function — "All Hands", "new-hire onboarding" |
+| Vendor and tool names | the category, unless the tool *is* the point — "the dependency bot" |
+| Customer names, URLs, account IDs, ARNs | drop them |
+
+Don't sand off the voice while you're at it. Slang, profanity, kaomoji, and self-deprecation all
+stay — they're the reason the sample exists. It's only the identifying nouns that go.
+
+Keep enough specificity that the row still teaches. "Ana asked why startups were slow" carries
+the lesson; "a teammate asked a question" doesn't. And say so at the top of a new sample file, so
+the next reader doesn't try to look these people up.
+
+## 5. Add and reconcile — don't delete
 
 The default is additive. When the new opinion touches an existing row:
 
@@ -70,7 +93,7 @@ worse than one that's slightly too long.
 Rewriting the surrounding prose to accommodate a new row is fine and expected — that's
 reconciling. Rewriting it to *remove* an opinion is not.
 
-## 5. Land it
+## 6. Land it
 
 Show Kyle the diff. Then commit to the dotfiles repo with a message naming the opinion, not the
 file:
