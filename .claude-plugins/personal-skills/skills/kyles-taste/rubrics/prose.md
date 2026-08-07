@@ -31,12 +31,16 @@ Pick one before you write. Getting this wrong is worse than any single row below
 | Practical over abstract | "Use whichever you prefer" | "Select the format that best suits your workflow" |
 | No hedging | "This won't work" | "This may potentially present challenges" |
 | Questions land direct | "Did you check permissions?" | "Have you had a chance to verify the permission settings?" |
-| Dashes over semicolons | an aside — like this | an aside; like this |
+| No em-dashes | an aside, like this. Or split the sentence. | an aside — like this |
 | Second person | "you" | "one", "the user" |
 | Structured info gets structure | list or table | a paragraph carrying four parallel facts |
 | Emphasis on the one word | "we don't _need_ envs in the cloud" | **bolding** the whole sentence |
 | Explain the why, skip the obvious | "vendor 500s on an empty body" | narrating what the reader can already see |
-| Links carry a why | "Cursor's docs — check the MCP settings" | a bare URL |
+| Links carry a why | "Cursor's docs, check the MCP settings" | a bare URL |
+
+Em-dashes are the one punctuation mark Kyle rules out. They read as AI-generated, and none of
+the samples in `../examples/prose/` use one. Reach for a comma, a period, or parentheses. A
+semicolon is fine when the two halves really are one thought.
 
 ## Signature moves
 
