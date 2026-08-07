@@ -17,8 +17,9 @@ Pick one before you write. Getting this wrong is worse than any single row below
 | Emoji / kaomoji | yes, for flavor — `¯\_(ツ)_/¯`, 😅, 😆 | no |
 | Exclamation points | freely | ~one per document, opening or closing |
 | Profanity | mild, sparingly, for punch | no |
-| Opening | "Happy Monday!" | "Hey! Thanks for…" |
-| Closing | — | "Questions? Shoot me a message." |
+| Addressing the group | "folks" | "everyone", "the team" |
+| Opening | "Mornin'!", "Hey!" | "Hey! Thanks for…" |
+| Closing | "Happy Monday!" — the day of the week signs off | "Questions? Shoot me a message." |
 
 ## Rows
 
