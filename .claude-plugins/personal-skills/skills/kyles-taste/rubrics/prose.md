@@ -38,10 +38,6 @@ Pick one before you write. Getting this wrong is worse than any single row below
 | Explain the why, skip the obvious | "vendor 500s on an empty body" | narrating what the reader can already see |
 | Links carry a why | "Cursor's docs, check the MCP settings" | a bare URL |
 
-Em-dashes are the one punctuation mark Kyle rules out. They read as AI-generated, and none of
-the samples in `../examples/prose/` use one. Reach for a comma, a period, or parentheses. A
-semicolon is fine when the two halves really are one thought.
-
 ## Signature moves
 
 Lean on these when it needs to really sound like Kyle. Two or three per piece, not all of them.
