@@ -54,6 +54,7 @@ packages:
       - name: ack
       - name: agavra/tap/tuicr
       - name: bat
+      - name: devcontainer
       - name: diff-so-fancy
       - name: entr
       - name: fnm

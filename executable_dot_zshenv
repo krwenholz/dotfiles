@@ -129,6 +129,11 @@ fi
 PATH=$PATH:$HOME/includes/bin:$HOME/.local/bin
 RPROMPT=""
 
+# Docker Desktop symlinks its CLI here
+if test -d "$HOME/.docker/bin"; then
+  PATH=$PATH:$HOME/.docker/bin
+fi
+
 if test -d "$HOME/.bun"; then
   PATH=$PATH:$HOME/.bun/bin
 fi
