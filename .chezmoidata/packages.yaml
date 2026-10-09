@@ -6,6 +6,7 @@ packages:
       - name: build-essential
       - name: diff-so-fancy
       - name: entr
+      - name: gh
       - name: gnupg2
       - name: gpg-agent
       - name: golang-go
@@ -56,6 +57,7 @@ packages:
       - name: diff-so-fancy
       - name: entr
       - name: fnm
+      - name: gh
       - name: go
       - name: gnupg
       - name: htop
