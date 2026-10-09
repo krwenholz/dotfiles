@@ -37,6 +37,17 @@ require("lazy").setup({
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
 
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      delay = 500,
+    },
+    keys = {
+      { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)" },
+    },
+  },
+
   -- {
   --   "RRethy/nvim-base16",
   --   priority = 1000,
@@ -511,6 +522,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = highlight_group,
   pattern = "*",
 })
+
+-- Open current file (or selection) on GitHub at main branch
+vim.keymap.set("n", "<leader>go", ":GBrowse main:%<CR>", { desc = "Open file on GitHub at main" })
+vim.keymap.set("v", "<leader>go", ":'<,'>GBrowse main:%<CR>", { desc = "Open selection on GitHub at main" })
 
 -- Jump back and forward (like VS Code's back/forward buttons)
 vim.keymap.set("n", "<C-(>", "<C-o>", { desc = "Jump back" })
