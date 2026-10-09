@@ -1,0 +1,4 @@
+# Repo plumbing, not dotfiles
+README.md
+bootstrap.sh
+install.sh
